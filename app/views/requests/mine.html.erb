@@ -1,0 +1,16 @@
+Requests for <%= current_member.first_name %><br />
+<% @requests.each do |req| %>
+	<% @request = req %>
+	<% @offers = Offer.where(request_id: req.id) %>
+	<%= render "layouts/request"%>
+<% end %>
+<p></p>
+All Requests (because you are admin)
+<% if current_member.admin? %>
+	<% Request.all.each do |req| %>
+		<% @request = req %>
+		<% @offers = Offer.where(request_id: req.id) %>
+		<% @match = true %>
+		<%= render "layouts/request"%>
+	<% end %>
+<% end %>

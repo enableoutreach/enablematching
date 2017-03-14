@@ -1,0 +1,21 @@
+<table border=1 width="100%">
+  <thead>
+    <tr>
+      <th>Time</th>
+      <th>Status</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Content</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+      	<td><%= @message.created_at %></td>
+      	<td><%= link_to @message.status, @message %></td>
+        <td><%= Member.find(@message.from).first_name %></td>
+        <td><%= Member.find(@message.to).first_name %></td>
+        <td><%= @message.content.html_safe %></td>
+      </tr>
+  </tbody>
+</table>

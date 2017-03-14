@@ -1,0 +1,13 @@
+<%= form_tag(url_for(@request), method: "PUT") do %>	
+	<%= label_tag(:title) %>
+	<%= collection_select(:device, :id, Device.all, :id, :title, selected: @request.device_id) %>
+	<%= label_tag(:side, "Left") %>
+	<%= radio_button_tag(:side, "Left", (@request.side == "Left")) %>
+	<%= label_tag(:side, "Right") %>
+	<%= radio_button_tag(:side, "Right", (@request.side == "Right")) %>
+	<%= label_tag(:shipping_address) %>
+	<%= text_area_tag(:shipping_address, @request.shipping_address, size: "24x6")%>
+	<div class="actions">
+		<%= submit_tag "Submit Request" %>
+	</div>
+<% end %>

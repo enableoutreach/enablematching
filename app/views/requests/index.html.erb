@@ -1,0 +1,47 @@
+<table border=1>
+<% if current_member.admin? %>
+All Requests (because you're an admin)<br />
+	<div id="all" style='width: 800px; height: 400px;'></div>
+	<%= render "layouts/requests"%>
+<% else %>
+Open Requests<br />
+	<% @requests = @requests.where(stage: "Open") %>
+	<div id="all" style='width: 800px; height: 400px;'></div>
+	<%= render "layouts/requests" %>
+<% end %>
+</table>
+
+<script>
+  $(function(handler) {
+var LatLngList = [
+                     new google.maps.LatLng (52.537,-2.061), 
+                     new google.maps.LatLng (52.564,-2.017)
+                 ],
+    latlngbounds = new google.maps.LatLngBounds();
+
+LatLngList.forEach(function(latLng){
+   latlngbounds.extend(latLng);
+});
+	
+	handler = Gmaps.build('Google');
+	handler.buildMap({ 
+		provider: {
+	    	maxZoom: 10, 
+	    	mapTypeControl: false,
+	    	streetViewControl: false},
+    	internal: {id: 'all' }}, 
+    	function(){
+	    markers = handler.addMarkers([
+	    <% @requests.each do |req| %>
+	    	{lat: <%= req.latitude%>, 
+	    	lng: <%= req.longitude%>,
+	    	infowindow: "s" },
+	    <% end %>
+	  ]);
+	  handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+	  
+
+	});	
+  });
+</script>

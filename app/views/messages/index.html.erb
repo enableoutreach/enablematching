@@ -1,0 +1,9 @@
+Messages for <%= current_member.first_name %><br />
+<%= render "layouts/messages" %>
+<p></p>
+<% if current_member.admin? %>
+	All Messages (because you're an admin)
+	<% @messages = Message.order('created_at DESC') %>
+	<%= render "layouts/messages" %>
+<% end %>
+<p></p>

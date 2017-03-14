@@ -1,0 +1,35 @@
+<div class="profileHeader">Profile Info<br /></div>
+<% if params[:action] != "edit" && @member.id == current_member.id %>
+	<%= link_to 'Edit', edit_member_path(@member) %><br />
+<% end %>
+<div>
+  <div style="vertical-align: top">
+	Name: <%=@member.first_name+" "+@member.last_name%><br />
+	Email: <%=@member.email%><br />
+	City: <%=@member.city%><br />
+	Country: <%=@member.country%><br />
+  </div>	 
+	<div id="map" style='width: 100px; height: 100px;'></div>
+</div>
+
+<script>
+  $(function(handler) {
+    handler = Gmaps.build('Google');
+    handler.buildMap({ 
+    	provider: {
+	    	maxZoom: 10, 
+	    	mapTypeControl: false,
+	    	streetViewControl: false,
+	    	zoomControl: false},
+	    internal: { id: 'map' } },
+	  function(){
+      markers = handler.addMarkers([
+        {lat: <%= @member.latitude %>,
+         lng: <%= @member.longitude %>}
+      ]);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+      handler.getMap().setZoom(3);
+    });
+  });
+</script>

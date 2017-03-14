@@ -1,0 +1,27 @@
+<h1>Home#index</h1>
+<p>Find me in app/views/home/index.html.erb</p>
+
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="auth.js"></script>
+<meta name="google-signin-client_id" content="946526782479-am02sutskrdev8akb1gt8dgeah1oqh2h.apps.googleusercontent.com">
+
+
+New Login<br />
+<%= render "sessions/new" %>
+<p></p>
+Old Login<br />
+<%= form_tag("/login") do %>
+	<%= email_field(:member, :email) %>
+	<%= password_field_tag(:password) %>
+	<%= submit_tag("Logon") %>
+<% end %>
+
+
+<p></p>
+Google Experiment
+<!-- ><div class="g-signin2" data-onsuccess="onSignIn"></div>	
+<p>
+	
+<a href="#" onclick="signOut();">Sign out</a>
+
+

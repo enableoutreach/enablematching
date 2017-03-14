@@ -1,0 +1,20 @@
+<h1>Members</h1> (only because you're an admin)
+
+<table border=1 width="100%">
+
+
+  <tbody>
+    <% @members.each do |member| %>
+      <tr>
+      	<% @member = member %>
+		<td><%= render "layouts/profile"%></td>
+        <td><%= link_to 'Show', member %></td>
+        <td><%= link_to 'Destroy', member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Member', new_member_path %>

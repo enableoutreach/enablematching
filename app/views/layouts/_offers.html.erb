@@ -1,0 +1,14 @@
+<% if !@offers.empty? %>
+	<table border=1 width="100%">
+	<% @offers.each do |off| %>
+		<% @offer = off %>
+		<tr>
+			<td>
+				<%= render "layouts/offer"%>
+			</td>
+		</tr>
+	<% end %>
+	</table>
+<% else %>
+	None
+<% end %>

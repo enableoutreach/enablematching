@@ -1,0 +1,15 @@
+STILL need measurements, photos and color
+
+<%= form_tag("/requests", method: "POST") do %>	
+	<%= label_tag(:title) %>
+	<%= collection_select(:device, :id, Device.all, :id, :title) %>
+	<%= label_tag(:side, "Left") %>
+	<%= radio_button_tag(:side, "Left")%>
+	<%= label_tag(:side, "Right") %>
+	<%= radio_button_tag(:side, "Right", checked=true)%>
+	<%= label_tag(:shipping_address) %>
+	<%= text_area_tag(:shipping_address, current_member.city+", "+current_member.country, size: "24x6")%>
+	<div class="actions">
+		<%= submit_tag "Submit Request" %>
+	</div>
+<% end %>

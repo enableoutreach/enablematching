@@ -1,0 +1,8 @@
+<table border=1 width="100%">
+  <tbody>
+    <% @messages.each do |message| %>
+    	<% @message = message %>
+      	<%= render "layouts/message" %>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,30 @@
+<table class="off">
+	<% if @offer.member_id == current_member.id || current_member.admin? %><th class="off"></th><% end %>
+	<th class="off">Offer ID</th>
+	<th class="off">Offer Date</th>
+	<th class="off">Stage</th>
+	<th class="off">Offered by</th>
+	<% if @requests.nil? %><th>Request</th><% end %>
+
+	<tr class="off">
+		<% if @offer.member_id == current_member.id || current_member.admin? %>
+			<td class="off"> 
+				<%= link_to("Revoke Offer", @offer, method: "DELETE", class: "clicky") %>
+				<% if @offer.stage == "Offered" && (Request.find(@offer.request_id).member_id == current_member.id || current_member.admin?) %>
+					<%= link_to("Accept Offer", url_for(controller: 'offers', action: 'accept'), method: "POST", class: "clicky") %>
+					<%= link_to("Decline Offer", url_for(controller: 'offers', action: 'decline'), method: "POST", class: "clicky") %><br />
+				<% end %>
+			</td>
+		<% end %>
+		<td class="off">#<%= link_to(@offer.id, url_for(@offer)) %> </td> 
+		<td class="off"><%= @offer.created_at.strftime('%x') %> </td>
+		<td class="off"><%= @offer.stage %> </td>
+		<td class="off"><%= link_to(Member.find(@offer.member_id).first_name, url_for(Member.find(@offer.member_id))) %> </td>
+	<% if @requests.nil? %>
+		<td class="off">
+			<% @request = Request.find(@offer.request_id) %>
+			<%= render "layouts/request" %>
+		</td>
+	<% end %>
+	</tr>
+</table>

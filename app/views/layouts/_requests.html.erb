@@ -1,0 +1,15 @@
+<% if !@requests.empty? %>
+	<table border=1 width="100%">
+	<% @requests.each do |req| %>
+		<% @request = req %>
+		<% @offers = Offer.where(request_id: req.id) %>
+		<tr>
+			<td>
+				<%= render "layouts/request"%>
+			</td>
+		</tr>
+	<% end %>
+	</table>
+<% else %>
+	None
+<% end %>

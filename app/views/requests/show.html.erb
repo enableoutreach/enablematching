@@ -1,0 +1,6 @@
+<%= render "layouts/request" %>
+<p></p>
+Other Requests from this member<br />
+<% @requests = Request.where(member_id: @request.member_id) %>
+<% @requests -= [@request]%>
+<%= render "layouts/requests" %>
