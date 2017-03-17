@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161220215034) do
+ActiveRecord::Schema.define(version: 20170317211728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,8 @@ ActiveRecord::Schema.define(version: 20161220215034) do
     t.float    "latitude",         default: 0.0
     t.float    "longitude",        default: 0.0
     t.text     "shipping_address"
+    t.boolean  "completed"
+    t.text     "completionnote"
   end
 
 end

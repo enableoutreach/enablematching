@@ -15,7 +15,7 @@
 		<td class="rqst">
 			<% if (@request.member_id == current_member.id || current_member.admin?) && @request.stage != "Completed" %>
 				<%= link_to("Edit Request", edit_request_path(@request), method: "GET", class: "clicky") %><br />
-				<%= link_to("Complete Request", @request, method: "DELETE", class: "clicky") %>
+				<%= link_to("Complete Request", url_for(controller: 'requests', action: "complete", id: @request.id), class: "clicky") %>
 			<% end %>
 			<% if @match && @request.member_id != current_member.id && !Request.open_offer(current_member, @request) && @request.stage == "Open" %>
 				<%= link_to("Offer to Help", offers_path<<"?request_id="<<@request.id.to_s, method: "POST", class: "clicky") %>

@@ -11,8 +11,8 @@
 			<td class="off"> 
 				<%= link_to("Revoke Offer", @offer, method: "DELETE", class: "clicky") %>
 				<% if @offer.stage == "Offered" && (Request.find(@offer.request_id).member_id == current_member.id || current_member.admin?) %>
-					<%= link_to("Accept Offer", url_for(controller: 'offers', action: 'accept'), method: "POST", class: "clicky") %>
-					<%= link_to("Decline Offer", url_for(controller: 'offers', action: 'decline'), method: "POST", class: "clicky") %><br />
+					<%= link_to("Accept Offer", url_for(controller: 'offers', action: 'accept', id: @offer.id), method: "POST", class: "clicky") %>
+					<%= link_to("Decline Offer", url_for(controller: 'offers', action: 'decline', id: @offer.id), method: "POST", class: "clicky") %><br />
 				<% end %>
 			</td>
 		<% end %>

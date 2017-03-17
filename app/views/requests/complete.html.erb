@@ -1,0 +1,13 @@
+<%= form_tag(url_for(@request), method: "DELETE") do %>	
+	<%= label_tag(:completed, "Was the device delivered to you in working order?") %>
+	<%= label_tag(:completed, "Yes") %>
+	<%= radio_button_tag(:completed, "Yes", (@request.completed == "Yes")) %>
+	<%= label_tag(:completed, "No") %>
+	<%= radio_button_tag(:completed, "No", (@request.completed == "No")) %>
+	
+	<%= label_tag(:completionnote, "Please leave a note for the volunteer(s) who helped you") %>
+	<%= text_area_tag(:completionnote, @request.completionnote, size: "240x6")%>
+	<div class="actions">
+		<%= submit_tag "Complete Request" %>
+	</div>
+<% end %>

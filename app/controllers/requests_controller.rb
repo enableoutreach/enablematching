@@ -1,5 +1,5 @@
 class RequestsController < ApplicationController 
-  before_action :set_request, only: [:show, :edit, :update, :destroy]
+  before_action :set_request, only: [:show, :edit, :update, :destroy, :complete]
 
   rescue_from ActiveRecord::RecordNotFound do
     flash[:notice] = "That request is not found"
@@ -46,11 +46,26 @@ class RequestsController < ApplicationController
     end
   end
   
-  def destroy
+  def complete
+    
+  end
+  
+  def destroy #Ruby auto-routes to this from the complete.html.erb form ; could change in routes.rb later
     @offers = Offer.where(request_id: @request.id)
     @request.update stage: "Completed"
+    @request.update completed: params[:completed]
+    @request.update completionnote: params[:completionnote]
     @offers.each do |off|
-        off.update stage: "Abandoned"
+        if off.stage == 'Offered'
+          off.update stage: "Abandoned"
+        end 
+        if off.stage == 'Accepted'
+          if params[:completed]
+            off.update stage: "Completed"
+          else
+            off.update stage: "Incomplete"
+          end
+        end
         Message.new do |m|
           m.from = @request.member_id
           m.to = off.member_id

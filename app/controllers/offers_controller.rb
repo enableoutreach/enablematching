@@ -1,5 +1,5 @@
 class OffersController < ApplicationController
-  before_action :set_offer, only: [:show, :edit, :update, :destroy, :accept]
+  before_action :set_offer, only: [:show, :edit, :update, :destroy, :accept, :decline]
   
   rescue_from ActiveRecord::RecordNotFound do
     flash[:notice] = "That offer is not found"
@@ -73,6 +73,22 @@ class OffersController < ApplicationController
         m.to = @offer.member_id
         m.from = @request.member_id
         m.content = "Your offer on <a href=\"#{Rails.application.routes.url_helpers.request_path @request.id}\">Request ##{@request.id.to_s}</a> was accepted (include link to WHAT NEXT doc)"
+        m.save  
+      end
+    
+    redirect_to :controller => 'requests', :action => 'index'
+  end
+  
+  def decline
+    @offer.update stage: "Declined"
+    @request = Request.find(@offer.request_id)
+    @request.update stage: "Open"
+    flash[:notice] = "Offer declined"
+
+    Message.new do |m|
+        m.to = @offer.member_id
+        m.from = @request.member_id
+        m.content = "Your offer on <a href=\"#{Rails.application.routes.url_helpers.request_path @request.id}\">Request ##{@request.id.to_s}</a> was declined (include link to WHAT NEXT doc)"
         m.save  
       end
     
