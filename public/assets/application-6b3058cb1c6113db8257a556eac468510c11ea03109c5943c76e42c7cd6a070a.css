@@ -1,0 +1,247 @@
+/* line 5, C:/Users/Joe/Google Drive/Volunteering/Matching System/Test/app/assets/stylesheets/home.scss */
+body {
+  background-color: #fff;
+  color: #333;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  margin: 33px;
+}
+
+/* line 14, C:/Users/Joe/Google Drive/Volunteering/Matching System/Test/app/assets/stylesheets/home.scss */
+p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  margin: 33px;
+}
+
+/* line 21, C:/Users/Joe/Google Drive/Volunteering/Matching System/Test/app/assets/stylesheets/home.scss */
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+/* line 28, C:/Users/Joe/Google Drive/Volunteering/Matching System/Test/app/assets/stylesheets/home.scss */
+th {
+  padding-bottom: 5px;
+}
+
+/* line 32, C:/Users/Joe/Google Drive/Volunteering/Matching System/Test/app/assets/stylesheets/home.scss */
+td {
+  padding-bottom: 7px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+/* line 39, C:/Users/Joe/Google Drive/Volunteering/Matching System/Test/app/assets/stylesheets/home.scss */
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+/* line 44, C:/Users/Joe/Google Drive/Volunteering/Matching System/Test/app/assets/stylesheets/home.scss */
+#notice {
+  color: green;
+}
+
+/* line 48, C:/Users/Joe/Google Drive/Volunteering/Matching System/Test/app/assets/stylesheets/home.scss */
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+/* line 54, C:/Users/Joe/Google Drive/Volunteering/Matching System/Test/app/assets/stylesheets/home.scss */
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+/* line 62, C:/Users/Joe/Google Drive/Volunteering/Matching System/Test/app/assets/stylesheets/home.scss */
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0;
+  background-color: #c00;
+  color: #fff;
+}
+/* line 73, C:/Users/Joe/Google Drive/Volunteering/Matching System/Test/app/assets/stylesheets/home.scss */
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+/* line 79, C:/Users/Joe/Google Drive/Volunteering/Matching System/Test/app/assets/stylesheets/home.scss */
+label {
+  display: block;
+}
+
+/* line 83, C:/Users/Joe/Google Drive/Volunteering/Matching System/Test/app/assets/stylesheets/home.scss */
+.pageHeader {
+  font-size: 14px;
+  color: green;
+  margin-bottom: 20px;
+}
+
+/* line 89, C:/Users/Joe/Google Drive/Volunteering/Matching System/Test/app/assets/stylesheets/home.scss */
+.messageNotice {
+  position: relative;
+  float: right;
+}
+
+/* line 94, C:/Users/Joe/Google Drive/Volunteering/Matching System/Test/app/assets/stylesheets/home.scss */
+.submitButton {
+  position: relative;
+  float: right;
+  -moz-box-shadow: inset 0px 1px 0px 0px #caefab;
+  -webkit-box-shadow: inset 0px 1px 0px 0px #caefab;
+  box-shadow: inset 0px 1px 0px 0px #caefab;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #77d42a), color-stop(1, #5cb811));
+  background: -moz-linear-gradient(center top, #77d42a 5%, #5cb811 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#77d42a', endColorstr='#5cb811');
+  background-color: #77d42a;
+  -webkit-border-top-left-radius: 37px;
+  -moz-border-radius-topleft: 37px;
+  border-top-left-radius: 37px;
+  -webkit-border-top-right-radius: 0px;
+  -moz-border-radius-topright: 0px;
+  border-top-right-radius: 0px;
+  -webkit-border-bottom-right-radius: 37px;
+  -moz-border-radius-bottomright: 37px;
+  border-bottom-right-radius: 37px;
+  -webkit-border-bottom-left-radius: 0px;
+  -moz-border-radius-bottomleft: 0px;
+  border-bottom-left-radius: 0px;
+  text-indent: 0;
+  border: 1px solid #268a16;
+  display: inline-block;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: bold;
+  font-style: normal;
+  height: 40px;
+  line-height: 40px;
+  width: 178px;
+  text-decoration: none;
+  text-align: center;
+  text-shadow: 1px 1px 0px #aade7c;
+  margin-bottom: 10px;
+}
+
+/* line 132, C:/Users/Joe/Google Drive/Volunteering/Matching System/Test/app/assets/stylesheets/home.scss */
+.submitButton:hover {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #5cb811), color-stop(1, #77d42a));
+  background: -moz-linear-gradient(center top, #5cb811 5%, #77d42a 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5cb811', endColorstr='#77d42a');
+  background-color: #5cb811;
+  color: #444444;
+}
+
+/* line 139, C:/Users/Joe/Google Drive/Volunteering/Matching System/Test/app/assets/stylesheets/home.scss */
+.submitButton:active {
+  position: relative;
+  top: 1px;
+}
+
+/* line 144, C:/Users/Joe/Google Drive/Volunteering/Matching System/Test/app/assets/stylesheets/home.scss */
+.clicky {
+  -moz-box-shadow: inset 0px 1px 0px 0px #bbdaf7;
+  -webkit-box-shadow: inset 0px 1px 0px 0px #bbdaf7;
+  box-shadow: inset 0px 1px 0px 0px #bbdaf7;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #79bbff), color-stop(1, #378de5));
+  background: -moz-linear-gradient(center top, #79bbff 5%, #378de5 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#79bbff', endColorstr='#378de5');
+  background-color: #79bbff;
+  -webkit-border-top-left-radius: 29px;
+  -moz-border-radius-topleft: 29px;
+  border-top-left-radius: 29px;
+  -webkit-border-top-right-radius: 29px;
+  -moz-border-radius-topright: 29px;
+  border-top-right-radius: 29px;
+  -webkit-border-bottom-right-radius: 29px;
+  -moz-border-radius-bottomright: 29px;
+  border-bottom-right-radius: 29px;
+  -webkit-border-bottom-left-radius: 29px;
+  -moz-border-radius-bottomleft: 29px;
+  border-bottom-left-radius: 29px;
+  text-indent: 0px;
+  border: 1px solid #84bbf3;
+  display: inline-block;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+  height: 40px;
+  line-height: 40px;
+  width: 153px;
+  text-decoration: none;
+  text-align: center;
+  text-shadow: 1px 1px 0px #528ecc;
+  margin-bottom: 10px;
+}
+
+/* line 180, C:/Users/Joe/Google Drive/Volunteering/Matching System/Test/app/assets/stylesheets/home.scss */
+.clicky:hover {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #378de5), color-stop(1, #79bbff));
+  background: -moz-linear-gradient(center top, #378de5 5%, #79bbff 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#378de5', endColorstr='#79bbff');
+  background-color: #378de5;
+  color: #444444;
+}
+
+/* line 187, C:/Users/Joe/Google Drive/Volunteering/Matching System/Test/app/assets/stylesheets/home.scss */
+.clicky:active {
+  position: relative;
+  top: 1px;
+}
+/* line 5, C:/Users/Joe/Google Drive/Volunteering/Matching System/Test/app/assets/stylesheets/members.scss */
+.profileHeader {
+  font-size: 14px;
+  color: blue;
+}
+/* line 5, C:/Users/Joe/Google Drive/Volunteering/Matching System/Test/app/assets/stylesheets/messages.scss */
+.messageBox {
+  font-size: 14px;
+  height: 100px;
+  width: 500px;
+}
+/* line 5, C:/Users/Joe/Google Drive/Volunteering/Matching System/Test/app/assets/stylesheets/offers.scss */
+.off {
+  border: 1px solid black;
+  width: 100%;
+  background-color: #a2f2cc;
+}
+/* line 5, C:/Users/Joe/Google Drive/Volunteering/Matching System/Test/app/assets/stylesheets/requests.scss */
+.rqst {
+  border: 1px solid black;
+  width: 100%;
+  background-color: #a2d8f2;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+
+
+ */
+
+
+=require jquery-ui
+
