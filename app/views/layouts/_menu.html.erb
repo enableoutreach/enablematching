@@ -1,5 +1,6 @@
 <%= link_to "Home", root_path %>
 <%= if current_member; link_to "Profile", url_for(current_member); end; %>
+<%= link_to "Chapters", chapters_path %>
 <%= link_to "Available Requests", requests_path %>
 <%= link_to "My Offers", offers_path %>
 <%= link_to "My Requests", url_for(controller: "/requests", action: "mine") %>

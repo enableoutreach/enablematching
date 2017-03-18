@@ -1,0 +1,12 @@
+<%= form_tag(url_for(@chapter), method: "PUT") do %>	
+	<%= label_tag(:name) %>
+	<%= text_area_tag(:name, @chapter.name, size: "50x1")%>
+	<%= label_tag(:lead) %>
+	<%= @chapter.lead %>
+	<%= label_tag("Status") %>
+	<%= if @chapter.active; "Active"; else; "Inactive"; end %>
+
+	<div class="actions">
+		<%= submit_tag "Update Chapter" %>
+	</div>
+<% end %>

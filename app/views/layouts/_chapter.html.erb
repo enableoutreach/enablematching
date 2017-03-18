@@ -1,0 +1,21 @@
+<table class="chapter">
+	<th class="chapter" width="10%"></th>
+	<th class="chapter" width="10%">Chapter ID</th>
+	<th class="chapter" width="50%">Name</th>
+	<th class="chapter" width="10%">Lead</th>
+	<th class="chapter" width="10%">Status</th>
+
+	<tr class="chapter">
+			<td class="chapter"> 
+				<% if @chapter.lead == current_member.id || current_member.admin? %>
+					<%= link_to("Edit Chapter", url_for(controller: 'chapters', action: 'edit', id: @chapter.id), class: "clicky") %>
+				<% end %>
+				<%= link_to("Claim Chapter", @chapter, class: "clicky") %>
+			</td>
+		
+		<td class="chapter">#<%= @chapter.id %> </td> 
+		<td class="chapter"><%= @chapter.name %> </td>
+		<td class="chapter"><%= if @chapter.lead != nil; Member.find(@chapter.lead).first_name end %> </td>
+		<td class="chapter"><%= @chapter.active ? "Active" : "Inactive" %> </td>
+	</tr>
+</table>

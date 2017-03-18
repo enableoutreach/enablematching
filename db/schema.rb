@@ -10,11 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170317211728) do
+ActiveRecord::Schema.define(version: 20170317221133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pgcrypto"
+
+  create_table "chapters", force: :cascade do |t|
+    t.integer  "lead"
+    t.boolean  "active"
+    t.text     "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "devices", force: :cascade do |t|
     t.datetime "created_at", null: false

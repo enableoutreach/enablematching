@@ -61,8 +61,7 @@ class RequestsController < ApplicationController
         end 
         if off.stage == 'Accepted'
           if params[:completed]
-            off.update stage: "Completed"
-          else
+            off.update stage: "Completed"          else
             off.update stage: "Incomplete"
           end
         end
