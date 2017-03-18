@@ -1,5 +1,5 @@
 class ChaptersController < ApplicationController 
-  before_action :set_chapter, only: [:edit, :show, :update, :destroy]
+  before_action :set_chapter, only: [:edit, :show, :update]
 
   def index
     if current_member.admin?
@@ -23,48 +23,11 @@ class ChaptersController < ApplicationController
   end
   
   def update
-    if @chapter.update(name: params[:name])
+    if @chapter.update(name: params[:name], active: params[:active]=="true")
         redirect_to @chapter, notice: 'Chapter was successfully updated.'
     else
         render :edit
     end
-  end
-  
-  
-  def destroy
-    @offers = Offer.where(request_id: @request.id)
-    @request.update stage: "Completed"
-    @request.update completed: params[:completed]
-    @request.update completionnote: params[:completionnote]
-    @offers.each do |off|
-        if off.stage == 'Offered'
-          off.update stage: "Abandoned"
-        end 
-        if off.stage == 'Accepted'
-          if params[:completed]
-            off.update stage: "Completed"
-          else
-            off.update stage: "Incomplete"
-          end
-        end
-        Message.new do |m|
-          m.from = @request.member_id
-          m.to = off.member_id
-          m.content = "<a href=\"#{Rails.application.routes.url_helpers.member_path @request.member_id}\">#{Member.find(@request.member_id).first_name}</a> closed <a href=\"#{Rails.application.routes.url_helpers.request_path @request.id}\">Request ##{@request.id.to_s}</a>, so your offer was abandoned."
-          m.save  
-        end
-    end
-    
-    flash[:notice] = "Request and associated offers closed"
-
-    Message.new do |m|
-      m.from = @request.member_id
-      m.to = @request.member_id
-      m.content = "You closed <a href=\"#{Rails.application.routes.url_helpers.request_path @request.id}\">Request ##{@request.id.to_s}</a>"
-      m.save  
-    end
-    
-    redirect_to :controller => 'requests', :action => 'index'
   end
   
     private

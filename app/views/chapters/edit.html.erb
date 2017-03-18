@@ -4,8 +4,15 @@
 	<%= label_tag(:lead) %>
 	<%= @chapter.lead %>
 	<%= label_tag("Status") %>
-	<%= if @chapter.active; "Active"; else; "Inactive"; end %>
-
+	<% if current_member.admin? then %>
+		<%= label_tag(:active, "Active") %>
+		<%= radio_button_tag(:active, true, @chapter.active) %>
+		<%= label_tag(:active, "Inactive") %>
+		<%= radio_button_tag(:active, false, !@chapter.active) %>
+	<% else %>
+		<%= if @chapter.active; "Active"; else; "Inactive"; end %>
+	<% end %>
+	
 	<div class="actions">
 		<%= submit_tag "Update Chapter" %>
 	</div>

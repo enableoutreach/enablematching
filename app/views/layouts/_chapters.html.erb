@@ -1,12 +1,14 @@
 <% if !@chapters.empty? %>
 	<table border=1 width="100%">
 	<% @chapters.each do |chapter| %>
-		<% @chapter = chapter %>
-		<tr>
-			<td>
-				<%= render "layouts/chapter"%>
-			</td>
-		</tr>
+		<% if chapter.active? %>
+			<% @chapter = chapter %>
+			<tr>
+				<td>
+					<%= render "layouts/chapter"%>
+				</td>
+			</tr>
+		<% end %>
 	<% end %>
 	</table>
 <% else %>
