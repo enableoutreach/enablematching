@@ -38,7 +38,7 @@ class ChaptersController < ApplicationController
               :port                 => 587,
               :domain               => 'enableoutreach.org',
               :user_name            => 'enablechapters@gmail.com',
-              :password             => ENV["MAIL_PASSWORD"],
+              :password             => ENV['MAIL_PASSWORD'],
               :authentication       => 'plain',
               :enable_starttls_auto => true  }
               
