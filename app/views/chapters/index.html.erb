@@ -1,7 +1,66 @@
 <h1>Chapters</h1> (only because you're an admin)
 
-<%= render "layouts/chapters"%>
+<div id="chaptermap" style='width: 800px; height: 400px;'></div>
 
 <br>
 
 <%= link_to 'New Chapter', new_chapter_path %>
+
+<br>
+
+<%= render "layouts/chapters"%>
+
+
+
+
+
+
+
+<script>
+  $(function(handler) {
+var LatLngList = [
+       new google.maps.LatLng (52.537,-2.061), 
+       new google.maps.LatLng (52.564,-2.017)
+                 ],
+    latlngbounds = new google.maps.LatLngBounds();
+
+LatLngList.forEach(function(latLng){
+   latlngbounds.extend(latLng);
+});
+	
+	handler = Gmaps.build('Google', { markers: { clusterer: undefined  } });
+	handler.buildMap({ 
+		provider: {
+	    	maxZoom: 10, 
+	    	mapTypeControl: false,
+	    	streetViewControl: false},
+    	internal: {id: 'chaptermap' }}, 
+    	function(){
+	    markers = handler.addMarkers([
+	    <% @chapters.each do |chapter| %> 
+	    	<% if chapter.active %>
+	    		<% @chapter=chapter %>
+			    {
+			    	lat: <%= chapter.latitude%>, 
+			    	lng: <%= chapter.longitude%>,
+		    		infowindow: '<div class="infowin"> \
+		    			<b>Name:</b> <%= @chapter.name %> <br> \
+		    			<b>Lead:</b> <%= if @chapter.lead; Member.find(@chapter.lead).firstname; "None"; end; %> <br> \
+		    			<b>Location:</b> <%= @chapter.location %> <br> \
+		    			<b>Email:</b> <%= @chapter.email %> <br> \
+		    			<b>Homepage:</b> <%= if @chapter.home; link_to(@chapter.home, @chapter.home, target: "_new"); end; %> <br> \
+		    			<b>Donate:</b> <%= if @chapter.donation; link_to(@chapter.donation, @chapter.donation, target: "_new"); end; %> <br> \
+		    			<b>Intake:</b> <%= if @chapter.intake; link_to(@chapter.intake, @chapter.intake, target: "_new"); end; %> <br></div> \
+		    			<% if @chapter.lead == current_member.id || current_member.admin? %> \
+							<%= link_to("Edit Chapter", url_for(controller: 'chapters', action: 'edit', id: @chapter.id), class: "clicky") %> \
+						<% end %> \
+						<%= link_to("Claim Chapter", @chapter, class: "clicky") %>'
+		    	},
+		    <% end %>
+	  <% end %>
+	  ]);
+	  handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+	});	
+  });
+</script>
