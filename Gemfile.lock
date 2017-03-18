@@ -196,7 +196,7 @@ GEM
     tzinfo-data (1.2017.1)
       tzinfo (>= 1.0.0)
     uber (0.1.0)
-    uglifier (3.1.7)
+    uglifier (3.1.8)
       execjs (>= 0.3.0, < 3)
     underscore-rails (1.8.3)
     warden (1.2.7)
@@ -225,6 +225,7 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   jquery-ui-rails
+  mail
   pg
   puma
   rails

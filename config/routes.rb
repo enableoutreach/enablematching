@@ -17,6 +17,12 @@ Rails.application.routes.draw do
     get 'requests/mine', to: 'requests#mine'
     get 'requests/:id/complete', to: 'requests#complete'
   end
+  
+  devise_scope :chapter do
+    get 'chapters/:id/claim', to: 'chapters#claim'
+    get 'chapters/:id/claimsend', to: 'chapters#claimsend'
+    get 'chapters/agree', to: 'chapters#agree'
+  end
 
 
   resources :members
