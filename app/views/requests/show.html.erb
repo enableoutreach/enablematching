@@ -1,6 +1,28 @@
-<%= render "layouts/request" %>
-<p></p>
-Other Requests from this member<br />
-<% @requests = Request.where(member_id: @request.member_id) %>
-<% @requests -= [@request]%>
-<%= render "layouts/requests" %>
+<div>
+	<div class="card" style="margin-bottom: 10px; cursor: default; display: block;">
+		<p>Request ID #<%= @request.id %></p>
+		<p>Request Date <%= @request.created_at.strftime('%x') %></p>
+		<p>Requested By <%= link_to(Member.find(@request.member_id).first_name << " " << Member.find(@request.member_id).last_name, url_for(Member.find(@request.member_id))) %></p>
+		<p>Device <%= link_to(Device.find(@request.device_id).title, url_for(Device.find(@request.device_id))) %></p>
+		<p>Side <%= @request.side %></p>
+		<p>Stage <%= @request.stage %></p>
+		<% if current_member.id == @request.member_id %>
+			<p>Shipping <%= @request.shipping_address %></p>
+		<% end %>
+	</div>
+
+	<div style="margin-top: 10px;">
+		<% if (@request.member_id == current_member.id || current_member.admin?) && @request.stage != "Completed" %>
+			<%= link_to("Edit Request", edit_request_path(@request), method: "GET", class: "clicky") %>
+			<%= link_to("Complete Request", url_for(controller: 'requests', action: "complete", id: @request.id), class: "clicky") %>
+		<% end %>
+		<% if @match && @request.member_id != current_member.id && !Request.open_offer(current_member, @request) && @request.stage == "Open" %>
+			<%= link_to("Offer to Help", offers_path<<"?request_id="<<@request.id.to_s, method: "POST", class: "clicky") %>
+		<% end %>
+	</div>
+</div>
+
+<% if !@requests.nil? %> <div class="sectionHeader" style="margin-bottom: 0;">Offers on this request</div> 
+	<% @offers = Offer.where(request_id: @request.id) %>
+	<%= render "layouts/offers" %>
+<% end %>

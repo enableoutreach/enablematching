@@ -1,15 +1,11 @@
 <% if !@requests.empty? %>
-	<table border=1 width="100%">
-	<% @requests.each do |req| %>
-		<% @request = req %>
-		<% @offers = Offer.where(request_id: req.id) %>
-		<tr>
-			<td>
-				<%= render "layouts/request"%>
-			</td>
-		</tr>
-	<% end %>
-	</table>
+	<div class="cardContainer">
+		<% @requests.each do |req| %>
+			<% @request = req %>
+			<% @offers = Offer.where(request_id: req.id) %>
+				<%= render "layouts/request" %>
+		<% end %>
+	</div>
 <% else %>
-	None
+	<p style="font-weight: bold; color: white; margin: 3px;"> None </p>
 <% end %>

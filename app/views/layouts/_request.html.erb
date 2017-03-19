@@ -1,40 +1,9 @@
-<table class="rqst">
-	<th class="rqst">Actions</th>
-	<th class="rqst">Request ID</th>
-	<th class="rqst">Request Date</th>
-	<th class="rqst">Requested By</th>
-	<th class="rqst">Device</th>
-	<th class="rqst">Side</th>
-	<th class="rqst">Stage</th>
-	<% if current_member.id == @request.member_id %>
-		<th>Shipping</th>
-	<% end %>
-	<% if !@requests.nil? %> <th>Offer(s)</th> <% end %>
-	
-	<tr class="rqst">
-		<td class="rqst">
-			<% if (@request.member_id == current_member.id || current_member.admin?) && @request.stage != "Completed" %>
-				<%= link_to("Edit Request", edit_request_path(@request), method: "GET", class: "clicky") %><br />
-				<%= link_to("Complete Request", url_for(controller: 'requests', action: "complete", id: @request.id), class: "clicky") %>
-			<% end %>
-			<% if @match && @request.member_id != current_member.id && !Request.open_offer(current_member, @request) && @request.stage == "Open" %>
-				<%= link_to("Offer to Help", offers_path<<"?request_id="<<@request.id.to_s, method: "POST", class: "clicky") %>
-			<% end %>
-		</td><br />
-		<td class="rqst">#<%= link_to(@request.id, url_for(@request)) %></td>
-		<td class="rqst"><%= @request.created_at.strftime('%x') %></td>
-		<td class="rqst"><%= link_to(Member.find(@request.member_id).first_name, url_for(Member.find(@request.member_id))) %></td>
-		<td class="rqst"><%= link_to(Device.find(@request.device_id).title, url_for(Device.find(@request.device_id))) %></td>
-		<td class="rqst"><%= @request.side %></td>
-		<td class="rqst"><%= @request.stage %></td>
-		<% if current_member.id == @request.member_id %>
-			<td><%= @request.shipping_address %></td>
-		<% end %>
-		<% if !@requests.nil? %>
-			<% @offers = Offer.where(request_id: @request.id) %>
-			<td class="rqst"><%= render "layouts/offers" %></td>
-		<% end %>
-	</tr>
-</table>
-
+<div class="card" style="font-weight: <%= if @request.stage == 'Open'; 'bold'; else; 'normal'; end; %> ">
+	<a href="<%= url_for(@request) %>">
+		<div class="cardCol"><%= @request.created_at.strftime('%x') %></div>
+		<div class="cardCol"><%= Member.find(@request.member_id).first_name << " " << Member.find(@request.member_id).last_name %></div>
+		<div class="cardCol"><%= Device.find(@request.device_id).title %></div>
+		<div class="cardCol"><%= @request.side %></div>
+		<div class="cardCol"><%= @request.stage %></div>
+	</a>
 </div>

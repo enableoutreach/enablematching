@@ -1,15 +1,13 @@
 
-<div class="pageHeader"> Member Dashboard <br /></div>
-
-<%= render "layouts/profile"%> 		
+<%= render "layouts/profile"%>
 		 
 <% if params[:id] == current_member.id.to_s || current_member.admin? %>		
 		<p></p>
-		<div class="profileHeader">Requests by <%= @member.first_name %> <br /></div>
+		<div class="sectionHeader" style="margin-bottom: 0;">Requests by <%= @member.first_name %></div>
 			<%= render "layouts/requests"%>
 		
 		<p></p>
-		<div class="profileHeader">Offers  from <%= @member.first_name %> <br /></div>
+		<div class="sectionHeader" style="margin-bottom: 0;">Offers  from <%= @member.first_name %></div>
 			<% if !@youroffers.nil? %>
 				<% @requests = nil %>
 				<% @offers = @youroffers %>

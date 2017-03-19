@@ -1,22 +1,18 @@
-<table border=1>
+<div id="map" style='height: 400px; margin-bottom: 10px;'></div>
+
 <% if current_member.admin? %>
-All Requests (because you're an admin)<br />
-	<div id="all" style='width: 800px; height: 400px;'></div>
+	<div class="sectionHeader" style="margin-bottom: 0;">All Requests (because you're an admin)</div>
 	<%= render "layouts/requests"%>
 <% else %>
-Open Requests<br />
+	<div class="sectionHeader" style="margin-bottom: 0;">Open Requests</div>
 	<% @requests = @requests.where(stage: "Open") %>
-	<div id="all" style='width: 800px; height: 400px;'></div>
 	<%= render "layouts/requests" %>
 <% end %>
-</table>
+
 
 <script>
   $(function(handler) {
-var LatLngList = [
-                     new google.maps.LatLng (52.537,-2.061), 
-                     new google.maps.LatLng (52.564,-2.017)
-                 ],
+var LatLngList = [],
     latlngbounds = new google.maps.LatLngBounds();
 
 LatLngList.forEach(function(latLng){
@@ -29,13 +25,19 @@ LatLngList.forEach(function(latLng){
 	    	maxZoom: 10, 
 	    	mapTypeControl: false,
 	    	streetViewControl: false},
-    	internal: {id: 'all' }}, 
+    	internal: {id: 'map' }}, 
     	function(){
 	    markers = handler.addMarkers([
 	    <% @requests.each do |req| %>
-	    	{lat: <%= req.latitude%>, 
+	    {
+	    	lat: <%= req.latitude%>, 
 	    	lng: <%= req.longitude%>,
-	    	infowindow: "s" },
+	    	infowindow: '<div class="infowin"> \
+		    			<b>Submitted Date:</b> <%= @request.created_at %> <br> \
+		    			<b>By: </b> <%= Member.find(@request.member_id).first_name << " " << Member.find(@request.member_id).last_name %> <br> \
+		    			<b>Device:</b> <%= Device.find(@request.device_id).title %> <br> \
+		    			<b>Side:</b> <%= @request.side %> <br>'
+	    },
 	    <% end %>
 	  ]);
 	  handler.bounds.extendWith(markers);

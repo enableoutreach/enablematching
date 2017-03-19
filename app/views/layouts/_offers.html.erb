@@ -1,5 +1,5 @@
 <% if !@offers.empty? %>
-	<table border=1 width="100%">
+	<div class="cardContainer">
 	<% @offers.each do |off| %>
 		<% @offer = off %>
 		<tr>
@@ -8,7 +8,7 @@
 			</td>
 		</tr>
 	<% end %>
-	</table>
+	</div>
 <% else %>
-	None
+	<p style="font-weight: bold; color: white; margin: 3px;"> None </p>
 <% end %>

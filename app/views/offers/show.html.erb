@@ -1,1 +1,25 @@
-<%= render "layouts/offer"%>
+<div>
+	<div class="card" style="margin-bottom: 10px; cursor: default; display: block;">
+		<p>Offer ID #<%= @offer.id %></p>
+		<p>Offer Date <%= @offer.created_at.strftime('%x') %></p>
+		<p>Offered By <%= link_to(Member.find(@offer.member_id).first_name << " " << Member.find(@offer.member_id).last_name, url_for(Member.find(@offer.member_id))) %></p>
+		<p>Stage <%= @offer.stage %></p>
+	</div>
+
+	<div style="margin-top: 10px;">
+		<% if @offer.member_id == current_member.id || current_member.admin? %>
+			<%= link_to("Revoke Offer", @offer, method: "DELETE", class: "clicky") %>
+		<% end %>
+		<% if @offer.stage == "Offered" && (Request.find(@offer.request_id).member_id == current_member.id || current_member.admin?) %>
+			<%= link_to("Accept Offer", url_for(controller: 'offers', action: 'accept', id: @offer.id), method: "POST", class: "clicky") %>
+			<%= link_to("Decline Offer", url_for(controller: 'offers', action: 'decline', id: @offer.id), method: "POST", class: "clicky") %><br />
+		<% end %>
+	</div>
+</div>
+
+<% if @requests.nil? %><div class="sectionHeader" style="margin-bottom: 0;">Associated request</div> 
+	<div class="cardContainer">
+		<% @request = Request.find(@offer.request_id) %>
+		<%= render "layouts/request" %>
+	</div>
+<% end %>

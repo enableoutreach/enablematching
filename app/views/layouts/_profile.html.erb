@@ -1,15 +1,18 @@
-<div class="profileHeader">Profile Info<br /></div>
-<% if params[:action] != "edit" && @member.id == current_member.id %>
-	<%= link_to 'Edit', edit_member_path(@member) %><br />
-<% end %>
-<div>
-  <div style="vertical-align: top">
+<div class="sectionHeader">Profile Info</div>
+
+<div style="display: flex; position: relative; padding-left: 10px;">
+  <div style="vertical-align: top; margin-right: 20px;">
 	Name: <%=@member.first_name+" "+@member.last_name%><br />
 	Email: <%=@member.email%><br />
 	City: <%=@member.city%><br />
 	Country: <%=@member.country%><br />
-  </div>	 
-	<div id="map" style='width: 100px; height: 100px;'></div>
+  </div>	
+  
+  <% if params[:action] != "edit" && @member.id == current_member.id %>
+  	<%= link_to('Edit', edit_member_path(@member), {:class=>'clicky', :style=>'position:absolute;bottom:0;'}) %><br />
+  <% end %>
+   
+  <div id="map" style='width: 200px; height: 200px; margin-bottom: 10px;'></div>
 </div>
 
 <script>

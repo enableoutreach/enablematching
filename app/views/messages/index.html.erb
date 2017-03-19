@@ -1,9 +1,17 @@
-Messages for <%= current_member.first_name %><br />
-<%= render "layouts/messages" %>
-<p></p>
-<% if current_member.admin? %>
-	All Messages (because you're an admin)
-	<% @messages = Message.order('created_at DESC') %>
-	<%= render "layouts/messages" %>
-<% end %>
-<p></p>
+<div class="cardContainer">
+	<img src="messagesIcon.png" style="opacity: .4; position: absolute; margin-left: 25%;"/>
+	<img src="messageBackground.png" style="opacity: .7; position: absolute;"/>
+	
+	<% if ! @messages.empty? %>
+		<%= render "layouts/messages" %>
+	<% else %>
+		<p style="font-weight: bold; color: white; margin: 3px;"> No messages<br /> </p>
+	<% end %>
+	<% if current_member.admin? %>
+	<p><hr /></p>
+		<p style="font-weight: bold; color: white; margin: 3px;">All Messages (because you're an admin)</p>
+		<% @messages = Message.order('created_at DESC') %>
+		<%= render "layouts/messages" %>
+	<% end %>
+	<p></p>
+</div>

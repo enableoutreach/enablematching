@@ -1,21 +1,8 @@
-<table border=1 width="100%">
-  <thead>
-    <tr>
-      <th width="20%">Time</th>
-      <th width="10%">Status</th>
-      <th width="10%">From</th>
-      <th width="10%">To</th>
-      <th width="50%">Content</th>
-    </tr>
-  </thead>
+<div class="card" style="font-weight: <%= if @message.status == 'Unread'; 'bold'; else; 'normal'; end; %> ">
+	<a href="<%= url_for(@message) %>">
+		<div class="cardCol"><%= Member.find(@message.from).first_name << " " << Member.find(@message.from).last_name%></div>
+		<div class="cardCol"><%= @message.created_at.strftime("%b %d, %I:%M") %></div>
+		<div class="cardCol"><%= ActionView::Base.full_sanitizer.sanitize(@message.content) %></div>
+	</a>
+</div>
 
-  <tbody>
-      <tr>
-      	<td><%= @message.created_at %></td>
-      	<td><%= link_to @message.status, @message %></td>
-        <td><%= Member.find(@message.from).first_name %></td>
-        <td><%= Member.find(@message.to).first_name %></td>
-        <td><%= @message.content.html_safe %></td>
-      </tr>
-  </tbody>
-</table>
