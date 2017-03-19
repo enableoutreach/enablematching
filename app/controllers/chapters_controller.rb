@@ -1,13 +1,13 @@
 class ChaptersController < ApplicationController 
-  before_action :set_chapter, only: [:edit, :show, :update, :claim, :claimsend]
+  before_action :set_chapter, only: [:edit, :show, :update, :claim, :claimsend, :review, :approve, :reject]
+
+  rescue_from ActiveRecord::RecordNotFound do
+    flash[:notice] = "That chapter is not found"
+    redirect_to chapters_path
+  end
 
   def index
-    if current_member.admin?
-      @chapters=Chapter.all.order('name ASC')
-    else
-      flash[:notice] = "You are not permitted to view chapters."
-      redirect_to member_path(current_member)
-    end
+    @chapters=Chapter.all.order('name ASC')
   end
   
   def edit
@@ -23,6 +23,113 @@ class ChaptersController < ApplicationController
         redirect_to @chapter, notice: 'Chapter was successfully updated.'
     else
         render :edit
+    end
+  end
+  
+  def create
+    @chapter = Chapter.create(name: params[:name], active: false, email: params[:email], location: params[:location], intake: params[:intake], home: params[:home], donation: params[:home])
+    
+    require 'mail'
+      
+    options = { :address          => "smtp.gmail.com",
+            :port                 => 587,
+            :domain               => 'enableoutreach.org',
+            :user_name            => 'enablechapters@gmail.com',
+            :password             => ENV['MAIL_PASSWORD'],
+            :authentication       => 'plain',
+            :enable_starttls_auto => true  }
+            
+    Mail.defaults do
+      delivery_method :smtp, options
+    end
+      
+    mail = Mail.new
+    mail.to = 'eNABLE Chapters Team <enablechapters@gmail.com>'
+    mail.from = 'eNABLE Matching System <enablechapters@gmail.com>'
+    mail.subject = 'New Chapter Application'
+    mail.body = 'Click this link to view the application.' << url_for(controller: 'chapters', action: 'review', id: @chapter.id)
+      
+    mail.deliver do
+    end
+    
+    flash[:notice] = "Your chapter application has been sent."
+    redirect_to chapters_path
+  end
+  
+  def review
+    if current_member.admin?
+    else
+      flash[:notice] = "Only admins can review chapter applications."
+      redirect_to chapters_path
+    end  
+  end
+  
+  def reject
+    if current_member.admin?
+      
+      require 'mail'
+        
+      options = { :address          => "smtp.gmail.com",
+              :port                 => 587,
+              :domain               => 'enableoutreach.org',
+              :user_name            => 'enablechapters@gmail.com',
+              :password             => ENV['MAIL_PASSWORD'],
+              :authentication       => 'plain',
+              :enable_starttls_auto => true  }
+              
+      Mail.defaults do
+        delivery_method :smtp, options
+      end
+        
+      mail = Mail.new
+      mail.to = @chapter.email
+      mail.from = 'eNABLE Matching System <enablechapters@gmail.com>'
+      mail.subject = 'Your Chapter Application'
+      mail.body = 'Your e-NABLE chapters application was rejected.  We have saved your information for future consideration.  You are welcome to update your information below and then contact us at enablechapters@gmail.com to discuss how to proceed. ' << edit_chapter_url
+        
+      mail.deliver do
+      end
+      
+      flash[:notice] = "Chapter application was rejected."
+      redirect_to chapters_path      
+    else
+      flash[:notice] = "Only admins can review chapter applications."
+      redirect_to chapters_path
+    end
+  end
+  
+  def approve
+    if current_member.admin?
+      @chapter.update(active: true)
+      
+      require 'mail'
+        
+      options = { :address          => "smtp.gmail.com",
+              :port                 => 587,
+              :domain               => 'enableoutreach.org',
+              :user_name            => 'enablechapters@gmail.com',
+              :password             => ENV['MAIL_PASSWORD'],
+              :authentication       => 'plain',
+              :enable_starttls_auto => true  }
+              
+      Mail.defaults do
+        delivery_method :smtp, options
+      end
+        
+      mail = Mail.new
+      mail.to = @chapter.email
+      mail.from = 'eNABLE Matching System <enablechapters@gmail.com>'
+      mail.subject = 'Your Chapter Application'
+      mail.body = 'Your e-NABLE chapters application was approved.  A bunch of info you need goes here.'
+        
+      mail.deliver do
+      end
+      
+      flash[:notice] = "Chapter application was approved."
+      redirect_to chapters_path      
+    else
+      flash[:notice] = "Only admins can review chapter applications."
+      redirect_to chapters_path
     end
   end
   

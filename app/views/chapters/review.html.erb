@@ -1,0 +1,4 @@
+<%= render "layouts/chapter" %>
+<BR>
+<%= link_to('Approve', url_for(controller: 'chapters', action: 'approve', id: @chapter.id)) %>
+<%= link_to('Reject', url_for(controller: 'chapters', action: 'reject', id: @chapter.id)) %>

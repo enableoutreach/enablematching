@@ -22,6 +22,9 @@ Rails.application.routes.draw do
     get 'chapters/:id/claim', to: 'chapters#claim'
     get 'chapters/:id/claimsend', to: 'chapters#claimsend'
     get 'chapters/agree', to: 'chapters#agree'
+    get 'chapters/:id/review', to: 'chapters#review'
+    get 'chapters/:id/approve', to: 'chapters#approve'
+    get 'chapters/:id/reject', to: 'chapters#reject'
   end
 
 

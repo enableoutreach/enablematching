@@ -1,0 +1,25 @@
+Please provide the information below.  The Chapters Team will contact you once we have reviewed the photos and video you provide.<br>
+
+<%= form_tag(chapters_path, method: "POST") do %>	
+	<%= label_tag(:name) %>
+	<%= text_field_tag(:name)%>
+	<%= label_tag(:lead) %>
+	<%= current_member.first_name << " " << current_member.last_name %>
+	<%= hidden_field_tag(:lead, current_member.id %>)
+	<%= label_tag(:email) %>
+	<%= text_field_tag(:email)%>
+	<%= label_tag(:location) %>
+	<%= text_area_tag(:location)%>
+	<%= label_tag(:home) %>
+	<%= text_field_tag(:home)%>
+	<%= label_tag(:intake) %>
+	<%= text_field_tag(:intake)%>
+	<%= label_tag(:donation) %>
+	<%= text_field_tag(:donation)%>
+	<%= label_tag('Please provide links to photos and video of your test hand') %>
+	<%= text_area_tag(:evidenc)%>
+	
+	<div class="actions">
+		<%= submit_tag "Create Chapter" %>
+	</div>
+<% end %>
