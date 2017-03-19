@@ -1,10 +1,7 @@
 class ChaptersController < ApplicationController 
   before_action :set_chapter, only: [:edit, :show, :update, :claim, :claimsend, :review, :approve, :reject]
 
-  rescue_from ActiveRecord::RecordNotFound do
-    flash[:notice] = "That chapter is not found"
-    redirect_to chapters_path
-  end
+
 
   def index
     @chapters=Chapter.all.order('name ASC')
