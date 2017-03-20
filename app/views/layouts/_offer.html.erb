@@ -1,6 +1,6 @@
 <div class="card">
 	<a href="<%= url_for(@offer) %>">
-		<div class="cardCol"><%= Member.find((Request.find(@offer.request_id)).member_id).first_name << " " << Member.find((Request.find(@offer.request_id)).member_id).last_name %> </div>
+		<div class="cardCol"><%= Member.find(@offer.member_id).first_name << " " << Member.find(@offer.member_id).last_name %> </div>
 		<div class="cardCol"><%= @offer.created_at.strftime('%x') %> </div>
 		<div class="cardCol"><%= @offer.stage %> </div>
 	</a>

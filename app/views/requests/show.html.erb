@@ -22,7 +22,12 @@
 	</div>
 </div>
 
-<% if !@requests.nil? %> <div class="sectionHeader" style="margin-bottom: 0;">Offers on this request</div> 
+<% if !@requests.nil? %> 
+	<div class="sectionHeader" style="margin-bottom: 0;">Offers on this request</div>
 	<% @offers = Offer.where(request_id: @request.id) %>
-	<%= render "layouts/offers" %>
+	<% if !@offers.empty? %>
+		<%= render "layouts/offers" %>
+	<% else %>
+		<p style="font-weight: bold; color: black; margin: 3px;"> None </p>
+	<% end %>
 <% end %>

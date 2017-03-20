@@ -1,3 +1,12 @@
-<%= render "layouts/message" %>
+<div>
+	<div class="card" style="margin-bottom: 10px; cursor: default; display: block;">
+		<p>Time<%= @message.created_at %></p>
+		<p>Status<%= @message.status %></p>
+		<p>From <%= link_to(Member.find(@message.from).first_name << " " << Member.find(@message.from).last_name, url_for(Member.find(@message.from))) %></p>
+		<p>To <%= link_to(Member.find(@message.from).first_name << " " << Member.find(@message.to).last_name, url_for(Member.find(@message.to))) %></p></p>
+		<p>Content<%= @message.content.html_safe %></p>
+	</div>
+</div>
+
 <p></p>
 <%= render "layouts/respond" %>

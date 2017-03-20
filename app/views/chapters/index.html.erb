@@ -1,12 +1,13 @@
-<h1>Chapters</h1>
 
 <div id="chaptermap" style='width: 800px; height: 400px;'></div>
 
 <br>
 
-<%= link_to 'New Chapter', new_chapter_path %>
+<%= link_to('New Chapter', new_chapter_path, class: 'clicky') %>
 
 <br>
+
+<div class="sectionHeader" style="margin-bottom: 0;">Chapters</div>
 
 <%= render "layouts/chapters"%>
 

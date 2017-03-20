@@ -5,5 +5,14 @@
 		<div class="cardCol"><%= Device.find(@request.device_id).title %></div>
 		<div class="cardCol"><%= @request.side %></div>
 		<div class="cardCol"><%= @request.stage %></div>
+		<% if @offer = Request.open_offer(current_member, @request) %>
+			<div class="cardCol"><%= link_to("Your Offer", Offer.where(member_id: current_member.id, request_id: @request.id)[0]) %></div>
+		<% else %>
+			<% if @match && @request.member_id != current_member.id && @request.stage == "Open" %>
+				<div class="cardCol">
+					<%= link_to("Offer to Help", offers_path<<"?request_id="<<@request.id.to_s, method: "POST") %>
+				</div>
+			<% end %>
+		<% end %>
 	</a>
 </div>

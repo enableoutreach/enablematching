@@ -1,8 +1,8 @@
 <div class="card" style="font-weight: <%= if @message.status == 'Unread'; 'bold'; else; 'normal'; end; %> ">
 	<a href="<%= url_for(@message) %>">
-		<div class="cardCol"><%= Member.find(@message.from).first_name << " " << Member.find(@message.from).last_name%></div>
+		<div class="cardCol" style="min-width: 200px; max-width: 200px;"><%= Member.find(@message.from).first_name << " " << Member.find(@message.from).last_name%></div>
 		<div class="cardCol"><%= @message.created_at.strftime("%b %d, %I:%M") %></div>
-		<div class="cardCol"><%= ActionView::Base.full_sanitizer.sanitize(@message.content) %></div>
+		<div class="cardCol" style="max-width: unset;"><%= ActionView::Base.full_sanitizer.sanitize(@message.content) %></div>
 	</a>
 </div>
 

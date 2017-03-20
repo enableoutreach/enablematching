@@ -1,1 +1,18 @@
-<%= render "layouts/chapter" %>
+<div>
+	<div class="card" style="margin-bottom: 10px; cursor: default; display: block;">
+		<p>Chapter ID #<%= @chapter.id %></p>
+		<p>Name<%= @chapter.name %></p>
+		<p>Lead <%= if @chapter.lead != nil; link_to(Member.find(@chapter.lead).first_name << " " << Member.find(@chapter.lead).last_name, url_for(Member.find(@chapter.lead))); else; 'No Leader'; end; %></p>
+		<p>Status <%= @chapter.active ? "Active" : "Inactive" %></p>
+		<p>Location<%= @chapter.location %></p>
+		<p>Home Page<%= if @chapter.home != 'None'; link_to(@chapter.home.html_safe, @chapter.home, target: "_new"); else; 'None'; end; %></p>
+		<p>Intake Form<%= link_to(@chapter.intake.html_safe, @chapter.intake, target: "_new") %></p>
+		<p>Donation Page<%= link_to(@chapter.donation.html_safe, @chapter.donation, target: "_new") %></p>
+	</div>
+
+	<div style="margin-top: 10px;">
+		<% if (@chapter.lead == current_member.id || current_member.admin?) %>
+			<%= link_to("Edit Chapter", edit_chapter_path(@chapter), method: "GET", class: "clicky") %>
+		<% end %>
+	</div>
+</div>

@@ -1,31 +1,8 @@
-<table class="chapter">
-	<th class="chapter" width="10%"></th>
-	<th class="chapter" width="10%">Chapter ID</th>
-	<th class="chapter" width="50%">Name</th>
-	<th class="chapter" width="10%">Lead</th>
-	<th class="chapter" width="10%">Status</th>
-	<th class="chapter" width="10%">Location</th>
-	<th class="chapter" width="10%">Home</th>
-	<th class="chapter" width="10%">Intake</th>
-	<th class="chapter" width="10%">Donation</th>
-
-	<tr class="chapter">
-			<td class="chapter"> 
-				<% if @chapter.lead == current_member.id || current_member.admin? %>
-					<%= link_to("Edit Chapter", url_for(controller: 'chapters', action: 'edit', id: @chapter.id), class: "clicky") %>
-				<% end %>
-				<% if @chapter.lead != current_member.id %>
-					<%= link_to("Claim Chapter", url_for(controller: 'chapters', action: 'claim', id: @chapter.id), class: "clicky") %>
-				<% end %>
-			</td>
-		
-		<td class="chapter">#<%= @chapter.id %> </td> 
-		<td class="chapter"><%= @chapter.name %> </td>
-		<td class="chapter"><%= if @chapter.lead != nil; link_to(Member.find(@chapter.lead).first_name << " " << Member.find(@chapter.lead).last_name, Member.find(@chapter.lead)) end %> </td>
-		<td class="chapter"><%= @chapter.active ? "Active" : "Inactive" %> </td>
-		<td class="chapter"><%= @chapter.location %> </td>
-		<td class="chapter"><%= link_to(@chapter.home, @chapter.home, target: "_new") %> </td>
-		<td class="chapter"><%= link_to(@chapter.intake,@chapter.intake, target: "_new") %> </td>
-		<td class="chapter"><%= link_to(@chapter.donation, @chapter.donation, target: "_new") %> </td>
-	</tr>
-</table>
+<div class="card">
+	<a href="<%= url_for(@chapter) %>">
+		<div class="cardCol" style="min-width: 300px; max-width: 300px;"><%= @chapter.name %></div>
+		<div class="cardCol"><%= if @chapter.lead != nil; Member.find(@chapter.lead).first_name << " " << Member.find(@chapter.lead).last_name; else; 'No Leader'; end; %></div>
+		<div class="cardCol"><%= @chapter.active ? "Active" : "Inactive" %></div>
+		<div class="cardCol" style="max-width: unset;"><%= @chapter.location %></div>
+	</a>
+</div>

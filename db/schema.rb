@@ -20,13 +20,13 @@ ActiveRecord::Schema.define(version: 20170319001122) do
     t.integer  "lead"
     t.boolean  "active"
     t.text     "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "email"
     t.text     "location"
-    t.text     "home"
-    t.text     "donation"
-    t.text     "intake"
+    t.text     "home",       default: "None"
+    t.text     "donation",   default: "None"
+    t.text     "intake",     default: "None"
     t.float    "latitude"
     t.float    "longitude"
     t.text     "token"

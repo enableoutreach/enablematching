@@ -1,16 +1,12 @@
 <% if !@chapters.empty? %>
-	<table border=1 width="100%">
+	<div class="cardContainer">
 	<% @chapters.each do |chapter| %>
 		<% if chapter.active? %>
 			<% @chapter = chapter %>
-			<tr>
-				<td>
-					<%= render "layouts/chapter"%>
-				</td>
-			</tr>
+				<%= render "layouts/chapter"%>
 		<% end %>
 	<% end %>
-	</table>
+	</div>
 <% else %>
-	None
+	<p style="font-weight: bold; color: black; margin: 3px;"> None </p>
 <% end %>

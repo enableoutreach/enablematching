@@ -7,7 +7,7 @@ class RequestsController < ApplicationController
   end
   
   def index
-    @requests = Request.where("stage != 'Completed'").order('created_at ASC')
+    @requests = Request.where("stage != 'Completed'").order('created_at DESC')
     @match = true
   end
 
@@ -35,7 +35,7 @@ class RequestsController < ApplicationController
   end
   
   def mine
-    @requests = Request.where(member_id: current_member.id)
+    @requests = Request.where(member_id: current_member.id).order('created_at DESC')
   end
   
   def update

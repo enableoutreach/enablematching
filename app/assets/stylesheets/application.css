@@ -287,6 +287,8 @@ label {
 
 .card a {
   all: unset;
+  text-decoration: underline;
+  color: rgb(89,210,255);
   cursor: pointer;  
   display: flex;
   white-space: nowrap;
@@ -298,6 +300,7 @@ label {
 .cardCol {
   overflow: hidden;
   min-width: 95px; 
+  max-width: 95px;
   margin-right:10px;
   cursor: pointer; 
   position: relative;
