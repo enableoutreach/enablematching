@@ -6,8 +6,8 @@
 		<p>Status <%= @chapter.active ? "Active" : "Inactive" %></p>
 		<p>Location<%= @chapter.location %></p>
 		<p>Home Page<%= if @chapter.home != 'None'; link_to(@chapter.home.html_safe, @chapter.home, target: "_new"); else; 'None'; end; %></p>
-		<p>Intake Form<%= link_to(@chapter.intake.html_safe, @chapter.intake, target: "_new") %></p>
-		<p>Donation Page<%= link_to(@chapter.donation.html_safe, @chapter.donation, target: "_new") %></p>
+		<p>Intake Form<%= if @chapter.intake != 'None'; link_to(@chapter.intake.html_safe, @chapter.intake, target: "_new"); else; 'None'; end; %></p>
+		<p>Donation Page<%= if @chapter.donation != 'None'; link_to(@chapter.donation.html_safe, @chapter.donation, target: "_new"); else; 'None'; end; %></p>
 	</div>
 
 	<div style="margin-top: 10px;">
