@@ -305,3 +305,10 @@ label {
   cursor: pointer; 
   position: relative;
 }
+
+#map {
+	height: 400px;
+	margin-bottom: 10px; 
+	max-width: 50%; 
+	margin-left: 25%;
+}

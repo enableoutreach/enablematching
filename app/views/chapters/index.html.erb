@@ -1,5 +1,5 @@
 
-<div id="chaptermap" style='width: 800px; height: 400px;'></div>
+<div id="map"></div>
 
 <br>
 
@@ -32,7 +32,7 @@ LatLngList.forEach(function(latLng){
 	    	maxZoom: 10, 
 	    	mapTypeControl: false,
 	    	streetViewControl: false},
-    	internal: {id: 'chaptermap' }}, 
+    	internal: {id: 'map' }}, 
     	function(){
 	    markers = handler.addMarkers([
 	    <% @chapters.each do |chapter| %> 
