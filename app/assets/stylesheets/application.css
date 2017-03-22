@@ -306,7 +306,7 @@ label {
   position: relative;
 }
 
-#map {
+.mapdiv {
 	height: 400px;
 	margin-bottom: 10px; 
 	max-width: 50%; 
