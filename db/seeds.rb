@@ -11,7 +11,7 @@ d2=Device.create(title: 'Phoenix')
 d3=Device.create(title: 'UnLimbited Arm')
 d4=Device.create(title: 'Python')
 
-m1=Member.create(first_name: 'Joe', last_name: 'C', email: 'joecross@gmail.com', city: 'San Diego', country: 'USA', password: '123456', password_confirmation: '123456', admin: true)
+m1=Member.create(first_name: 'Joe', last_name: 'C', email: 'joecross@hotmail.com', city: 'San Diego', country: 'USA', password: '123456', password_confirmation: '123456', admin: true)
 m2=Member.create(first_name: 'Amanda', last_name: 'J', email: 'joecross.2@gmail.com', city: 'San Diego', country: 'USA', password: '123456', password_confirmation: '123456')
 m3=Member.create(first_name: 'Maker', last_name: '1', email: 'joecross.3@gmail.com', city: 'San Diego', country: 'USA', password: '123456', password_confirmation: '123456')
 m10=Member.create(first_name: 'Maker', last_name: '2', email: 'joecross.10@gmail.com', city: 'San Diego', country: 'USA', password: '123456', password_confirmation: '123456')

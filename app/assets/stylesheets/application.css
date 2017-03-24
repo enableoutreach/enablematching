@@ -205,10 +205,6 @@ label {
   background-color:#378de5;
   color: #444444;
 }
-.clicky:active {
-  position:relative;
-  top:1px;
-}
 
 .sponsor {
 	position: fixed;
@@ -310,4 +306,13 @@ label {
 	margin-bottom: 10px; 
 	max-width: 50%; 
 	margin-left: 25%;
+}
+
+.badgeContainer {
+	width: 190px;	
+}
+
+.badgeImage {
+	width: 60px;
+	height: 60px;
 }

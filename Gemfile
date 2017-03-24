@@ -10,6 +10,8 @@ gem 'google-api-client', '~> 0.9'
 gem 'geocoder'
 gem 'google_drive' # For access to google spreadsheets https://github.com/gimite/google-drive-ruby
 gem 'mail'
+gem 'httparty'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'

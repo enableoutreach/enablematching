@@ -17,6 +17,17 @@ class MembersController < ApplicationController
   def show
     @requests = Request.where(member_id: @member.id)
     @youroffers = Offer.where(member_id: @member.id)
+    
+    require 'httparty'
+    url = 'https://api.credly.com/v1.1/members?email=' << CGI.escape(@member.email)
+    
+    @temp2 = HTTParty.get(url, :verify => false, :headers => {"X-Api-Key" => ENV['CRED_KEY'], "X-Api-Secret" => ENV['CRED_SECRET']})['data']
+    if !@temp2.nil? 
+      @credid = @temp2[0]['id']
+      
+      url = 'https://api.credly.com/v1.1/members/' << @credid.to_s << '/badges?query=e-nable'
+      @badges = HTTParty.get(url, :verify => false, :headers => {"X-Api-Key" => ENV['CRED_KEY'], "X-Api-Secret" => ENV['CRED_SECRET']}).parsed_response['data']
+    end
   end
   
   # GET /members/new
@@ -29,7 +40,6 @@ class MembersController < ApplicationController
   end
 
   def login
-   #params[:member][:email] = "joecross@gmail.com" #for testing - take out
 
    @member = Member.find_by email: params[:member][:email] 
 

@@ -12,7 +12,15 @@
   	<%= link_to('Edit', edit_member_path(@member), {:class=>'clicky', :style=>'position:absolute;bottom:0;'}) %><br />
   <% end %>
    
-  <div id="map" style='width: 200px; height: 200px; margin-bottom: 10px;'></div>
+  <div id="map" style='width: 200px; height: 200px; margin-bottom: 10px; margin-right: 20px;'></div>
+
+  <% if !@badges.nil? %>
+	  <a href="https://credly.com/u/enablethefuture" target="_new"><div class="badgeContainer">
+	  	<% @badges.each do |badge| %>
+	  		<img class="badgeImage" src='<%=badge['image']%>'>
+	  	<% end %>
+  	</div></a>
+  <% end %>
 </div>
 
 <script>
