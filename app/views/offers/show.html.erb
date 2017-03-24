@@ -1,12 +1,16 @@
 <div>
 	<div class="card" style="margin-bottom: 10px; cursor: default; display: block;">
-		<p>Offer ID #<%= @offer.id %></p>
-		<p>Offer Date <%= @offer.created_at.strftime('%x') %></p>
-		<p>Offered By <%= link_to(Member.find(@offer.member_id).first_name << " " << Member.find(@offer.member_id).last_name, url_for(Member.find(@offer.member_id))) %></p>
-		<p>Stage <%= @offer.stage %></p>
+		<div class="cardLine"><div class="cardHead">Offer ID #</div><div class="cardData"><%= @offer.id %></div></div>
+		<div class="cardLine"><div class="cardHead">Offer Date</div> <div class="cardData"><%= @offer.created_at.strftime('%x') %></div></div>
+		<div class="cardLine"><div class="cardHead">Stage</div> <div class="cardData"><%= @offer.stage %></div></div>
+		<div class="cardLine"><div class="cardHead">Offered By</div><div class="cardData"> <%= link_to(Member.find(@offer.member_id).first_name << " " << Member.find(@offer.member_id).last_name, url_for(Member.find(@offer.member_id))) %></div></div>
+		<div class="cardLine">
+			<% @member=Member.find(@offer.member_id) %>
+			<%= render "layouts/profile"%>
+		</div>
 	</div>
 
-	<div style="margin-top: 10px;">
+	<div style="margin-top: 10px;  margin-bottom: 35px;">
 		<% if @offer.member_id == current_member.id || current_member.admin? %>
 			<%= link_to("Revoke Offer", @offer, method: "DELETE", class: "clicky") %>
 		<% end %>

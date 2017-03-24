@@ -1,12 +1,13 @@
-<div>
+<div style="margin-bottom: 25px;">
+	<div class="sectionHeader" style="margin-bottom: 0px;">Message</div>
 	<div class="card" style="margin-bottom: 10px; cursor: default; display: block;">
-		<p>Time<%= @message.created_at %></p>
-		<p>Status<%= @message.status %></p>
-		<p>From <%= link_to(Member.find(@message.from).first_name << " " << Member.find(@message.from).last_name, url_for(Member.find(@message.from))) %></p>
-		<p>To <%= link_to(Member.find(@message.from).first_name << " " << Member.find(@message.to).last_name, url_for(Member.find(@message.to))) %></p></p>
-		<p>Content<%= @message.content.html_safe %></p>
+		<div class="cardLine"><div class="cardHead">Time</div><div class="cardData"><%= @message.created_at %></div></div>
+		<div class="cardLine"><div class="cardHead">Status</div><div class="cardData"><%= @message.status %></div></div>
+		<div class="cardLine"><div class="cardHead">From</div><div class="cardData"> <%= link_to(Member.find(@message.from).first_name << " " << Member.find(@message.from).last_name, url_for(Member.find(@message.from))) %></div></div>
+		<div class="cardLine"><div class="cardHead">To</div><div class="cardData"> <%= link_to(Member.find(@message.from).first_name << " " << Member.find(@message.to).last_name, url_for(Member.find(@message.to))) %></div></div>
+		<div class="cardLine"><div class="cardHead">Content</div><div class="cardData"><%= @message.content.html_safe %></div></div>
 	</div>
 </div>
 
-<p></p>
+<div class="sectionHeader" style="margin-bottom: 0;">Response</div>
 <%= render "layouts/respond" %>

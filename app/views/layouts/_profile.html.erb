@@ -1,25 +1,28 @@
-<div class="sectionHeader">Profile Info</div>
-
 <div style="display: flex; position: relative; padding-left: 10px;">
   <div style="vertical-align: top; margin-right: 20px;">
 	Name: <%=@member.first_name+" "+@member.last_name%><br />
-	Email: <%=@member.email%><br />
+	<% if @member==current_member %>
+		Email: <%=@member.email%><br />
+	<% end %>
 	City: <%=@member.city%><br />
 	Country: <%=@member.country%><br />
   </div>	
   
   <% if params[:action] != "edit" && @member.id == current_member.id %>
-  	<%= link_to('Edit', edit_member_path(@member), {:class=>'clicky', :style=>'position:absolute;bottom:0;'}) %><br />
+  	<%= link_to('Edit your profile', edit_member_path(@member), {:style=>'position:absolute;bottom:0;'}) %><br />
   <% end %>
    
-  <div id="map" style='width: 200px; height: 200px; margin-bottom: 10px; margin-right: 20px;'></div>
+  <div id="map" style='min-width: 100px; min-height: 100px; margin-bottom: 10px; margin-right: 20px;'></div>
 
-  <% if !@badges.nil? %>
-	  <a href="https://credly.com/u/enablethefuture" target="_new"><div class="badgeContainer">
-	  	<% @badges.each do |badge| %>
-	  		<img class="badgeImage" src='<%=badge['image']%>'>
-	  	<% end %>
-  	</div></a>
+  <% badges = @member.load_badges %>
+  <% if !badges.nil? %>
+	  <a href="https://credly.com/u/enablethefuture" target="_new">
+	  	<div class="badgeContainer">
+		  	<% badges.each do |badge| %>
+		  		<img class="badgeImage" src='<%=badge['image']%>'>
+		  	<% end %>
+  		</div>
+  	  </a>
   <% end %>
 </div>
 

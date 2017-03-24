@@ -1,27 +1,14 @@
-<table border=1 width="100%">
-  <thead>
-    <tr>
-      <th>From</th>
-      <th>To</th>
-      <th>Content</th>
-    </tr>
-  </thead>
-
-  <tbody>
-      <tr>
-      	<%= form_tag(messages_path) do %>
-	      	<td><%= current_member.first_name %></td>
-	      	<%= hidden_field_tag "message[to]", @message.from %>
-	      	<td><%= Member.find(@message.from).first_name %></td>
-	      	<%= hidden_field_tag "message[from]", current_member.id %>
-	        <td>
-			  <div class="field">
-			    <%= text_area_tag("message[content]", "", class: "messageBox") %><br />
-			  <div class="actions">
-			    <%= submit_tag "Send" %>
-			  </div>
-		    </td>
-		<% end %>
-      </tr>
-  </tbody>
-</table>
+<div>
+	<%= form_tag(messages_path) do %>
+	<%= hidden_field_tag "message[to]", @message.from %>
+	<%= hidden_field_tag "message[from]", current_member.id %>
+	
+	<div class="card" style="margin-bottom: 10px; cursor: default; display: block;">
+		<div class="cardLine"><div class="cardHead">From</div><div class="cardData"><%= current_member.first_name %></div></div>
+		<div class="cardLine"><div class="cardHead">To</div><div class="cardData"><%= Member.find(@message.from).first_name %></div></div>
+		<div class="cardLine"><div class="cardHead">Message</div><div class="cardData"> <%= text_area_tag("message[content]", "", class: "messageBox") %></div></div>
+		<div class="actions"><%= submit_tag "Send" %></div>
+	</div>
+	
+	<% end %>
+</div>

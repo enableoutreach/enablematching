@@ -3,6 +3,7 @@
 	<img src="messageBackground.png" style="opacity: .7; position: absolute;"/>
 	
 	<% if ! @messages.empty? %>
+		<p style="font-weight: bold; color: white; margin: 3px;">Your Messages</p>
 		<%= render "layouts/messages" %>
 	<% else %>
 		<p style="font-weight: bold; color: white; margin: 3px;"> No messages<br /> </p>

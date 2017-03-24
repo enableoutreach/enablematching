@@ -12,4 +12,17 @@ class Member < ApplicationRecord
   def map_address
     return self.city+", "+self.country
   end
+  
+  def load_badges
+    require 'httparty'
+    url = 'https://api.credly.com/v1.1/members?email=' << CGI.escape(self.email)
+    
+    temp2 = HTTParty.get(url, :verify => false, :headers => {"X-Api-Key" => ENV['CRED_KEY'], "X-Api-Secret" => ENV['CRED_SECRET']})['data']
+    if !temp2.nil? 
+      credid = temp2[0]['id']
+      
+      url = 'https://api.credly.com/v1.1/members/' << credid.to_s << '/badges?query=e-nable'
+      return HTTParty.get(url, :verify => false, :headers => {"X-Api-Key" => ENV['CRED_KEY'], "X-Api-Secret" => ENV['CRED_SECRET']}).parsed_response['data']
+    end
+  end
 end

@@ -309,10 +309,23 @@ label {
 }
 
 .badgeContainer {
-	width: 190px;	
+		
 }
 
 .badgeImage {
 	width: 60px;
 	height: 60px;
+}
+
+.cardHead {
+	font-weight: bold;
+	min-width: 120px;
+}
+.cardData {
+	width: 100%;
+}
+
+.cardLine {
+	margin: 10px;
+	display: flex;
 }

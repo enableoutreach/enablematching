@@ -1,17 +1,17 @@
 <div>
 	<div class="card" style="margin-bottom: 10px; cursor: default; display: block;">
-		<p>Request ID #<%= @request.id %></p>
-		<p>Request Date <%= @request.created_at.strftime('%x') %></p>
-		<p>Requested By <%= link_to(Member.find(@request.member_id).first_name << " " << Member.find(@request.member_id).last_name, url_for(Member.find(@request.member_id))) %></p>
-		<p>Device <%= link_to(Device.find(@request.device_id).title, url_for(Device.find(@request.device_id))) %></p>
-		<p>Side <%= @request.side %></p>
-		<p>Stage <%= @request.stage %></p>
+		<div class="cardLine"><div class="cardHead">Request ID #</div><div class="cardData"><%= @request.id %></div></div>
+		<div class="cardLine"><div class="cardHead">Request Date</div><div class="cardData"> <%= @request.created_at.strftime('%x') %></div></div>
+		<div class="cardLine"><div class="cardHead">Requested By</div><div class="cardData"> <%= link_to(Member.find(@request.member_id).first_name << " " << Member.find(@request.member_id).last_name, url_for(Member.find(@request.member_id))) %></div></div>
+		<div class="cardLine"><div class="cardHead">Device</div><div class="cardData"> <%= link_to(Device.find(@request.device_id).title, url_for(Device.find(@request.device_id))) %></div></div>
+		<div class="cardLine"><div class="cardHead">Side</div><div class="cardData"> <%= @request.side %></div></div>
+		<div class="cardLine"><div class="cardHead">Stage</div><div class="cardData"> <%= @request.stage %></div></div>
 		<% if current_member.id == @request.member_id %>
-			<p>Shipping <%= @request.shipping_address %></p>
+			<div class="cardLine"><div class="cardHead">Shipping</div><div class="cardData"> <%= @request.shipping_address %></div></div>
 		<% end %>
 	</div>
 
-	<div style="margin-top: 10px;">
+	<div style="margin-top: 10px; margin-bottom: 35px;">
 		<% if (@request.member_id == current_member.id || current_member.admin?) && @request.stage != "Completed" %>
 			<%= link_to("Edit Request", edit_request_path(@request), method: "GET", class: "clicky") %>
 			<%= link_to("Complete Request", url_for(controller: 'requests', action: "complete", id: @request.id), class: "clicky") %>
