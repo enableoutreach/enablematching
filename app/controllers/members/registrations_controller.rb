@@ -22,6 +22,11 @@ class Members::RegistrationsController < Devise::RegistrationsController
  
   def edit
     @member = Member.find(params[:id])
+    
+    if !(current_member.admin? || @member==current_member)
+      flash[:notice] = "You are not permitted to edit member profiles."
+      redirect_to member_path(current_member)
+    end
   end
 
   private

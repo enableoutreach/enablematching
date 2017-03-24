@@ -1,4 +1,4 @@
-<h2>Edit Profile</h2>
+<h2 class="sectionHeader">Edit Profile</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
@@ -30,32 +30,29 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
+<h2 class="sectionHeader" style="margin-top: 20px;">Change Password</h2>
   <div class="field">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, autocomplete: "off", value: "" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %>
+    <%= f.label 'Re-enter password' %>
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
-<hr />
-  <div class="field">
+
+<h2 class="sectionHeader">Confirm</h2>
+  <div class="field" style="margin-bottom: 20px;">
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
+    <%= f.submit "Update", class: 'clicky'%>
+
 <% end %>
-<hr />
+
 <h3>Cancel my account</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'clicky' %></p>
 
 <%= link_to "Back", :back %>

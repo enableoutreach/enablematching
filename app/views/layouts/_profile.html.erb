@@ -8,8 +8,8 @@
 	Country: <%=@member.country%><br />
   </div>	
   
-  <% if params[:action] != "edit" && @member.id == current_member.id %>
-  	<%= link_to('Edit your profile', edit_member_path(@member), {:style=>'position:absolute;bottom:0;'}) %><br />
+  <% if params[:action] != "edit" && (@member.id == current_member.id || current_member.admin?) %>
+  	<%= link_to('Edit profile', edit_member_path(@member), {:style=>'position:absolute;bottom:0;'}) %><br />
   <% end %>
    
   <div id="map" style='min-width: 100px; min-height: 100px; margin-bottom: 10px; margin-right: 20px;'></div>
