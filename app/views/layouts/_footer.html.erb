@@ -3,7 +3,6 @@ Sponsored by <a href="www.enableoutreach.org" target="_new">Enable Outreach</a>
 </div>
 
 <!-- For debugging -->
-<% case Rails.env %>
-<% when 'development' %>
+<% if current_member.admin? %>
 	<% console %>
 <% end %>

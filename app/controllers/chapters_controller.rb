@@ -132,8 +132,7 @@ class ChaptersController < ApplicationController
   
   def claimsend
     # send email
-
-    if @chapter.lead    
+  
       require 'mail'
       
       @tok = Digest::SHA1.hexdigest([Time.now, rand].join)
@@ -151,7 +150,7 @@ class ChaptersController < ApplicationController
       end
         
       mail = Mail.new
-      mail.to = Member.find(@chapter.lead).first_name << " " << Member.find(@chapter.lead).last_name << "<" << @chapter.email << ">"
+      mail.to = @chapter.email
       mail.from = 'eNABLE Chapters Team <enablechapters@gmail.com>'
       mail.subject = current_member.first_name << ' ' << current_member.last_name << ' requested to lead the ' << @chapter.name << ' chapter'
       mail.body = 'If you agree, click this link.' << url_for(controller: 'chapters', action: 'agree', token: @tok, mem: current_member.id)
@@ -163,14 +162,6 @@ class ChaptersController < ApplicationController
       
       flash[:notice] = "Your request to be assigned as leader of the " << @chapter.name << " chapter has been sent."
       redirect_to @chapter
-    else
-      if @chapter.update(lead: current_member.id)
-        flash[:notice] = "You have been assigned as leader of the " << @chapter.name << " chapter."
-        redirect_to @chapter
-      else
-          render :edit
-      end
-   end
   end
   
   def agree

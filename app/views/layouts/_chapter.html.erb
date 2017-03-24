@@ -4,5 +4,7 @@
 		<div class="cardCol"><%= if @chapter.lead != nil; Member.find(@chapter.lead).first_name << " " << Member.find(@chapter.lead).last_name; else; 'No Leader'; end; %></div>
 		<div class="cardCol"><%= @chapter.active ? "Active" : "Inactive" %></div>
 		<div class="cardCol" style="max-width: unset;"><%= @chapter.location %></div>
+		<div class="cardCol"><%= link_to("Claim Chapter", url_for(controller: 'chapters', action: 'claim', id: @chapter.id), class: "clicky") %></div>
 	</a>
 </div>
+
