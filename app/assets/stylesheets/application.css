@@ -34,14 +34,16 @@ h2 {
   padding-top: 10px;
   padding-bottom: 10px;
   margin-bottom: 5px;
-};
+}
 
 .logincontainer {
-  position: absolute;
-  width: 400px;
-  height: 600px;
-  top: 20%;
-  margin: -120px 0 0 0px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.messagesContainer {
+
 }
 
 .loginaction {
@@ -238,6 +240,7 @@ label {
     padding-right: 10px;
     margin-top: 3px;
     margin-left: 3px;
+    margin-right: 3px;
     display: inline-block;
 }
 
@@ -264,6 +267,7 @@ label {
   background-color: rgb(89,210,255);
   padding-top: 10px;
   padding-bottom: 20px;
+  width: 100%;
 }
 
 .card {
@@ -331,4 +335,12 @@ label {
 .cardLine {
 	margin: 10px;
 	display: flex;
+}
+
+.backImg {
+	opacity: .3; 
+	position: absolute; 
+	width: 100%;
+	max-width: 800px;
+	top: 0;
 }

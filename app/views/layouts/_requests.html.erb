@@ -1,10 +1,13 @@
 <% if !@requests.empty? %>
-	<div class="cardContainer">
-		<% @requests.each do |req| %>
-			<% @request = req %>
-			<% @offers = Offer.where(request_id: req.id) %>
-				<%= render "layouts/request" %>
-		<% end %>
+	<div style="position: relative; overflow: hidden;">
+		<div class="cardContainer">
+			<% @requests.each do |req| %>
+				<% @request = req %>
+				<% @offers = Offer.where(request_id: req.id) %>
+					<%= render "layouts/request" %>
+			<% end %>
+		</div>
+		<img src="requests.png" class="backImg"/>
 	</div>
 <% else %>
 	<p style="font-weight: bold; color: black; margin: 3px;"> None </p>

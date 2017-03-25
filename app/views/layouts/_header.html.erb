@@ -12,11 +12,10 @@
 		<div class="submitButton"">
 			<%= link_to "Submit New Request", url_for(controller: "/requests", action: "new") %>
 		</div>
-	</div>	 
+	</div>
+	<hr style="border-color: rgb(89,210,255);">	 
 <% else %>
 	<% if controller_name != 'sessions' %>
 		<%= link_to('Login', new_member_session_path)  %>
 	<% end %>  
 <% end %>
-
-<hr style="border-color: rgb(89,210,255);">

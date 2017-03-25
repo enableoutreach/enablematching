@@ -1,18 +1,19 @@
+<div style="position: relative; overflow: hidden;">
 <div class="cardContainer">
-	<img src="messagesIcon.png" style="opacity: .4; position: absolute; margin-left: 25%;"/>
-	<img src="messageBackground.png" style="opacity: .7; position: absolute;"/>
-	
 	<% if ! @messages.empty? %>
-		<p style="font-weight: bold; color: white; margin: 3px;">Your Messages</p>
+		<div class="sectionHeader" style="font-weight: bold; color: white; margin: 3px;">Your Messages</div>
 		<%= render "layouts/messages" %>
 	<% else %>
-		<p style="font-weight: bold; color: white; margin: 3px;"> No messages<br /> </p>
+		<div class="sectionHeader"  style="font-weight: bold; color: white; margin: 3px;"> No messages<br /> </div>
 	<% end %>
 	<% if current_member.admin? %>
 	<p><hr /></p>
-		<p style="font-weight: bold; color: white; margin: 3px;">All Messages (because you're an admin)</p>
+		<div class="sectionHeader"  style="font-weight: bold; color: white; margin: 3px;">All Messages (because you're an admin)</div>
 		<% @messages = Message.order('created_at DESC') %>
 		<%= render "layouts/messages" %>
 	<% end %>
 	<p></p>
+</div>
+<img src="messagesIcon.png" class="backImg"/>
+	<img src="messageBackground.png" class="backImg"/>
 </div>
