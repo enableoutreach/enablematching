@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170324225457) do
+ActiveRecord::Schema.define(version: 20170325084507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20170324225457) do
     t.boolean  "admin",                  default: false
     t.float    "latitude",               default: 0.0
     t.float    "longitude",              default: 0.0
+    t.boolean  "visible",                default: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true, using: :btree
   end
 
