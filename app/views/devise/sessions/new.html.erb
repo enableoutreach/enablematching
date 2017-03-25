@@ -24,7 +24,8 @@
 	  <% end -%>
 	
 	  <div class="actions">
-	    <%= f.submit("Sign in", class: 'loginaction') %>
+	  	<% msg = 'This is a beta test website.  Everything works, but the data is NOT real.  You are free to create new chapters, requests, offers to test the system.  All data in the system will be ERASED when the beta period is over.' %>
+	    <%= f.submit("Sign in", class: 'loginaction', data: { confirm: msg }) %>
 	  </div>
 	<% end %>
 

@@ -209,11 +209,9 @@ label {
 
 .sponsor {
 	position: fixed;
-	background: white;
     bottom: 0;
     right: 20px;
     text-align: right;
-    width: 100%;
 }
 
 .topheader {
