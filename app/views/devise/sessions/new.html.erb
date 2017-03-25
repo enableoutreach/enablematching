@@ -1,5 +1,5 @@
 <div class="logincontainer">
-	<h2>Sign in</h2>
+	<h2 class="sectionHeader" style="margin-bottom: 20px;">Sign in</h2>
 	
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	<meta name="google-signin-client_id" content="946526782479-am02sutskrdev8akb1gt8dgeah1oqh2h.apps.googleusercontent.com">
@@ -8,13 +8,13 @@
 	
 	<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'loginfield'}) do |f| %>
 	  <div class="loginfield">
-	    EMAIL ADDRESS<br />
-	    <%= f.email_field(:email, autofocus: true, style: "width: 100%;") %>
+	    EMAIL ADDRESS <div style="font-size: 12px;">Use the same address as your <a href="http://www.credly.com">Credly</a> account to display your e-NABLE badges</div>
+	    <%= f.email_field(:email, autofocus: true, style: "width: 100%; max-width: 350px;") %>
 	  </div>
 	<p></p>
 	  <div class="loginfield">
 	    PASSWORD<br />
-	    <%= f.password_field(:password, autocomplete: "off", style: "width: 100%;") %>
+	    <%= f.password_field(:password, autocomplete: "off", style: "width: 100%; max-width: 350px;") %>
 	  </div>
 	
 	  <% if devise_mapping.rememberable? -%>
