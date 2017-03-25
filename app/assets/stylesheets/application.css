@@ -204,6 +204,7 @@ label {
   filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#378de5', endColorstr='#79bbff');
   background-color:#378de5;
   color: #444444;
+  cursor: pointer;
 }
 
 .sponsor {

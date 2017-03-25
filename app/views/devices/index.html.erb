@@ -1,23 +1,15 @@
-<h1>Devices</h1>
+<div class="sectionHeader" style="margin-bottom: 0px;">Devices</div>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @devices.each do |device| %>
-      <tr>
-        <td><%= link_to 'Show', device %></td>
-        <td><%= link_to 'Edit', edit_device_path(device) %></td>
-        <td><%= link_to 'Destroy', device, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Device', new_device_path %>
+<div class="cardContainer">
+    <% @devices.each do |device| %>	
+    	<a href="<%= url_for device %>">
+		<div class="card">
+			<div class="cardCol">TODO Photo</div>
+			<div class="cardCol" style="max-width: unset;"><%= device.title %></div>
+			<div class="cardCol" style="min-width: 3em;"><%= link_to 'Edit', edit_device_path(device) %></div>
+			<div class="cardCol" style="min-width: 4em;"><%= link_to 'Delete', device, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+		</div>
+		</a>
+	<% end %>	
+</div><br>
+<%= link_to 'New Device', new_device_path, class: 'clicky' %>

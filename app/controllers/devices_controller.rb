@@ -4,7 +4,12 @@ class DevicesController < ApplicationController
   # GET /devices
   # GET /devices.json
   def index
-    @devices = Device.all
+    if !current_member.admin?
+      flash[:notice] = "You are not permitted to edit devices."
+      redirect_to member_path(current_member)
+    else
+      @devices = Device.all
+    end
   end
 
   # GET /devices/1
@@ -14,7 +19,12 @@ class DevicesController < ApplicationController
 
   # GET /devices/new
   def new
-    @device = Device.new
+    if !current_member.admin?
+      flash[:notice] = "You are not permitted to add devices."
+      redirect_to member_path(current_member)
+    else
+      @device = Device.new
+    end
   end
 
   # GET /devices/1/edit
@@ -24,7 +34,7 @@ class DevicesController < ApplicationController
   # POST /devices
   # POST /devices.json
   def create
-    @device = Device.new(device_params)
+    @device = Device.new(title: params['title'])
 
     respond_to do |format|
       if @device.save

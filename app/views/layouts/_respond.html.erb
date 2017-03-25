@@ -7,7 +7,7 @@
 		<div class="cardLine"><div class="cardHead">From</div><div class="cardData"><%= current_member.first_name %></div></div>
 		<div class="cardLine"><div class="cardHead">To</div><div class="cardData"><%= Member.find(@message.from).first_name %></div></div>
 		<div class="cardLine"><div class="cardHead">Message</div><div class="cardData"> <%= text_area_tag("message[content]", "", class: "messageBox") %></div></div>
-		<div class="actions"><%= submit_tag "Send" %></div>
+		<div class="actions"><%= submit_tag "Send", class: 'clicky'%></div>
 	</div>
 	
 	<% end %>

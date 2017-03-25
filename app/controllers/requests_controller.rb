@@ -16,7 +16,10 @@ class RequestsController < ApplicationController
       device_id: params[:device][:id], 
       side: params[:side], 
       member_id: current_member.id, 
-      shipping_address: params[:shipping_address]
+      shipping_address: params[:shipping_address],
+      colors: params[:colors],
+      measurements: params[:measurements],
+      photos: params[:photos]
     )
 
     if is_unique_request(@request)   

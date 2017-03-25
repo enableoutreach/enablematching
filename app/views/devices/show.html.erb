@@ -1,4 +1,11 @@
+<div>
+	<div class="card" style="margin-bottom: 10px; cursor: default; display: block;">
+		<div class="cardLine"><div class="cardHead">Name</div><div class="cardData"><%= @device.title %></div></div>
+	</div>
 
-
-<%= link_to 'Edit', edit_device_path(@device) %> |
-<%= link_to 'Back', devices_path %>
+	<div style="margin-top: 10px;">
+		<% if current_member.admin? %>
+			<%= link_to("Edit Device", edit_device_path(@device), class: "clicky") %>
+		<% end %>
+	</div>
+</div>

@@ -1,4 +1,4 @@
-<div>
+<div class="sectionHeader" style="margin-bottom: 0px;">Request</div>
 	<div class="card" style="margin-bottom: 10px; cursor: default; display: block;">
 		<div class="cardLine"><div class="cardHead">Request ID #</div><div class="cardData"><%= @request.id %></div></div>
 		<div class="cardLine"><div class="cardHead">Request Date</div><div class="cardData"> <%= @request.created_at.strftime('%x') %></div></div>
@@ -6,6 +6,9 @@
 		<div class="cardLine"><div class="cardHead">Device</div><div class="cardData"> <%= link_to(Device.find(@request.device_id).title, url_for(Device.find(@request.device_id))) %></div></div>
 		<div class="cardLine"><div class="cardHead">Side</div><div class="cardData"> <%= @request.side %></div></div>
 		<div class="cardLine"><div class="cardHead">Stage</div><div class="cardData"> <%= @request.stage %></div></div>
+		<div class="cardLine"><div class="cardHead">Measurements</div><div class="cardData"> <%= @request.measurements %></div></div>
+		<div class="cardLine"><div class="cardHead">Photos</div><div class="cardData"> <%= @request.photos %></div></div>
+		<div class="cardLine"><div class="cardHead">Colors</div><div class="cardData"> <%= @request.colors %></div></div>
 		<% if current_member.id == @request.member_id %>
 			<div class="cardLine"><div class="cardHead">Shipping</div><div class="cardData"> <%= @request.shipping_address %></div></div>
 		<% end %>
