@@ -3,7 +3,7 @@
 	
 	<div class="card" style="margin-bottom: 10px; cursor: default; display: block;">
 		<div class="cardLine" style="font-style: italic; display: block;"> Visit <a href="http://enablingthefuture.org/which-design/" target="_new" style="display: inline;">the e-NABLE website</a> to learn about the different types of devices available</div>
-		<div class="cardLine"><div class="cardHead">Name</div><div class="cardData"><%= text_field_tag(:title, '', class: 'messageBox', style: 'height: 1em;') %></div></div>	
+		<div class="cardLine"><div class="cardHead">Name</div><div class="cardData"><%= text_field_tag(:title, @device.title, class: 'messageBox', style: 'height: 1em;') %></div></div>	
 		<div class="actions"><%= submit_tag "Update Device", class: 'clicky' %></div>
 	</div>	
 	<% end %>
