@@ -9,8 +9,8 @@
 		<div class="cardLine"><div class="cardHead">Measurements</div><div class="cardData"> <%= @request.measurements %></div></div>
 		<div class="cardLine"><div class="cardHead">Photos</div><div class="cardData"> <%= @request.photos %></div></div>
 		<div class="cardLine"><div class="cardHead">Colors</div><div class="cardData"> <%= @request.colors %></div></div>
-		<% if current_member.id == @request.member_id %>
-			<div class="cardLine"><div class="cardHead">Shipping</div><div class="cardData"> <%= @request.shipping_address %></div></div>
+		<% if (current_member.id == @request.member_id) || @request.accepted_offer(current_member) %>
+			<div class="cardLine"><div class="cardHead">Shipping Address</div><div class="cardData"> <%= @request.shipping_address %></div></div>
 		<% end %>
 	</div>
 
@@ -19,7 +19,7 @@
 			<%= link_to("Edit Request", edit_request_path(@request), method: "GET", class: "clicky") %>
 			<%= link_to("Complete Request", url_for(controller: 'requests', action: "complete", id: @request.id), class: "clicky") %>
 		<% end %>
-		<% if @match && @request.member_id != current_member.id && !Request.open_offer(current_member, @request) && @request.stage == "Open" %>
+		<% if @match && @request.member_id != current_member.id && !@request.open_offer(current_member) && @request.stage == "Open" %>
 			<%= link_to("Offer to Help", offers_path<<"?request_id="<<@request.id.to_s, method: "POST", class: "clicky") %>
 		<% end %>
 	</div>

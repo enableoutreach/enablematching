@@ -1,13 +1,15 @@
 <% if !@offers.empty? %>
-	<div class="cardContainer">
-	<% @offers.each do |off| %>
-		<% @offer = off %>
-		<tr>
-			<td>
-				<%= render "layouts/offer"%>
-			</td>
-		</tr>
-	<% end %>
+	<div style="position: relative; overflow: hidden;">
+		<div class="cardContainer">
+			<% @offers.each do |off| %>
+				<% @offer = off %>
+				<tr>
+					<td>
+						<%= render "layouts/offer"%>
+					</td>
+				</tr>
+			<% end %>
+		</div>
 	</div>
 <% else %>
 	<p style="font-weight: bold; color: black; margin: 3px;"> None </p>

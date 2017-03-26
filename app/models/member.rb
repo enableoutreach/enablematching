@@ -25,4 +25,5 @@ class Member < ApplicationRecord
       return HTTParty.get(url, :verify => false, :headers => {"X-Api-Key" => ENV['CRED_KEY'], "X-Api-Secret" => ENV['CRED_SECRET']}).parsed_response['data']
     end
   end
+  
 end

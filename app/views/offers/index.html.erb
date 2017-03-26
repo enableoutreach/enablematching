@@ -1,11 +1,11 @@
-Offers from <%= current_member.first_name %><br />
+<div class="sectionHeader" style="margin-bottom: 0;">Offers from <%= current_member.first_name %></div>
 <% if !@offers.empty? %>
 	<% @offers=@offers.where(member_id: current_member.id) %>
 	<%= render "layouts/offers"%>
-	
+	<br>
 	<% if current_member.admin? %>
 		<% @offers = Offer.all %>
-		<p></p> All Offers (because you're admin)<br />
+		<div class="sectionHeader" style="margin-bottom: 0;">All Offers (because you're admin)<br /></div>
 		<%= render "layouts/offers"%>
 	<% end %>
 <% else %>

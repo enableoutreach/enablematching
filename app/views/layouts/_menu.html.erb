@@ -2,7 +2,7 @@
 	<div class="menutab"><%= link_to "Profile", url_for(current_member) %></div>
 	<div class="menutab"><%= link_to "Chapters", chapters_path %></div>
 	<div class="menutab"><%= link_to "Available Requests", requests_path %></div>
-	<div class="menutab"><%= link_to "My Offers", offers_path %></div>
+	<div class="menutab"><%= link_to "My Matches", offers_path %></div>
 	<div class="menutab"><%= link_to "My Requests", url_for(controller: "/requests", action: "mine") %></div>
 	<div class="menutab"><%= link_to "My Messages", messages_path %></div>
 	<div class="menutab" style="float: right;"><%= link_to('Logout', destroy_member_session_path, :method => :delete) %></div>

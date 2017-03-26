@@ -17,3 +17,4 @@
 //= require jquery-ui
 //= require underscore
 //= require gmaps/google
+//= require lightbox

@@ -5,7 +5,7 @@
 		<div class="cardCol" style="min-width: 150px; max-width: 150px;"><%= Device.find(@request.device_id).title %></div>
 		<div class="cardCol"><%= @request.side %></div>
 		<div class="cardCol"><%= @request.stage %></div>
-		<% if @offer = Request.open_offer(current_member, @request) %>
+		<% if @offer = @request.open_offer(current_member) %>
 			<div class="cardCol"><%= link_to("Your Offer", Offer.where(member_id: current_member.id, request_id: @request.id)[0]) %></div>
 		<% else %>
 			<% if @match && @request.member_id != current_member.id && @request.stage == "Open" %>

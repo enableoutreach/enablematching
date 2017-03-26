@@ -11,6 +11,7 @@ gem 'geocoder'
 gem 'google_drive' # For access to google spreadsheets https://github.com/gimite/google-drive-ruby
 gem 'mail'
 gem 'httparty'
+gem 'lightbox2-rails'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
