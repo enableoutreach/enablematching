@@ -8,6 +8,7 @@ class Member < ApplicationRecord
 
   geocoded_by :map_address   # can also be an IP address
   after_validation :geocode          # auto-fetch coordinates
+  validates :first_name, presence: true  
   
   def map_address
     return self.city+", "+self.country

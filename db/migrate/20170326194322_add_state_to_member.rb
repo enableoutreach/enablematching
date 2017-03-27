@@ -1,0 +1,5 @@
+class AddStateToMember < ActiveRecord::Migration[5.0]
+  def change
+    add_column :members, :state, :text
+  end
+end

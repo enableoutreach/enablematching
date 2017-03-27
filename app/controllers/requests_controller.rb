@@ -42,7 +42,7 @@ class RequestsController < ApplicationController
   end
   
   def update
-    if @request.update(device_id: params[:device][:id], side: params[:side], shipping_address: params[:shipping_address])
+    if @request.update(colors: params[:colors], measurements: params[:measurements], photos: params[:photos], device_id: params[:device][:id], side: params[:side], shipping_address: params[:shipping_address])
         redirect_to @request, notice: 'Request was successfully updated.'
     else
         render :edit

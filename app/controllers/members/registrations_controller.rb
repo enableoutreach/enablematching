@@ -15,7 +15,7 @@ class Members::RegistrationsController < Devise::RegistrationsController
         respond_with resource, :location => after_sign_up_path_for(resource)
       end
     else
-      clean_up_passwords
+      resource.clean_up_passwords
       respond_with resource
     end
   end  
@@ -33,7 +33,7 @@ class Members::RegistrationsController < Devise::RegistrationsController
 
   def registration_params
     params.require(:member).permit(:email, :first_name, :last_name, 
-      :city, :country, :id, :password, :password_confirmation)
+      :city, :state, :country, :id, :password, :password_confirmation)
   end
 
 
@@ -56,7 +56,7 @@ class Members::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :city, :country, :id])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :city, :state, :country, :id])
   end
 
   # The path used after sign up.

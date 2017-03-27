@@ -1,8 +1,15 @@
 class ChaptersController < ApplicationController 
   before_action :set_chapter, only: [:edit, :show, :update, :claim, :claimsend, :review, :approve, :reject]
 
+  rescue_from ActiveRecord::RecordNotFound do
+    flash[:notice] = "That chapter is not found"
+    redirect_to root_path
+  end
 
-
+  def new
+    @chapter = Chapter.new  
+  end
+  
   def index
     @chapters=Chapter.all.order('name ASC')
   end
@@ -16,7 +23,7 @@ class ChaptersController < ApplicationController
   end
   
   def update
-    if @chapter.update(name: params[:name], active: params[:active]=="true")
+    if @chapter.update(name: params[:name], lead: params[:lead], email: params[:email], location: params[:location], intake: params[:intake], home: params[:home], donation: params[:donation], active: params[:active]=="true")
         redirect_to @chapter, notice: 'Chapter was successfully updated.'
     else
         render :edit
@@ -24,33 +31,37 @@ class ChaptersController < ApplicationController
   end
   
   def create
-    @chapter = Chapter.create(name: params[:name], active: false, email: params[:email], location: params[:location], intake: params[:intake], home: params[:home], donation: params[:home])
+    @chapter = Chapter.create(name: params[:name], active: false, lead: params[:lead], email: params[:email], location: params[:location], intake: params[:intake], home: params[:home], donation: params[:donation])
     
-    require 'mail'
+    if @chapter.valid?
+      require 'mail'
+        
+      options = { :address          => "smtp.gmail.com",
+              :port                 => 587,
+              :domain               => 'enableoutreach.org',
+              :user_name            => 'enablechapters@gmail.com',
+              :password             => ENV['MAIL_PASSWORD'],
+              :authentication       => 'plain',
+              :enable_starttls_auto => true  }
+              
+      Mail.defaults do
+        delivery_method :smtp, options
+      end
+        
+      mail = Mail.new
+      mail.to = 'eNABLE Chapters Team <enablechapters@gmail.com>'
+      mail.from = 'eNABLE Matching System <enablechapters@gmail.com>'
+      mail.subject = 'New Chapter Application'
+      mail.body = 'Click this link to view the application.' << url_for(controller: 'chapters', action: 'review', id: @chapter.id)
+        
+      mail.deliver do
+      end
       
-    options = { :address          => "smtp.gmail.com",
-            :port                 => 587,
-            :domain               => 'enableoutreach.org',
-            :user_name            => 'enablechapters@gmail.com',
-            :password             => ENV['MAIL_PASSWORD'],
-            :authentication       => 'plain',
-            :enable_starttls_auto => true  }
-            
-    Mail.defaults do
-      delivery_method :smtp, options
+      flash[:notice] = "Your chapter application has been sent."
+      redirect_to chapters_path
+    else
+      render :new
     end
-      
-    mail = Mail.new
-    mail.to = 'eNABLE Chapters Team <enablechapters@gmail.com>'
-    mail.from = 'eNABLE Matching System <enablechapters@gmail.com>'
-    mail.subject = 'New Chapter Application'
-    mail.body = 'Click this link to view the application.' << url_for(controller: 'chapters', action: 'review', id: @chapter.id)
-      
-    mail.deliver do
-    end
-    
-    flash[:notice] = "Your chapter application has been sent."
-    redirect_to chapters_path
   end
   
   def review

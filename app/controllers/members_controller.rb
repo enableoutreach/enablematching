@@ -1,6 +1,11 @@
 class MembersController < ApplicationController
   before_action :set_member, only: [:show, :edit, :update, :destroy]
   
+  rescue_from ActiveRecord::RecordNotFound do
+    flash[:notice] = "That member is not found"
+    redirect_to root_path
+  end
+  
   # GET /members
   # GET /members.json
   def index
@@ -89,6 +94,6 @@ class MembersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def member_params
       params.fetch(:member, {})
-      params.require(:member).permit(:first_name, :last_name, :city, :country)
+      params.require(:member).permit(:first_name, :last_name, :city, :state, :country)
     end
 end

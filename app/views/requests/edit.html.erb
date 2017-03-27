@@ -1,13 +1,32 @@
-<%= form_tag(url_for(@request), method: "PUT") do %>	
+<div style="position: relative;">
+<div class="logincontainer" style="position: relative;">
+	<div class="sectionHeader" style="margin-bottom: 20px;">Edit Request</div>
+
+<%= form_tag(url_for(@request), method: "PUT", class: 'loginfield') do %>	
 	<%= label_tag(:title) %>
-	<%= collection_select(:device, :id, Device.all, :id, :title, selected: @request.device_id) %>
+	<div class="loginfield"><%= collection_select(:device, :id, Device.all, :id, :title, selected: @request.device_id) %></div>
 	<%= label_tag(:side, "Left") %>
-	<%= radio_button_tag(:side, "Left", (@request.side == "Left")) %>
+	<div class="loginfield"><%= radio_button_tag(:side, "Left", (@request.side == "Left")) %></div>
 	<%= label_tag(:side, "Right") %>
-	<%= radio_button_tag(:side, "Right", (@request.side == "Right")) %>
+	<div class="loginfield"><%= radio_button_tag(:side, "Right", (@request.side == "Right")) %></div>
 	<%= label_tag(:shipping_address) %>
-	<%= text_area_tag(:shipping_address, @request.shipping_address, size: "24x6")%>
+	<div class="loginfield"><%= text_area_tag(:shipping_address, @request.shipping_address, size: "24x6")%></div>
+	<%= label_tag(:measurements) %>
+	<div class="loginfield"><%= text_area_tag(:measurements, @request.measurements) %></div>
+			<div class="cardData" style="position: relative; left: 100px; top: -120px;">
+					<a href="" id="big" target="_new"><img src="" id="meas" style="width: 400px; position: absolute;"/></a>
+			</div>			
+	</div>
+	<%= label_tag('Photos/Video') %>
+	<div class="loginfield"><%= text_area_tag(:photos, @request.photos) %></div>
+	<%= label_tag(:colors) %>
+	<div class="loginfield"><%= text_area_tag(:colors, @request.colors) %></div>
+		
+	
 	<div class="actions">
-		<%= submit_tag "Submit Request" %>
+		<%= submit_tag "Update Request", class: 'clicky' %>
 	</div>
 <% end %>
+
+</div>
+</div>

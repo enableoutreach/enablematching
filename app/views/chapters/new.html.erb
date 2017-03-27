@@ -1,25 +1,30 @@
-Please provide the information below.  The Chapters Team will contact you once we have reviewed the photos and video you provide.<br>
+<%= form_error_messages(@chapter) %>
+<div class="logincontainer">
+	<div class="sectionHeader" style="margin-bottom: 20px;">Chapter Sign Up</div>
+	
+	<div style="margin-bottom: 20px;">Please provide the information below.  The Chapters Team will contact you once we have reviewed the photos and video you provide.</div>
 
-<%= form_tag(chapters_path, method: "POST") do %>	
+	<%= form_tag(chapters_path, method: "POST", class: 'loginfield') do %>	
 	<%= label_tag(:name) %>
-	<%= text_field_tag(:name)%>
+	<div class="loginfield"><%= text_field_tag(:name)%></div>
 	<%= label_tag(:lead) %>
-	<%= current_member.first_name << " " << current_member.last_name %>
+	<div class="loginfield"><%= current_member.first_name << " " << current_member.last_name %></div>
 	<%= hidden_field_tag(:lead, current_member.id) %>
 	<%= label_tag(:email) %>
-	<%= text_field_tag(:email)%>
+	<div class="loginfield"><%= text_field_tag(:email)%></div>
 	<%= label_tag(:location) %>
-	<%= text_area_tag(:location)%>
+	<div class="loginfield"><%= text_area_tag(:location)%></div>
 	<%= label_tag(:home) %>
-	<%= text_field_tag(:home)%>
+	<div class="loginfield"><%= text_field_tag(:home)%></div>
 	<%= label_tag(:intake) %>
-	<%= text_field_tag(:intake)%>
+	<div class="loginfield"><%= text_field_tag(:intake)%></div>
 	<%= label_tag(:donation) %>
-	<%= text_field_tag(:donation)%>
+	<div class="loginfield"><%= text_field_tag(:donation)%></div>
 	<%= label_tag('Please provide links to photos and video of your test hand') %>
-	<%= text_area_tag(:evidenc)%>
-	
+	<div class="loginfield"><%= text_area_tag(:evidenc)%></div>
+
 	<div class="actions">
-		<%= submit_tag "Create Chapter" %>
+		<%= submit_tag "Create Chapter", class: 'clicky' %>
 	</div>
-<% end %>
+	<% end %>
+</div>

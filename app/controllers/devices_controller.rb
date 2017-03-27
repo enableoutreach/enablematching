@@ -1,6 +1,11 @@
 class DevicesController < ApplicationController
   before_action :set_device, only: [:show, :edit, :update, :destroy]
 
+  rescue_from ActiveRecord::RecordNotFound do
+    flash[:notice] = "That device is not found"
+    redirect_to root_path
+  end
+
   # GET /devices
   # GET /devices.json
   def index

@@ -1,58 +1,55 @@
-<h2 class="sectionHeader">Edit Profile</h2>
+<%= devise_error_messages! %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+<div style="position: relative;">
+<div class="logincontainer" style="position: relative;">
+	<div class="sectionHeader" style="margin-bottom: 20px;">Edit Profile</div>
+	
+	<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'loginfield' }) do |f| %>
+	<%= hidden_field_tag("member[id]", @member.id) %>
 
-  <%= hidden_field_tag("member[id]", @member.id) %>
+	  
+	    <%= f.label :email %>
+	  	<div class="loginfield">  <%= f.email_field :email, autofocus: true, value: @member.email %></div>
+	  	<%= f.label :first_name %>
+	    <div class="loginfield"><%= f.text_field :first_name, value: @member.first_name %></div>
+	    <%= f.label :last_name %>
+	    <div class="loginfield"><%= f.text_field :last_name, value: @member.last_name %></div>
+	    <%= f.label :city %>
+	    <div class="loginfield"><%= f.text_field :city, value: @member.city %></div>
+	  	<%= f.label :state %>
+	  	<div class="loginfield"><%= f.text_field :state, value: @member.state %></div>
+	    <%= f.label :country %>
+	    <div class="loginfield"><%= f.text_field :country, value: @member.country %></div>
+	  
+	  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+	    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+	  <% end %>
 
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true, value: @member.email %>
-  </div>
-  <div class="field">
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name, value: @member.first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name, value: @member.last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :city %>
-    <%= f.text_field :city, value: @member.city %>
-  </div>
-  <div class="field">
-    <%= f.label :country %>
-    <%= f.text_field :country, value: @member.country %>
-  </div>
-  
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+	  <div class="sectionHeader" style="margin-top: 20px; margin-bottom: 20px;">Change Password</div>
+	  <%= f.label :password %>
+	  <div class="loginfield">
+	     <i>(leave blank if you don't want to change it)</i><br />
+	    <%= f.password_field :password, autocomplete: "off", value: "" %>
+	  </div>
 
-<h2 class="sectionHeader" style="margin-top: 20px;">Change Password</h2>
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off", value: "" %>
-  </div>
+	  <%= f.label 'Re-enter password' %>
+	  <div class="loginfield">
+	    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+	  </div>
 
-  <div class="field">
-    <%= f.label 'Re-enter password' %>
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-<h2 class="sectionHeader">Confirm</h2>
-  <div class="field" style="margin-bottom: 20px;">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
+	<div class="sectionHeader" style="margin-bottom: 20px;">Confirm</div>
+  	<%= f.label :current_password %>
+  	<div class="loginfield" style="margin-bottom: 20px;">
+	    <i>(we need your current password to confirm your changes)</i><br />
+	    <%= f.password_field :current_password, autocomplete: "off" %>
+  	</div>
 
     <%= f.submit "Update", class: 'clicky'%>
 
-<% end %>
+	<% end %>
+</div>
 
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'clicky' %></p>
-
-<%= link_to "Back", :back %>
+<div style="position: relative;"> 
+	<%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'clicky' %>
+</div>
+</div>

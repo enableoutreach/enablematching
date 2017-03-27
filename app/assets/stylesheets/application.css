@@ -19,6 +19,7 @@
 	font-family: 'Montserrat', sans-serif;
 	color: rgb(111,111,111);
 	font-size: 12pt;
+	margin-bottom: 15px;
 }
 
 h2 {
@@ -28,7 +29,7 @@ h2 {
 
 .sectionHeader {
   font-family: 'Montserrat', sans-serif;
-  font-size: 12pt;
+  font-size: 18pt;
   color: white;
   background: rgb(89,210,255); 
   padding-left: 10px;
@@ -38,9 +39,8 @@ h2 {
 }
 
 .logincontainer {
-  position: fixed;
-  top: 0;
   width: 100%;
+  position: fixed;
 }
 
 .messagesContainer {
@@ -122,8 +122,9 @@ div {
   padding-bottom: 0;
   margin-bottom: 20px;
   background-color: #f0f0f0;
+}
 
-  h2 {
+#error_explanation h2 {
     text-align: left;
     font-weight: bold;
     padding: 5px 5px 5px 15px;
@@ -132,15 +133,14 @@ div {
     margin-bottom: 0;
     background-color: #c00;
     color: #fff;
-  }
-
-  ul li {
-    font-size: 12px;
-    list-style: square;
-  }
 }
 
-label {
+#error_explanation ul li {
+    font-size: 12px;
+    list-style: square;
+}
+
+#error_explanation label {
   display: block;
 }
 
@@ -215,6 +215,8 @@ label {
     bottom: 0;
     right: 20px;
     text-align: right;
+    background: white;
+    z-index: 900;
 }
 
 .topheader {
@@ -243,6 +245,7 @@ label {
     margin-left: 3px;
     margin-right: 3px;
     display: inline-block;
+    background: #59d2ff;
 }
 
 .menutab:hover{

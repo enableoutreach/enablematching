@@ -1,7 +1,7 @@
 <% if !@chapters.empty? %>
 	<div class="cardContainer">
 	<% @chapters.each do |chapter| %>
-		<% if chapter.active? %>
+		<% if chapter.active? || current_member.admin? %>
 			<% @chapter = chapter %>
 				<%= render "layouts/chapter"%>
 		<% end %>
