@@ -2,6 +2,11 @@ class Members::RegistrationsController < Devise::RegistrationsController
 # before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
 
+  rescue_from ActiveRecord::RecordNotFound do
+    flash[:notice] = "That member is not found"
+    redirect_to root_path
+  end
+
   def create
     build_resource(registration_params)
   

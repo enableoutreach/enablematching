@@ -1,6 +1,11 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
 
+  rescue_from ActiveRecord::RecordNotFound do
+    flash[:notice] = "That message is not found"
+    redirect_to root_path
+  end
+
   # GET /messages
   # GET /messages.json
   def index
