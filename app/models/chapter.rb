@@ -4,7 +4,7 @@ class Chapter < ApplicationRecord
 
   geocoded_by :map_location   # can also be an IP address
   after_validation :geocode          # auto-fetch coordinates
-  validates :name, :email, :location, presence: true
+  validates :name, :email, :location, :evidence, presence: true
 
   def map_location    
     return self.location

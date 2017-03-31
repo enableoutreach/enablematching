@@ -1,13 +1,22 @@
-<div class="sectionHeader" style="margin-bottom: 0;">Offers from <%= current_member.first_name %></div>
+<div class="sectionHeader" style="margin-bottom: 0;">Your Matches</div>
+<% @offers = Offer.where(member_id: current_member.id, stage: 'Accepted') %>
 <% if !@offers.empty? %>
-	<% @offers=@offers.where(member_id: current_member.id) %>
 	<%= render "layouts/offers"%>
 	<br>
-	<% if current_member.admin? %>
-		<% @offers = Offer.all %>
-		<div class="sectionHeader" style="margin-bottom: 0;">All Offers (because you're admin)<br /></div>
-		<%= render "layouts/offers"%>
-	<% end %>
+<% else %>
+	None
+<% end %>
+
+<div class="sectionHeader" style="margin-bottom: 0;">Your Pending Matches</div>
+<% @offers = Offer.where(member_id: current_member.id).where.not(stage: 'Accepted') %>
+<% if !@offers.empty? %>
+	<%= render "layouts/offers"%>
+	<br>
+<% if current_member.admin? %>
+	<% @offers = Offer.all %>
+	<div class="sectionHeader" style="margin-bottom: 0;">All Offers (because you're admin)<br /></div>
+	<%= render "layouts/offers"%>
+<% end %>
 <% else %>
 	None
 <% end %>

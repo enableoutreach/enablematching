@@ -5,10 +5,6 @@ class OffersController < ApplicationController
     flash[:notice] = "That offer is not found"
     redirect_to root_path
   end
-  
-  def index
-    @offers = Offer.all
-  end
 
   def create
     @offer = Offer.new(request_id: params[:request_id], member_id: current_member.id)

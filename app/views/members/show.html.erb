@@ -4,11 +4,11 @@
 		 
 <% if params[:id] == current_member.id.to_s || current_member.admin? %>		
 		<p></p>
-		<div class="sectionHeader" style="margin-bottom: 0;">Requests by <%= @member.first_name %></div>
+		<div class="sectionHeader" style="margin-bottom: 0;">Your Requests</div>
 			<%= render "layouts/requests"%>
 		
 		<p></p>
-		<div class="sectionHeader" style="margin-bottom: 0;">Offers  from <%= @member.first_name %></div>
+		<div class="sectionHeader" style="margin-bottom: 0;">Your Matches</div>
 			<% if !@youroffers.nil? %>
 				<% @requests = nil %>
 				<% @offers = @youroffers %>
