@@ -1,13 +1,16 @@
 <div>
 	<% if $showNotice %>
-	<% msg = '<ul>' %>
-	<% Notice.all.each do |note| %>
-		<% msg = msg << '<li>' << note.content << '</li>'%>
-	<% end %>
-	<% msg = msg << '</ul>' %>
-	<style> .sweet-alert li {text-align: left; font-size: 13pt;}</style>
-	<script> sweetAlert({title: "Notices", text: "<%= raw(msg) %>", type: 'warning', html: true, confirmButtonColor: '#59d2ff'}); </script>
-	<% $showNotice = true %>
+		<% @msg = '<ul>' %>
+		<% Notice.all.each do |note| %>
+			<% @msg = @msg << '<li>' << note.content << '</li>'%>
+		<% end %>
+		<% if current_member.sign_in_count == 1 %>
+			<% @msg = @msg << '<li>Please visit <a href=''http://enablingthefuture.org/upper-limb-prosthetics/'' target=''_new''>here</a> to learn more about building e-NABLE devices.</li>' %>
+		<% end %>
+		<% @msg = @msg << '</ul>' %>
+		<style> .sweet-alert li {text-align: left; font-size: 13pt;}</style>
+		<script> sweetAlert({title: "Notices", text: "<%= raw(@msg) %>", type: 'warning', html: true, confirmButtonColor: '#59d2ff'}); </script>
+		<% $showNotice = false %>
 	<% end %>
 </div>
 

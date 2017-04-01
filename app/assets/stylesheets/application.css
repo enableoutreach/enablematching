@@ -28,6 +28,29 @@
 	margin-bottom: 15px;
 }
 
+.loginfield textarea {
+	width: 80%;
+    max-width: 200em;
+    height: 1em;	
+}
+
+.loginfield label {
+	display: inline-block;	
+}
+
+#shipping_address {
+	width: 40em;
+    max-width: 40em;
+    height: 8em;
+}
+
+#colors {
+	width: 40em;
+    max-width: 40em;
+    height: 4em;
+}
+
+
 h2 {
 	font-family: 'Montserrat', sans-serif;
 	font-size: 36pt;
@@ -42,6 +65,10 @@ h2 {
   padding-top: 10px;
   padding-bottom: 10px;
   margin-bottom: 5px;
+  border-radius: 10px 10px 0px 0px; 
+	-moz-border-radius: 10px 10px 0px 0px; 
+	-webkit-border-radius: 10px 10px 0px 0px; 
+	border: 2px solid #59D2FF;
 }
 
 .logincontainer {
@@ -317,8 +344,7 @@ div {
 .mapdiv {
 	height: 400px;
 	margin-bottom: 10px; 
-	max-width: 50%; 
-	margin-left: 25%;
+	width: 800px;
 }
 
 .badgeContainer {
@@ -330,9 +356,34 @@ div {
 	height: 60px;
 }
 
+.noteblock {
+	max-width: 400px;
+	border-radius: 16px; 
+	-moz-border-radius: 16px; 
+	-webkit-border-radius: 16px; 
+	border: 2px solid #59D2FF;
+}
+
+.noteblock li {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 16px;
+	color: #6f6f6f;
+	padding-bottom: 2em;
+	line-height: 1.5;
+	text-align: justify;
+}
+
+.noteblock ul {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 18px;
+	color: #6f6f6f;
+	margin: 10px;
+	margin-right: 25px;
+}
+
 .cardHead {
 	font-weight: bold;
-	min-width: 120px;
+	min-width: 200px;
 }
 .cardData {
 	width: 100%;

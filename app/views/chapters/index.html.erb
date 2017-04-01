@@ -1,7 +1,14 @@
-
-<div id="map" class="mapdiv"></div>
-
-<br>
+<div style="display: flex;">
+	<div id="map" class="mapdiv"></div>
+	<div style="margin: 0 30px 0 30px;" class="noteblock">
+		<div class="sectionHeader" style="margin-bottom: 0;">Tips</div>
+		<ul> 
+			<li> Click the New Chapter button below to register your chapter.</li>
+			<li> To join an existing chapter, simply select it on the map or in the list and email them at the address shown.</li>
+		</ul>
+	</div>	
+</div>
+<br>		
 
 <%= link_to('New Chapter', new_chapter_path, class: 'clicky') %>
 
@@ -10,8 +17,6 @@
 <div class="sectionHeader" style="margin-bottom: 0;">Chapters</div>
 
 <%= render "layouts/chapters"%>
-
-
 
 
 

@@ -1,13 +1,8 @@
-<%= form_tag(url_for(@request), method: "DELETE") do %>	
-	<%= label_tag(:completed, "Was the device delivered to you in working order?") %>
-	<%= label_tag(:completed, "Yes") %>
-	<%= radio_button_tag(:completed, "Yes", (@request.completed == "Yes")) %>
-	<%= label_tag(:completed, "No") %>
-	<%= radio_button_tag(:completed, "No", (@request.completed == "No")) %>
-	
-	<%= label_tag(:completionnote, "Please leave a note for the volunteer(s) who helped you") %>
-	<%= text_area_tag(:completionnote, @request.completionnote, size: "240x6")%>
-	<div class="actions">
-		<%= submit_tag "Complete Request" %>
-	</div>
+<script> sweetAlert({title: "We Need Your Help!", text: "Before you mark this request as complete, please take a few minutes to tell us about your experience.  Your feedback helps us improve.  We would especially like to know if there were any problems.", type: 'warning', confirmButtonColor: '#59d2ff'}); </script>
+
+<%= form_tag(url_for(controller: 'requests', action: 'destroy'), method: "DELETE") do %>
+	<% msg = "Thank you for providing us your valuable feedback.  If you did not have time today, you can always provide feedback <a href='https://www.surveymonkey.com/r/XVFT8CY' target='_new'>here</a>" %>
+	<%= submit_tag "Mark request #" << @request.id.to_s << " complete", class: 'clicky', onclick: 'sweetAlert({title: "Thank You!!", text: "'<<msg<<'", type: "success", confirmButtonText: "I Took the Survey", html: true, confirmButtonColor: "#59d2ff"});' %>
 <% end %>
+
+<script>(function(t,e,s,n){var c,o,a;t.SMCX=t.SMCX||[],e.getElementById(n)||(c=e.getElementsByTagName(s),o=c[c.length-1],a=e.createElement(s),a.type="text/javascript",a.async=!0,a.id=n,a.src=["https:"===location.protocol?"https://":"http://","widget.surveymonkey.com/collect/website/js/Y7VnasbREobtzCmjK9hs5973dat_2BTfsx0cMJfxJh7mwJzNLwcZ2_2BCayZTQJ6NnwO.js"].join(""),o.parentNode.insertBefore(a,o))})(window,document,"script","smcx-sdk");</script><a style="font: 12px Helvetica, sans-serif; color: #999; text-decoration: none;" href=https://www.surveymonkey.com/mp/customer-satisfaction-surveys/> Create your own user feedback survey </a>

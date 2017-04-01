@@ -37,6 +37,14 @@ class RequestsController < ApplicationController
     @match = true
   end
   
+  def edit
+    if @request.member_id == current_member.id || current_member.admin?
+    else
+      flash[:notice] = "You are not permitted to edit this request."
+      redirect_to @request
+    end  
+  end
+  
   def mine
     @requests = Request.where(member_id: current_member.id).order('created_at DESC')
   end
@@ -50,14 +58,16 @@ class RequestsController < ApplicationController
   end
   
   def complete
-    
+    if @request.member_id == current_member.id || current_member.admin?
+    else
+      flash[:notice] = "You are not permitted to mark this request as complete."
+      redirect_to @request
+    end 
   end
   
   def destroy #Ruby auto-routes to this from the complete.html.erb form ; could change in routes.rb later
     @offers = Offer.where(request_id: @request.id)
     @request.update stage: "Completed"
-    @request.update completed: params[:completed]
-    @request.update completionnote: params[:completionnote]
     @offers.each do |off|
         if off.stage == 'Offered'
           off.update stage: "Abandoned"
