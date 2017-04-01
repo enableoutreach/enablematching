@@ -164,7 +164,7 @@ class ChaptersController < ApplicationController
       mail.to = @chapter.email
       mail.from = 'eNABLE Chapters Team <enablechapters@gmail.com>'
       mail.subject = current_member.first_name << ' ' << current_member.last_name << ' requested to lead the ' << @chapter.name << ' chapter'
-      mail.body = 'If you agree, click this link.' << url_for(controller: 'chapters', action: 'agree', token: @tok, mem: current_member.id)
+      mail.body = current_member.first_name << ' ' << current_member.last_name << ' requested to be asssigned as the leader of the ' << @chapter.name << ' chapter in the e-NABLE Matching System (http://matching.e-nable.me).  If you agree, click this link.' << url_for(controller: 'chapters', action: 'agree', token: @tok, mem: current_member.id) << 'If you do not agree, you can ignore this email.'
         
       mail.deliver do
       end

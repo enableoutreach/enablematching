@@ -1,0 +1,17 @@
+<p>
+  <strong>Content:</strong>
+  <%= @notice.content.html_safe %>
+</p>
+
+<p>
+  <strong>Sticky:</strong>
+  <%= @notice.sticky %>
+</p>
+
+<p>
+  <strong>Expires:</strong>
+  <%= @notice.expires %>
+</p>
+
+<%= link_to 'Edit', edit_notice_path(@notice) %> |
+<%= link_to 'Back', notices_path %>

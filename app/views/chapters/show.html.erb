@@ -12,9 +12,9 @@
 	</div>
 
 	<div style="margin-top: 10px;">
+		<%= link_to("Request to be Leader of Chapter", url_for(controller: 'chapters', action: 'claim', id: @chapter.id), class: "clicky") %>
 		<% if (@chapter.lead == current_member.id || current_member.admin?) %>
 			<%= link_to("Edit Chapter", edit_chapter_path(@chapter), method: "GET", class: "clicky") %>
-			<%= link_to("Claim Chapter", url_for(controller: 'chapters', action: 'claim', id: @chapter.id), class: "clicky") %>
 		<% end %>
 	</div>
 </div>

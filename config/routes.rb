@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   
   
-  devise_for :members, controllers: {registrations: 'members/registrations'}
+  resources :notices
+  devise_for :members, controllers: {registrations: 'members/registrations', sessions: 'members/sessions'}
+
   devise_scope :member do
     root to: "devise/sessions#new"
     get "members/sign_out", to: 'devise/sessions#destroy'

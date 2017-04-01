@@ -12,6 +12,7 @@ gem 'google_drive' # For access to google spreadsheets https://github.com/gimite
 gem 'mail'
 gem 'httparty'
 gem 'lightbox2-rails'
+gem 'sweetalert-rails'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

@@ -1,9 +1,14 @@
 <div class="sectionHeader" style="margin-bottom: 0;">New Request</div>
 <div>
+	<div class="card" id="note" style="margin-bottom: 20px; white-space: normal; display: block;">
+		<div style="margin-bottom: 20px; cursor: auto;"> We strongly advise all recipients to consult a doctor or prosthetist before using an e-NABLE device.  We also recommend that recipients consult an occupational or physical therapist after receiving the device.</div>
+		<div class="clicky" onclick="document.getElementById('req').style.visibility='visible';">I Understand</div>
+	</div>
+	
 	<style>.cardData {width: 50%;}</style>
 	<%= form_tag("/requests", method: "POST") do %>	
 	
-	<div class="card" style="margin-bottom: 10px; cursor: default; display: block;">
+	<div class="card" id="req" style="visibility: hidden; margin-bottom: 10px; cursor: default; display: block;">
 		<div class="cardLine"><div class="cardHead">Device</div><div class="cardData"><%= collection_select(:device, :id, Device.all, :id, :title) %></div></div>
 		<div class="cardLine"><div class="cardHead">Side</div>
 			<div class="cardData">
@@ -16,7 +21,7 @@
 		<div class="cardLine" style="font-style: italic; display: block;"> Use <a href="https://docs.google.com/document/d/1vWDoGMzwca5G__8-2kdTte2w3qs8-h_Nv7PmFLszn4w" target="_new" style="display: inline;">this Guide</a> to learn about taking measurements and photos</div>
 		<div class="cardLine"><div class="cardHead">Measurements</div>
 			<div class="cardData"><%= text_area_tag(:measurements, 'A= B= C= ... G= or provide a link to a photo or document with the measurements', class: 'messageBox', style: 'height: 2em;') %></div>
-			<div class="cardData" style="position: relative; left: 100px; top: -120px;">
+			<div class="cardData" style="position: relative; left: 100px; top: -100px;">
 					<a href="" id="big" target="_new"><img src="" id="meas" style="width: 400px; position: absolute;"/></a>
 			</div>			
 </div>

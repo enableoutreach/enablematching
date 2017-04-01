@@ -7,7 +7,7 @@
 	
   	<div class="topheader">
 		<div class="messageNotice">
-			<%= link_to Message.all.where(to: current_member.id).length.to_s << " messages", messages_path %>
+			<%= link_to Message.all.where(to: current_member.id, status: "Unread").length.to_s << " unread messages", messages_path %>
 		</div>
 		<div class="submitButton"">
 			<%= link_to "Submit New Request", url_for(controller: "/requests", action: "new") %>

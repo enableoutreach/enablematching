@@ -1,3 +1,17 @@
+<div>
+	<% if $showNotice %>
+	<% msg = '<ul>' %>
+	<% Notice.all.each do |note| %>
+		<% msg = msg << '<li>' << note.content << '</li>'%>
+	<% end %>
+	<% msg = msg << '</ul>' %>
+	<style> .sweet-alert li {text-align: left; font-size: 13pt;}</style>
+	<script> sweetAlert({title: "Notices", text: "<%= raw(msg) %>", type: 'warning', html: true, confirmButtonColor: '#59d2ff'}); </script>
+	<% $showNotice = true %>
+	<% end %>
+</div>
+
+
 <div class="sectionHeader">Profile Info</div>
 
 <%= render "layouts/profile"%>
