@@ -8,7 +8,6 @@ gem 'underscore-rails'
 gem 'gmaps4rails'
 gem 'google-api-client', '~> 0.9'
 gem 'geocoder'
-gem 'google_drive' # For access to google spreadsheets https://github.com/gimite/google-drive-ruby
 gem 'mail'
 gem 'httparty'
 gem 'lightbox2-rails'
