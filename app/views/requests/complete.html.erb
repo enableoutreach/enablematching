@@ -2,7 +2,7 @@
 
 <%= form_tag(url_for(controller: 'requests', action: 'destroy'), method: "DELETE") do %>
 	<% msg = "Thank you for providing us your valuable feedback.  If you did not have time today, you can always provide feedback <a href='https://www.surveymonkey.com/r/XVFT8CY' target='_new'>here</a>" %>
-	<%= submit_tag "Mark request #" << @request.id.to_s << " complete", class: 'clicky', onclick: 'sweetAlert({title: "Thank You!!", text: "'<<msg<<'", type: "success", confirmButtonText: "I Took the Survey", html: true, confirmButtonColor: "#59d2ff"});' %>
+	<%= submit_tag "Mark request #" << @request.id.to_s << " complete", class: 'clicky', onclick: 'sweetAlert({title: "Thank You!!", text: "'<<msg<<'", type: "success", html: true, confirmButtonColor: "#59d2ff"});' %>
 <% end %>
 
 <script>(function(t,e,s,n){var c,o,a;t.SMCX=t.SMCX||[],e.getElementById(n)||(c=e.getElementsByTagName(s),o=c[c.length-1],a=e.createElement(s),a.type="text/javascript",a.async=!0,a.id=n,a.src=["https:"===location.protocol?"https://":"http://","widget.surveymonkey.com/collect/website/js/Y7VnasbREobtzCmjK9hs5973dat_2BTfsx0cMJfxJh7mwJzNLwcZ2_2BCayZTQJ6NnwO.js"].join(""),o.parentNode.insertBefore(a,o))})(window,document,"script","smcx-sdk");</script><a style="font: 12px Helvetica, sans-serif; color: #999; text-decoration: none;" href=https://www.surveymonkey.com/mp/customer-satisfaction-surveys/> Create your own user feedback survey </a>
