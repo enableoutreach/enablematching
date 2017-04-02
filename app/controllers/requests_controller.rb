@@ -73,10 +73,7 @@ class RequestsController < ApplicationController
           off.update stage: "Abandoned"
         end 
         if off.stage == 'Accepted'
-          if params[:completed]
-            off.update stage: "Completed"          else
-            off.update stage: "Incomplete"
-          end
+            off.update stage: "Completed"
         end
         Message.new do |m|
           m.from = @request.member_id

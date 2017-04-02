@@ -271,29 +271,19 @@ div {
     height: 1.5em;
     display: flex;
     justify-content: center;
-    padding-top: .5em;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-top: 3px;
-    margin-left: 3px;
-    margin-right: 3px;
+    padding: 5px;
     display: inline-block;
     background: #59d2ff;
 }
 
-.menutab:hover{
+.menutab a:hover {
 	background-color:rgb(255,255,255);
-	color: rgb(89,210,255); 
-}
-
-
-.menutab:hover a{
 	color: rgb(89,210,255); 
 }
 
 .menutab a{
 	float:left; 
-	padding-left:0px; 
+	padding:5px; 
 	display:block; 
 	color:rgb(255,255,255); 
 	text-decoration:none; 

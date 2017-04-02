@@ -12,11 +12,11 @@
 <% if !@offers.empty? %>
 	<%= render "layouts/offers"%>
 	<br>
-<% if current_member.admin? %>
-	<% @offers = Offer.all %>
-	<div class="sectionHeader" style="margin-bottom: 0;">All Offers (because you're admin)<br /></div>
-	<%= render "layouts/offers"%>
-<% end %>
+	<% if current_member.admin? %>
+		<% @offers = Offer.all %>
+		<div class="sectionHeader" style="margin-bottom: 0;">All Offers (because you're admin)<br /></div>
+		<%= render "layouts/offers"%>
+	<% end %>
 <% else %>
 	<div class="zero"> None </div>
 <% end %>

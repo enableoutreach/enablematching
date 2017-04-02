@@ -34,6 +34,11 @@ class OffersController < ApplicationController
     end
   end
   
+  def edit
+    flash[:notice] = "You do not have permission to edit offers."
+    redirect_to current_member  
+  end
+  
   def destroy
     @request = Request.find(@offer.request_id)
     @offer.destroy

@@ -16,13 +16,6 @@ class MembersController < ApplicationController
       redirect_to member_path(current_member)
     end
   end
-
-  # GET /members/1
-  # GET /members/1.json
-  def show
-    @requests = Request.where(member_id: @member.id)
-    @youroffers = Offer.where(member_id: @member.id)
-  end
   
   # GET /members/new
   def new

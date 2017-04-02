@@ -6,11 +6,14 @@
 	</div>
 	
   	<div class="topheader">
-		<% if Message.all.where(to: current_member.id, status: "Unread").length != 0 %>
+		<% if Message.all.where(to: current_member.id, status: "Unread").length > 0 %>
+			<style>
+				.messageNotice a {color: red;}
+			</style>
+		<% end %>
 			<div class="messageNotice">
 				<%= link_to Message.all.where(to: current_member.id, status: "Unread").length.to_s << " unread messages", messages_path %>
 			</div>
-		<% end %>
 		
 		<div class="submitButton"">
 			<%= link_to "Submit New Request", url_for(controller: "/requests", action: "new") %>

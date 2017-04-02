@@ -14,22 +14,56 @@
 	<% end %>
 </div>
 
-
 <div class="sectionHeader">Profile Info</div>
-
 <%= render "layouts/profile"%>
 		 
 <% if params[:id] == current_member.id.to_s || current_member.admin? %>		
-		<p></p>
-		<div class="sectionHeader" style="margin-bottom: 0;">Your Requests</div>
-			<%= render "layouts/requests"%>
+	<p></p>
+	<div style="position: relative;">
+		<img src="/requests.png" class="backImg"/>
 		
+		<div class="sectionHeader" style="margin-bottom: 0;">Your Open Requests</div>
+		<% @requests = Request.where(member_id: @member.id).where.not(stage: 'Completed').order('created_at DESC') %>
+		<% if !@requests.empty? %>
+			<%= render "layouts/requests"%>
+		<% else %>
+			<div class="zero"> None </div>
+		<% end %>
 		<p></p>
-		<div class="sectionHeader" style="margin-bottom: 0;">Your Matches</div>
-			<% if !@youroffers.nil? %>
-				<% @requests = nil %>
-				<% @offers = @youroffers %>
-				<%= render "layouts/offers" %>
-			<% end %>
-		<p></p>		
+		
+		<div class="sectionHeader" style="margin-bottom: 0;">Your Current Matches</div>
+		<% @offers = Offer.where(member_id: @member.id, stage: 'Accepted') %>
+		<% if !@offers.empty? %>
+			<%= render "layouts/offers"%>
+		<% else %>
+			<div class="zero"> None </div>
+		<% end %>
+		<p></p>
+		
+		<div class="sectionHeader" style="margin-bottom: 0;">Your Pending Offers to Help</div>
+		<% @offers = Offer.where(member_id: @member.id, stage: 'Offered') %>
+		<% if !@offers.empty? %>
+			<%= render "layouts/offers"%>
+		<% else %>
+			<div class="zero"> None </div>
+		<% end %>
+		<p></p>	
+	
+		<div class="sectionHeader" style="margin-bottom: 0;">Your Previous Builds </div>
+		<% @offers = Offer.where(member_id: @member.id).where.not(stage: 'Accepted').where.not(stage: 'Offered') %>
+		<% if !@offers.empty? %>
+			<%= render "layouts/offers"%>
+		<% else %>
+			<div class="zero"> None </div>
+		<% end %>
+		<p></p>
+		
+		<div class="sectionHeader" style="margin-bottom: 0;">Your Completed Requests</div>
+		<% @requests = Request.where(member_id: @member.id, stage: 'Completed').order('created_at DESC') %>
+		<% if !@requests.empty? %>
+			<%= render "layouts/requests"%>
+		<% else %>
+			<div class="zero"> None </div>
+		<% end %>
+	</div>
 <% end %>
