@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  if !Rails.env.development?
+    match "*path" => redirect("https://matching.e-nable.me/%{path}"), :constraints => { :protocol => "http://" }, :via => [:get, :post]
+    match "*path" => redirect("https://matching.e-nable.me/%{path}"), :constraints => { :subdomain => "" }, :via => [:get, :post]
+  end
   
   resources :notices
   devise_for :members, controllers: {registrations: 'members/registrations', sessions: 'members/sessions'}
