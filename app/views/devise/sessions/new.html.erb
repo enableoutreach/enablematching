@@ -1,36 +1,41 @@
-<div><img src="/Welcome.png" class="backImg" /></div>
 <div class="logincontainer">
-	<div class="sectionHeader" style="margin-bottom: 20px;">Sign in</div>
-	
-	<script src="https://apis.google.com/js/platform.js" async defer></script>
-	<meta name="google-signin-client_id" content="946526782479-am02sutskrdev8akb1gt8dgeah1oqh2h.apps.googleusercontent.com">
-	
-	
-	
-	<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'loginfield'}) do |f| %>
-	  <div class="loginfield">
-	    EMAIL ADDRESS <div style="font-size: 12px;">Use the same address as your <a href="http://www.credly.com">Credly</a> account to display your e-NABLE badges</div>
-	    <%= f.email_field(:email, autofocus: true, style: "width: 100%; max-width: 350px;") %>
-	  </div>
-	<p></p>
-	  <div class="loginfield">
-	    PASSWORD<br />
-	    <%= f.password_field(:password, autocomplete: "off", style: "width: 100%; max-width: 350px;") %>
-	  </div>
-	
-	  <% if devise_mapping.rememberable? -%>
-	    <div class="loginfield" style="margin-top: 20px; margin-bottom: 40px; display: flex;">
-	      <%= f.check_box :remember_me %>Remember me
-	    </div>
-	  <% end -%>
-	
-	  <div class="actions">
-	  	<% msg = 'This is a beta test website.  Everything works, but the data is NOT real.  You are free to create new chapters, requests, offers to test the system.  All data in the system will be ERASED when the beta period is over.' %>
-	    <%= f.submit("Sign in", class: 'loginaction', data: { confirm: msg }) %>
-	  </div>
-	<% end %>
+	<div class="loginFields">
+		<div style="text-align: center; font-size: 36pt; font-weight: bold; font-family: 'Montserrat', sans-serif; color: rgb(55,61,63); line-height: normal; width: 230px; margin: auto; margin-bottom: 75px; margin-top: 100px;">Sign in to e-NABLE</div>
+		
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+		<meta name="google-signin-client_id" content="946526782479-am02sutskrdev8akb1gt8dgeah1oqh2h.apps.googleusercontent.com">
+		
+		
+		<div style="width: 375px; margin: auto;">
+			<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'loginfield'}) do |f| %>
+			  <div class="loginfield">
+			    EMAIL ADDRESS <br />
+			    <%= f.email_field(:email, autofocus: true, style: "width: 100%; max-width: 350px;") %>
+			  </div>
+			<p></p>
+			  <div class="loginfield">
+			    PASSWORD<div style="display: inline; float: right; color: rgb(47, 198, 255);"><%= link_to("FORGOT", new_password_path(resource_name)) %></div><br />
+			    <%= f.password_field(:password, autocomplete: "off", style: "width: 100%; max-width: 350px;") %>
+			  </div>
+			
+			  <% if devise_mapping.rememberable? -%>
+			    <!-- <div class="rememberMe1"><div class="rememberMe2"></div></div> -->
+			    <div class="loginfield" style="color: rgb(55,61,63); font-weight: normal; font-size: 11pt; margin-top: 20px; margin-bottom: 60px; display: flex;">
+			      <%= f.check_box :remember_me %>Remember me
+			    </div>
+			  <% end -%>
+			
+			  <div class="actions">
+			  	<% msg = 'This is a beta test website.  Everything works, but the data is NOT real.  You are free to create new chapters, requests, offers to test the system.  All data in the system will be ERASED when the beta period is over.' %>
+			    <%= f.submit("SIGN IN", class: 'loginaction', data: { confirm: msg }) %>
+			  </div>
+			<% end %>
+		<%= link_to("SIGN UP", new_registration_path(resource_name), class: 'loginfield') %><br />
 
-	<%= render "devise/shared/links" %>
+		</div>
+	</div>
+	
+	<div class="loginImg"><img src="/Welcome.png" /></div>
 
 </div>
 

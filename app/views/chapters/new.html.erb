@@ -1,30 +1,35 @@
 <%= form_error_messages(@chapter) %>
-<div class="logincontainer">
-	<div class="sectionHeader" style="margin-bottom: 20px;">Chapter Sign Up</div>
+<div class="logincontainer" style="display: flex;">
+	<div class="loginFields" style="margin-right: 33px;">
+		<div style="text-align: center; font-size: 36pt; font-weight: bold; font-family: 'Montserrat', sans-serif; color: rgb(55,61,63); line-height: normal; width: 300px; margin: auto; margin-top: 50px;">Chapter Sign-Up</div>
+		
+		<div style="margin: 20px; margin-bottom: 50px;">Please provide the information below.  The Chapters Team will contact you once we have reviewed the photos and video you provide.</div>
 	
-	<div style="margin-bottom: 20px;">Please provide the information below.  The Chapters Team will contact you once we have reviewed the photos and video you provide.</div>
-
-	<%= form_tag(chapters_path, method: "POST", class: 'loginfield') do %>	
-	<%= label_tag(:name) %>
-	<div class="loginfield"><%= text_field_tag(:name)%></div>
-	<%= label_tag(:lead) %>
-	<div class="loginfield"><%= current_member.first_name << " " << current_member.last_name %></div>
-	<%= hidden_field_tag(:lead, current_member.id) %>
-	<%= label_tag(:email) %>
-	<div class="loginfield"><%= text_field_tag(:email)%></div>
-	<%= label_tag(:location) %>
-	<div class="loginfield"><%= text_area_tag(:location)%></div>
-	<%= label_tag(:home) %>
-	<div class="loginfield"><%= text_field_tag(:home)%></div>
-	<%= label_tag(:intake) %>
-	<div class="loginfield"><%= text_field_tag(:intake)%></div>
-	<%= label_tag(:donation) %>
-	<div class="loginfield"><%= text_field_tag(:donation)%></div>
-	<%= label_tag('Please provide links to photos and video of your test hand') %>
-	<div class="loginfield"><%= text_area_tag(:evidenc)%></div>
-
-	<div class="actions">
-		<%= submit_tag "Create Chapter", class: 'clicky' %>
+		<%= form_tag(chapters_path, method: "POST", class: 'loginfield') do %>	
+			<%= label_tag(:name, "CHAPTER NAME*") %>
+			<div class="loginfield"><%= text_field_tag(:name)%></div>
+			<%= label_tag(:lead, "CHAPTER LEAD") %>
+			<div class="loginfield"><%= current_member.first_name << " " << current_member.last_name %></div>
+			<%= hidden_field_tag(:lead, current_member.id) %>
+			<%= label_tag(:email, "CHAPTER EMAIL*") %>
+			<div class="loginfield"><%= text_field_tag(:email)%></div>
+			<%= label_tag(:location, "CHAPTER CITY, STATE*") %>
+			<div class="loginfield"><div class="tooltip"><span class="tooltiptext">Please don't provide an exact address.'</span><%= text_area_tag(:location)%></div></div>
+			<%= label_tag(:home, "HOME or FACEBOOK PAGE") %>
+			<div class="loginfield"><%= url_field_tag(:home)%></div>
+			<%= label_tag(:intake, "URL OF INTAKE FORM") %>
+			<div class="loginfield"><%= url_field_tag(:intake)%></div>
+			<%= label_tag(:donation, "DONATION PAGE") %>
+			<div class="loginfield"><%= url_field_tag(:donation)%></div>
+			<%= label_tag(:evidence, "EVIDENCE*") %><br />
+			Please provide links to photos and video of your test hand.  A link to a Credly badge also works.
+			<div class="loginfield"><%= text_area_tag(:evidenc)%></div>
+		
+			<div class="actions">
+				<%= submit_tag "CREATE CHAPTER", class: 'loginaction' %>
+			</div>
+		<% end %>
 	</div>
-	<% end %>
+	
+	<div class="loginImg" style="top: 100px; height: unset; position: unset;"><img src="/earth.png" /></div>
 </div>

@@ -1,3 +1,4 @@
+<div style="margin-top: 35px; margin-bottom: 10px;"><a href="<%= messages_path %>"><img src="/arrow@3x.png" width="30px;"/></a></div>
 <div style="margin-bottom: 25px;">
 	<div class="sectionHeader" style="margin-bottom: 0px;">Message</div>
 	<div class="card" style="margin-bottom: 10px; cursor: default; display: block;">
@@ -9,5 +10,7 @@
 	</div>
 </div>
 
-<div class="sectionHeader" style="margin-bottom: 0;">Response</div>
-<%= render "layouts/respond" %>
+<% if @message.from != Member.find_by(first_name: "System").id %>
+	<div class="sectionHeader" style="margin-bottom: 0;">Response</div>
+	<%= render "layouts/respond" %>
+<% end %>

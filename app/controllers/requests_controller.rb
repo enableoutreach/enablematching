@@ -11,8 +11,12 @@ class RequestsController < ApplicationController
     @match = true
   end
 
+  def new
+    @request = Request.new  
+  end
+  
   def create
-    @request = Request.new(
+    @request = Request.create(
       device_id: params[:device][:id], 
       side: params[:side], 
       member_id: current_member.id, 
@@ -21,14 +25,24 @@ class RequestsController < ApplicationController
       measurements: params[:measurements],
       photos: params[:photos]
     )
-
-    if is_unique_request(@request)   
-      @request.save
-      flash[:notice] = "Request successfully created."
-      redirect_to @request
+    
+    if @request.valid?
+      Message.new do |m|
+        m.from = Member.find_by(first_name: "System").id
+        m.to = @request.member_id
+        m.content = "You created <a href=\"#{Rails.application.routes.url_helpers.request_path @request.id}\">Request ##{@request.id.to_s}</a>."
+        m.save  
+      end
+  
+      if is_unique_request(@request)   
+        flash[:notice] = "Request successfully created."
+        redirect_to @request
+      else
+        flash[:notice] = "That is a duplicate request."
+        redirect_to :controller => 'requests', :action => 'new'
+      end
     else
-      flash[:notice] = "That is a duplicate request."
-      redirect_to :controller => 'requests', :action => 'new'
+      render :new
     end
   end
 
@@ -76,7 +90,7 @@ class RequestsController < ApplicationController
             off.update stage: "Completed"
         end
         Message.new do |m|
-          m.from = @request.member_id
+          m.from = Member.find_by(first_name: "System").id
           m.to = off.member_id
           m.content = "<a href=\"#{Rails.application.routes.url_helpers.member_path @request.member_id}\">#{Member.find(@request.member_id).first_name}</a> closed <a href=\"#{Rails.application.routes.url_helpers.request_path @request.id}\">Request ##{@request.id.to_s}</a>, so your offer was abandoned."
           m.save  
@@ -86,7 +100,7 @@ class RequestsController < ApplicationController
     flash[:notice] = "Request and associated offers closed"
 
     Message.new do |m|
-      m.from = @request.member_id
+      m.from = Member.find_by(first_name: "System").id
       m.to = @request.member_id
       m.content = "You closed <a href=\"#{Rails.application.routes.url_helpers.request_path @request.id}\">Request ##{@request.id.to_s}</a>"
       m.save  

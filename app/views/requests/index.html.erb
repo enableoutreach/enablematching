@@ -1,5 +1,9 @@
 <div id="map" class="mapdiv"></div>
 
+<div class="submitButton" style="margin-bottom: 50px; margin-top: 25px;">
+	<div style="margin: auto;"><%= link_to "SUBMIT NEW REQUEST", new_request_path %></div>
+</div>
+
 <% if current_member.admin? %>
 	<div class="sectionHeader" style="margin-bottom: 0;">All Requests (because you're an admin)</div>
 	<%= render "layouts/requests"%>
@@ -33,10 +37,10 @@ LatLngList.forEach(function(latLng){
 	    	lat: <%= req.latitude%>, 
 	    	lng: <%= req.longitude%>,
 	    	infowindow: '<div class="infowin"> \
-		    			<b>Submitted Date:</b> <%= @request.created_at %> <br> \
-		    			<b>By: </b> <%= Member.find(@request.member_id).first_name << " " << Member.find(@request.member_id).last_name %> <br> \
-		    			<b>Device:</b> <%= Device.find(@request.device_id).title %> <br> \
-		    			<b>Side:</b> <%= @request.side %> <br>'
+		    			<b>Submitted Date:</b> <%= req.created_at %> <br> \
+		    			<b>By: </b> <%= Member.find(req.member_id).first_name << " " << Member.find(req.member_id).last_name %> <br> \
+		    			<b>Device:</b> <%= Device.find(req.device_id).title %> <br> \
+		    			<b>Side:</b> <%= req.side %> <br>'
 	    },
 	    <% end %>
 	  ]);

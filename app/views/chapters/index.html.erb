@@ -10,8 +10,9 @@
 </div>
 <br>		
 
-<%= link_to('New Chapter', new_chapter_path, class: 'clicky') %>
-
+<div class="submitButton" style="margin-bottom: 50px; margin-top: 25px;">
+	<div style="margin: auto;"><%= link_to "NEW CHAPTER", new_chapter_path %></div>
+</div>
 <br>
 
 <div class="sectionHeader" style="margin-bottom: 0;">Chapters</div>
@@ -31,7 +32,7 @@ LatLngList.forEach(function(latLng){
    latlngbounds.extend(latLng);
 });
 	
-	handler = Gmaps.build('Google', { markers: { clusterer: undefined  } });
+	handler = Gmaps.build('Google');
 	handler.buildMap({ 
 		provider: {
 	    	maxZoom: 10, 
@@ -42,23 +43,22 @@ LatLngList.forEach(function(latLng){
 	    markers = handler.addMarkers([
 	    <% @chapters.each do |chapter| %> 
 	    	<% if chapter.active %>
-	    		<% @chapter=chapter %>
 			    {
 			    	lat: <%= chapter.latitude%>, 
 			    	lng: <%= chapter.longitude%>,
 		    		infowindow: '<div class="infowin"> \
-		    			<b>Name:</b> <%= @chapter.name %> <br> \
-		    			<b>Lead:</b> <%= if @chapter.lead; Member.find(@chapter.lead).first_name << " " << Member.find(@chapter.lead).last_name; "None"; end; %> <br> \
-		    			<b>Location:</b> <%= @chapter.location %> <br> \
-		    			<b>Email:</b> <%= @chapter.email %> <br> \
-		    			<b>Homepage:</b> <%= if @chapter.home; link_to(@chapter.home, @chapter.home, target: "_new"); end; %> <br> \
-		    			<b>Donate:</b> <%= if @chapter.donation; link_to(@chapter.donation, @chapter.donation, target: "_new"); end; %> <br> \
-		    			<b>Intake:</b> <%= if @chapter.intake; link_to(@chapter.intake, @chapter.intake, target: "_new"); end; %> <br></div> \
+		    			<b>Name:</b> <%= chapter.name %> <br> \
+		    			<b>Lead:</b> <%= if chapter.lead; Member.find(chapter.lead).first_name << " " << Member.find(chapter.lead).last_name; "None"; end; %> <br> \
+		    			<b>Location:</b> <%= chapter.location %> <br> \
+		    			<b>Email:</b> <%= chapter.email %> <br> \
+		    			<b>Homepage:</b> <%= if chapter.home; link_to(chapter.home, chapter.home, target: "_new"); end; %> <br> \
+		    			<b>Donate:</b> <%= if chapter.donation; link_to(chapter.donation, chapter.donation, target: "_new"); end; %> <br> \
+		    			<b>Intake:</b> <%= if chapter.intake; link_to(chapter.intake, chapter.intake, target: "_new"); end; %> <br></div> \
 		    			<br> \
-		    			<% if @chapter.lead == current_member.id || current_member.admin? %> \
-							<%= link_to("Edit Chapter", url_for(controller: 'chapters', action: 'edit', id: @chapter.id), class: "clicky") %> \
+		    			<% if chapter.lead == current_member.id || current_member.admin? %> \
+							<%= link_to("Edit Chapter", url_for(controller: 'chapters', action: 'edit', id: chapter.id), class: "clicky") %> \
 						<% end %> \
-						<%= link_to("View Chapter", url_for(@chapter), class: "clicky") %>'
+						<%= link_to("View Chapter", url_for(chapter), class: "clicky") %>'
 		    	},
 		    <% end %>
 	  <% end %>

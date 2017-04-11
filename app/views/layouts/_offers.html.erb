@@ -3,6 +3,7 @@
 		<div class="cardContainer">
 			<% @offers.each do |off| %>
 				<% @offer = off %>
+				<% @request = Request.find(off.request_id)%>
 				<tr>
 					<td>
 						<%= render "layouts/offer"%>

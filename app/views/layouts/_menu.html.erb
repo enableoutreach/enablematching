@@ -1,7 +1,21 @@
 <% if current_member then %>
 	<div class="menutab"><%= link_to "Dashboard", url_for(current_member) %></div>
+	<div class="menutab"><%= link_to "Requests", requests_path %></div>
 	<div class="menutab"><%= link_to "Chapters", chapters_path %></div>
-	<div class="menutab"><%= link_to "Available Requests", requests_path %></div>
 	<div class="menutab" style="float: right;"><%= link_to('Logout', destroy_member_session_path, :method => :delete) %></div>
-	<div class="menutab" style="float: right; margin-right: 5em;"><a href="http://enableoutreach.cloud.answerhub.com" target="_new">Q&A Site</div>
+	<% unread = Message.all.where(to: current_member.id, status: "Unread").length %>
+	<div class="menutab messageNotice">		
+		<a href="<%= messages_path %>">
+			<% if unread > 0 %>
+				<style>
+					.messageNotice a {color: red;}
+				</style>
+				<img src="/sendUnread.png" />
+			<% else %>
+				<img src="/send24X24.png" />
+			<% end %>
+		<%= unread %>
+		</a>
+	</div>
+	<div class="menutab" style="float: right; margin-right: 5em;"><a href="http://enableoutreach.cloud.answerhub.com" target="_new">Q&A Site</a></div>
 <% end %>

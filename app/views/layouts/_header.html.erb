@@ -5,23 +5,5 @@
 		<%= render "layouts/menu" %>  
 	</div>
 	
-  	<div class="topheader">
-		<% if Message.all.where(to: current_member.id, status: "Unread").length > 0 %>
-			<style>
-				.messageNotice a {color: red;}
-			</style>
-		<% end %>
-			<div class="messageNotice">
-				<%= link_to Message.all.where(to: current_member.id, status: "Unread").length.to_s << " unread messages", messages_path %>
-			</div>
-		
-		<div class="submitButton"">
-			<%= link_to "Submit New Request", url_for(controller: "/requests", action: "new") %>
-		</div>
-	</div>
-	<hr style="border-color: rgb(89,210,255);">	 
-<% else %>
-	<% if controller_name != 'sessions' %>
-		<%= link_to('Login', new_member_session_path, class: 'clicky')  %>
-	<% end %>  
+	<hr style="border-color: rgb(89,210,255);">	  
 <% end %>

@@ -1,40 +1,47 @@
+<a href="<%= root_path %>"><img src="/arrow@3x.png" width="30px;"/></a>
+
 <%= devise_error_messages! %>
 
 <div class="logincontainer">
-	<div class="sectionHeader" style="margin-bottom: 20px;">Sign Up</div>
-	
-	<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'loginfield'}) do |f| %>
-  	
-		<%= f.label :email %>
-		<div class="loginfield"><%= f.email_field :email, autofocus: true %></div>
-	    <%= f.label :first_name, "First Name" %>
-	    <div class="loginfield"><%= f.text_field :first_name %></div>
-	    <%= f.label :last_name, "Last Name" %>
-	    <div class="loginfield"><%= f.text_field :last_name %></div>  
-	    <%= f.label :city %>
-	  	<div class="loginfield"><%= f.text_field :city %></div>
-		<%= f.label :state %>
-	    <div class="loginfield"><%= f.text_field :state %></div>
-	    <%= f.label :country %>
-	    <div class="loginfield"><%= f.text_field :country %></div>
-	
-	  <div class="loginfield">
-	    <%= f.label :password %>
-	    <% if @minimum_password_length %>
-	    <em>(<%= @minimum_password_length %> characters minimum)</em>
-	    <% end %><br />
-	    <%= f.password_field :password, autocomplete: "off" %>
-	  </div>
-	
-	    <%= f.label :password_confirmation %>
-	 <div class="loginfield">
-	    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-	  </div>
-	
-	  <div class="actions">
-	    <%= f.submit "Sign up", class: 'clicky' %>
-	  </div>
-	<% end %>
-</div>
+	<div class="loginFields">
+		<div style="text-align: center; font-size: 36pt; font-weight: bold; font-family: 'Montserrat', sans-serif; color: rgb(55,61,63); line-height: normal; width: 300px; margin: auto; margin-bottom: 75px; margin-top: 50px;">Sign up for e-NABLE</div>
+		
+			<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'loginfield'}) do |f| %>
+		  	
+				EMAIL ADDRESS <br />
+				<div style="font-size: 12px;">Use the same address as your <a href="http://www.credly.com">Credly</a> account to display your e-NABLE badges</div>
+				<div class="loginfield"><%= f.email_field(:email, autofocus: true) %></div>
+			    <%= f.label :first_name, "FIRST NAME" %>
+			    <div class="loginfield"><%= f.text_field :first_name %></div>
+			    <%= f.label :last_name, "LAST NAME" %>
+			    <div class="loginfield"><%= f.text_field :last_name %></div>  
+			    <%= f.label :city, "CITY" %>
+			  	<div class="loginfield"><%= f.text_field :city %></div>
+				<%= f.label :state, "STATE" %>
+			    <div class="loginfield"><%= f.text_field :state %></div>
+			    <%= f.label :country, "COUNTRY" %>
+			    <div class="loginfield"><%= f.text_field :country %></div>
+			
+			  <div class="loginfield">
+			    PASSWORD<br />
+			    <% if @minimum_password_length %>
+			    <em>(<%= @minimum_password_length %> characters minimum)</em>
+			    <% end %><br />
+			    <%= f.password_field(:password, autocomplete: "off") %>
+			  </div>
+			
+			    CONFIRM PASSWORD<br />
+			 <div class="loginfield">
+			    <%= f.password_field(:password_confirmation, autocomplete: "off") %>
+			  </div>
+			
+			  <div class="actions">
+			    <%= f.submit "SIGN UP", class: 'loginaction' %>
+			  </div>
+		<% end %>
+	</div>
 
-<%= render "devise/shared/links" %>
+	<div class="loginImg"><img src="/earth.png" /></div>
+
+	<%= render "devise/shared/links" %>
+</div>

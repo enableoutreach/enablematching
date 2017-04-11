@@ -9,7 +9,7 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-    @messages = Message.where(to: current_member.id).order('created_at DESC')
+    @messages = Message.where(to: current_member.id).or(Message.where(from: current_member.id)).order('created_at DESC')
   end
 
   # GET /messages/1

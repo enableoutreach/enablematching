@@ -16,12 +16,12 @@ class OffersController < ApplicationController
       Message.new do |m|
         m.from = @offer.member_id
         m.to = @request.member_id
-        m.content = "An offer from <a href=\"#{Rails.application.routes.url_helpers.member_path @offer.member_id}\">#{Member.find(@offer.member_id).first_name}</a> was made for <a href=\"#{Rails.application.routes.url_helpers.request_path @request.id}\">Request ##{@request.id.to_s}</a>"
+        m.content = "An offer from <a href=\"#{Rails.application.routes.url_helpers.member_path @offer.member_id}\">#{Member.find(@offer.member_id).first_name}</a> was made on your <a href=\"#{Rails.application.routes.url_helpers.request_path @request.id}\">Request ##{@request.id.to_s}</a>"
         m.save  
       end 
       Message.new do |m|
         m.to = @offer.member_id
-        m.from = @request.member_id
+        m.from = Member.find_by(first_name: "System").id
         m.content = "You made an offer on  <a href=\"#{Rails.application.routes.url_helpers.request_path @request.id}\">Request ##{@request.id.to_s}</a>"
         m.save  
       end
@@ -49,14 +49,14 @@ class OffersController < ApplicationController
     end
 
     Message.new do |m|
-      m.from = @offer.member_id
+      m.from = Member.find_by(first_name: "System").id
       m.to = @request.member_id
       m.content = "The offer from <a href=\"#{Rails.application.routes.url_helpers.member_path @offer.member_id}\">#{Member.find(@offer.member_id).first_name}</a> on <a href=\"#{Rails.application.routes.url_helpers.request_path @request.id}\">Request ##{@request.id.to_s}</a> was revoked"
       m.save  
     end
     Message.new do |m|
       m.to = @offer.member_id
-      m.from = @request.member_id
+      m.from = Member.find_by(first_name: "System").id
       m.content = "You revoked your offer on  <a href=\"#{Rails.application.routes.url_helpers.request_path @request.id}\">Request ##{@request.id.to_s}</a>"
       m.save  
     end

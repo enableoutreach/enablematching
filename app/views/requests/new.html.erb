@@ -1,16 +1,17 @@
+<%= form_error_messages(@request) %>
 <div class="sectionHeader" style="margin-bottom: 0;">New Request</div>
 <div>
 	<div class="card" id="note" style="margin-bottom: 20px; white-space: normal; display: block;">
 		<div style="margin-bottom: 20px; cursor: auto;"> We strongly advise all recipients to consult a doctor or prosthetist before using an e-NABLE device.  We also recommend that recipients consult an occupational or physical therapist after receiving the device.</div>
-		<div class="clicky" onclick="document.getElementById('req').style.visibility='visible';var e = document.getElementById('note'); e.parentNode.removeChild(e);">I Understand</div>
+		<div class="loginaction" style="display: flex; align-items: center;" onclick="document.getElementById('req').style.visibility='visible';var e = document.getElementById('note'); e.parentNode.removeChild(e);"><div style="margin: auto;">I Understand</div></div>
 	</div>
 	
 	<style>.cardData {width: 50%;}</style>
 	<%= form_tag("/requests", method: "POST") do %>	
 	
 	<div class="card" id="req" style="visibility: hidden; margin-bottom: 10px; cursor: default; display: block;">
-		<div class="cardLine"><div class="cardHead">Device</div><div class="cardData"><%= collection_select(:device, :id, Device.all, :id, :title) %></div></div>
-		<div class="cardLine"><div class="cardHead">Side</div>
+		<div class="cardLine"><div class="cardHead">*Device</div><div class="cardData"><%= collection_select(:device, :id, Device.all, :id, :title) %></div></div>
+		<div class="cardLine"><div class="cardHead">*Side</div>
 			<div class="cardData">
 				<%= label_tag(:side, "Left") %>
 				<input type="radio" name="side" id="side_Left" value="Left" onclick="document.getElementById('meas').src='/intakeLeft.png';document.getElementById('big').href='/intakeLeft.png';">
@@ -27,8 +28,8 @@
 </div>
 		<div class="cardLine"><div class="cardHead">Photos/Video</div><div class="cardData"><%= text_area_tag(:photos, 'Provide a link to a page, forum post or online file with photos', class: 'messageBox', style: 'height: 2em;') %></div></div>
 		<div class="cardLine"><div class="cardHead">Colors</div><div class="cardData"><%= text_area_tag(:colors, 'Describe what style and colors you would like.  Do you want any special designs, team logos or themese?', class: 'messageBox', style: 'height: 2em;') %></div></div>
-		<div class="cardLine"><div class="cardHead">Shipping Address</div><div class="cardData"> <%= text_area_tag(:shipping_address, current_member.city+", "+current_member.country, class: 'messageBox')%></div></div>
-		<div class="actions"><%= submit_tag "Submit Request", class: 'clicky' %></div>
+		<div class="cardLine"><div class="cardHead">*Shipping Address</div><div class="cardData"> <%= text_area_tag(:shipping_address, current_member.city+", "+current_member.country, class: 'messageBox')%></div></div>
+		<div class="actions"><%= submit_tag "SUBMIT REQUEST", class: 'loginaction' %></div>
 	</div>
 	
 	<% end %>

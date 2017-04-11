@@ -21,21 +21,100 @@
 	padding: 10px;
 }
 
+.logincontainer {
+  width: 100%;
+  height: 100%;
+}
+
+.loginFields {
+	width: 535px;
+	display: inline-block;
+	max-width: 535px;
+	text-align: center;
+}
+
 .loginfield, .zero {
 	font-family: 'Montserrat', sans-serif;
-	color: rgb(111,111,111);
-	font-size: 12pt;
+	color: rgb(175,177,178);
+	font-size: 10pt;
 	margin-bottom: 15px;
+	font-weight: bold;
+	text-align: left;
 }
 
 .loginfield textarea {
 	width: 80%;
     max-width: 200em;
-    height: 1em;	
+    height: 8em;	
+}
+
+.loginfield input[type=text], input[type="password"], input[type="email"], input[type="url"], textarea {
+	all: unset;
+	margin-top: 12px;
+	border-color: rgb(228,228,228);
+	border-style: solid;
+	border-width: 1px;
+	padding: 15px;
+	color: rgb(55,61,63);
+	width: 100%; 
+	max-width: 350px;
+	cursor: auto;
 }
 
 .loginfield label {
 	display: inline-block;	
+}
+
+.loginImg {
+	display: inline-block;
+	position: fixed;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	padding-top: 100px;
+	background: rgba(168,232,255,1);
+	background: -moz-linear-gradient(left, rgba(168,232,255,1) 0%, rgba(48,200,255,1) 100%);
+	background: -webkit-gradient(left top, right top, color-stop(0%, rgba(168,232,255,1)), color-stop(100%, rgba(48,200,255,1)));
+	background: -webkit-linear-gradient(left, rgba(168,232,255,1) 0%, rgba(48,200,255,1) 100%);
+	background: -o-linear-gradient(left, rgba(168,232,255,1) 0%, rgba(48,200,255,1) 100%);
+	background: -ms-linear-gradient(left, rgba(168,232,255,1) 0%, rgba(48,200,255,1) 100%);
+	background: linear-gradient(to right, rgba(168,232,255,1) 0%, rgba(48,200,255,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a8e8ff', endColorstr='#30c8ff', GradientType=1 );
+}
+
+.loginaction, .submitButton, .submitButton a {
+	width: 375px;
+	height: 55px;
+	font-family: 'Montserrat', sans-serif;
+	color: white;
+	background-color: rgb(89,210,255);
+	border-style: none;
+	font-size: 12pt;
+	margin-bottom: 25px;
+	cursor: pointer;
+	margin-top: 12px;
+	max-width: 375px;
+	text-align: center;
+	text-decoration: none;
+}
+
+.submitButton {
+	display: flex;
+	align-items: center;
+}
+
+.rememberMe1 {
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	background: rgba(89, 210, 255, 0.4);
+}
+
+.rememberMe2 {
+	border-radius: 50%;
+	width: 12px;
+	height: 12px;
+	background: rgb(164, 233, 75);
 }
 
 #shipping_address {
@@ -71,32 +150,8 @@ h2 {
 	border: 2px solid #59D2FF;
 }
 
-.logincontainer {
-  width: 100%;
-  position: fixed;
-}
-
 .messagesContainer {
 
-}
-
-.loginaction {
-	width: 400px;
-	font-family: 'Montserrat', sans-serif;
-	color: white;
-	background-color: rgb(89,210,255);
-	border-style: none;
-	font-size: 14pt;
-	margin-bottom: 80px;
-}
-
-.loginaction:hover {
-  cursor: pointer;
-  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #378de5), color-stop(1, #79bbff) );
-  background:-moz-linear-gradient( center top, #378de5 5%, #79bbff 100% );
-  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#378de5', endColorstr='#79bbff');
-  background-color:#378de5;
-  color: #444444;
 }
 
 body {
@@ -186,20 +241,17 @@ div {
 .messageNotice {
   position:relative;
   float:right;
-  padding-left: 5pt;
 }
 
 .messageNotice a{
   color: rgb(89,210,255);
+  display: flex;
+  align-items: center;
+  text-decoration: none;
 }
 
-.submitButton {
-  position:relative;
-  float:right;
-}
-
-.submitButton a{
-  color: rgb(89,210,255);
+.messageNotice img {
+	height: 14px;
 }
 
 .clicky {
@@ -377,6 +429,7 @@ div {
 }
 .cardData {
 	width: 100%;
+	white-space: normal;
 }
 
 .cardData a {
@@ -394,4 +447,50 @@ div {
 	width: 100%;
 	max-width: 800px;
 	top: 0;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+/* Tooltip arrow */
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }

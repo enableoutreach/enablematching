@@ -1,18 +1,30 @@
-<div class="sectionHeader" style="margin-bottom: 20px;">Forgot your password?</div>
+<a href="<%= root_path %>"><img src="/arrow@3x.png" width="30px;"/></a>
 
 <div class="logincontainer">
-	<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'loginfield' }) do |f| %>
-	  <%= devise_error_messages! %>
+	<%= devise_error_messages! %>
+	<div class="loginFields">
+		<div style="text-align: center; font-size: 36pt; font-weight: bold; font-family: 'Montserrat', sans-serif; color: rgb(55,61,63); line-height: normal; width: 230px; margin: auto; margin-bottom: 75px; margin-top: 100px;">Forgot Your Password?</div>
+		
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+		<meta name="google-signin-client_id" content="946526782479-am02sutskrdev8akb1gt8dgeah1oqh2h.apps.googleusercontent.com">
+		
+		
+		<div style="width: 375px; margin: auto;">
+			<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'loginfield' }) do |f| %>
+	  			<div class="loginfield">
+			    EMAIL ADDRESS <br />
+			    <%= f.email_field(:email, autofocus: true, style: "width: 100%; max-width: 350px;") %>
+			  </div>
+			<p></p>
+			  <div class="actions">
+			  	<%= f.submit("RESET PASSWORD", class: 'loginaction') %>
+			  </div>
+			<% end %>
+		<%= link_to("SIGN UP", new_registration_path(resource_name), class: 'loginfield') %><br />
+
+		</div>
+	</div>
 	
-	  <div class="loginfield">
-	    <%= f.label :email %><br />
-	    <%= f.email_field :email, autofocus: true %>
-	  </div>
-	
-	  <div class="actions">
-	    <%= f.submit "Send me reset password instructions", class: 'clicky' %>
-	  </div>
-	<% end %>
-	
-	<%= render "devise/shared/links" %>
+	<div class="loginImg"><img src="/Welcome.png" /></div>
+
 </div>

@@ -177,7 +177,7 @@ class ChaptersController < ApplicationController
   
   def agree
     @chapter = Chapter.find_by token: params[:token]
-    if @chapter
+    if @chapter && !@chapter.lead.nil?
         Message.new do |m|
           m.from = params[:mem]
           m.to = @chapter.lead
