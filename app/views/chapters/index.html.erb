@@ -58,7 +58,7 @@ LatLngList.forEach(function(latLng){
 		    			<% if chapter.lead == current_member.id || current_member.admin? %> \
 							<%= link_to("Edit Chapter", url_for(controller: 'chapters', action: 'edit', id: chapter.id), class: "clicky") %> \
 						<% end %> \
-						<%= link_to("View Chapter", url_for(chapter), class: "clicky") %>'
+						<%= link_to("View Chapter", url_for(chapter), class: "clicky") %></div>'
 		    	},
 		    <% end %>
 	  <% end %>

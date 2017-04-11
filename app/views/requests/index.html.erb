@@ -40,7 +40,8 @@ LatLngList.forEach(function(latLng){
 		    			<b>Submitted Date:</b> <%= req.created_at %> <br> \
 		    			<b>By: </b> <%= Member.find(req.member_id).first_name << " " << Member.find(req.member_id).last_name %> <br> \
 		    			<b>Device:</b> <%= Device.find(req.device_id).title %> <br> \
-		    			<b>Side:</b> <%= req.side %> <br>'
+		    			<b>Side:</b> <%= req.side %> <br> \
+		    			<%= link_to("View Request", url_for(req), class: "clicky") %></div>'
 	    },
 	    <% end %>
 	  ]);
