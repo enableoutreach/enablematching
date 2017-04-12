@@ -27,14 +27,10 @@
 		
 		<div class="card" style="margin-bottom: 10px; cursor: default; display: block;">
 			<div class="cardHead">Please Leave a Message To the Recipient</div><br />
-			<div class="cardData"> <%= text_area_tag("message[content]", "", class: "messageBox") %></div></div>
+			<div class="cardData"> <%= text_area_tag("message[content]", "", class: "messageBox") %></div>
 		</div>
 		<div class="actions"><%= submit_tag("Offer to Help", class: "clicky") %></div>
 	<% end %>
-	</div>
-	
-	<div style="margin-top: 10px; margin-bottom: 35px;">
-		<%= link_to("Offer to Help", offers_path<<"?request_id="<<@request.id.to_s, class: "clicky", method: "POST") %>
 	</div>
 
  
