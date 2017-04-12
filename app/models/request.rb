@@ -3,7 +3,7 @@ class Request < ApplicationRecord
   has_one :device #device they requested
 
   geocoded_by :map_address   # can also be an IP address
-  after_validation :geocode          # auto-fetch coordinates
+  after_validation :geocode, if: ->(obj){ obj.shipping_address.present? and obj.shipping_address_changed? }          # auto-fetch coordinates
   validates :side, :shipping_address, presence: true
 
   def open_offer(mem)

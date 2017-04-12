@@ -6,6 +6,12 @@ class ApplicationController < ActionController::Base
     url_for(current_member)
   end
 
-
+  def states
+    render json: CS.states(params[:country]).sort_by{ |id, name| name }.to_json
+  end
+  
+  def cities
+    render json: CS.cities(params[:state]).sort_by{ |id, name| name }.to_json
+  end
   
 end

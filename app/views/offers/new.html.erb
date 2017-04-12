@@ -1,3 +1,6 @@
+<script> sweetAlert({title: "Please Confirm!", text: "It is important that you complete a test hand and receive credit before offering to help a recipient.  Visit <a href='http://enablingthefuture.org/upper-limb-prosthetics/' target='_new'> this page </a> to learn more.", type: 'warning', html: true, confirmButtonColor: '#59d2ff'}); </script>
+
+
 <div class="sectionHeader" style="margin-bottom: 0px;">Request</div>
 	<div class="card" style="margin-bottom: 10px; cursor: default; display: block;">
 		<div class="cardLine"><div class="cardHead">Request ID #</div><div class="cardData"><%= @request.id %></div></div>
@@ -16,26 +19,32 @@
 		<% end %>
 	</div>
 
-	<div style="margin-top: 10px; margin-bottom: 35px;">
-		<% if (@request.member_id == current_member.id || current_member.admin?) && @request.stage != "Completed" %>
-			<%= link_to("Edit Request", edit_request_path(@request), method: "GET", class: "clicky") %>
-			<%= link_to("Complete Request", url_for(controller: 'requests', action: "complete", id: @request.id), class: "clicky") %>
-		<% end %>
-		<% if @match && @request.member_id != current_member.id && !@request.open_offer(current_member) && @request.stage == "Open" %>
-			<%= link_to("Offer to Help", new_offer_path<<"?request_id="<<@request.id.to_s, class: "clicky") %>
-		<% end %>
+	<div>
+	<%= form_tag(controller: :offers, action: :create) do %>
+		<%= hidden_field_tag "message[to]", @request.member_id %>
+		<%= hidden_field_tag "message[from]", current_member.id %>
+		<%= hidden_field_tag "request_id", @request.id %>
+		
+		<div class="card" style="margin-bottom: 10px; cursor: default; display: block;">
+			<div class="cardHead">Please Leave a Message To the Recipient</div><br />
+			<div class="cardData"> <%= text_area_tag("message[content]", "", class: "messageBox") %></div></div>
+		</div>
+		<div class="actions"><%= submit_tag("Offer to Help", class: "clicky") %></div>
+	<% end %>
 	</div>
-</div>
+	
+	<div style="margin-top: 10px; margin-bottom: 35px;">
+		<%= link_to("Offer to Help", offers_path<<"?request_id="<<@request.id.to_s, class: "clicky", method: "POST") %>
+	</div>
 
-<% if !@requests.nil? %> 
-	<div class="sectionHeader" style="margin-bottom: 0;">Offers on this request</div>
+ 
+	<div class="sectionHeader" style="margin-bottom: 0;">Other Offers on this Request</div>
 	<% @offers = Offer.where(request_id: @request.id) %>
 	<% if !@offers.empty? %>
 		<%= render "layouts/offers" %>
 	<% else %>
 		<div class="zero"> None </div>
 	<% end %>
-<% end %>
 
 <script>
   $(function(handler) {

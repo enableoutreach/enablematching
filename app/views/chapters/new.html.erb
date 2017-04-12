@@ -14,7 +14,47 @@
 			<%= label_tag(:email, "CHAPTER EMAIL*") %>
 			<div class="loginfield"><%= text_field_tag(:email)%></div>
 			<%= label_tag(:location, "CHAPTER CITY, STATE*") %>
-			<div class="loginfield"><div class="tooltip"><span class="tooltiptext">Please don't provide an exact address.'</span><%= text_area_tag(:location)%></div></div>
+			<div class="loginfield"><div class="tooltip"><span class="tooltiptext">Please don't provide an exact address.</span><%= text_area_tag(:location)%></div></div>
+
+<!--		
+			<select id="countries" name="project[country]">
+				<% CS.get.sort_by{ |id, name| name }.each do |key, value| %>
+				<option value="<%= key %>"><%= value%></option>
+				<% end %>
+			</select>
+			
+<select id="states" name="project[state]">
+</select>
+ 
+<select id="cities" name="project[city]">
+</select>
+ 
+<script>
+$('#countries').change(function () {
+  var stateTag = $('#states');
+  $.getJSON('/states/' + $(this).val(), function (data) {
+    stateTag.empty();
+    $.each(data, function (i,j) {
+      var opt = '<option value='+ i +'>' + j + '</option>';
+      stateTag.append(opt);
+    });
+  });
+});
+</script>
+
+<script>
+$('#states').change(function () {
+  var cityTag = $('#cities');
+  $.getJSON('/cities/' + $(this).val(), function (data) {
+    cityTag.empty();
+    $.each(data, function (i,j) {
+      var opt = '<option value='+ i +'>' + j + '</option>';
+      cityTag.append(opt);
+    });
+  });
+});
+</script>
+-->		
 			<%= label_tag(:home, "HOME or FACEBOOK PAGE") %>
 			<div class="loginfield"><%= url_field_tag(:home)%></div>
 			<%= label_tag(:intake, "URL OF INTAKE FORM") %>

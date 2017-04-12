@@ -41,5 +41,8 @@ Rails.application.routes.draw do
   resources :messages
   resources :chapters
 
+  get 'states/:country', to: 'application#states'
+  get 'cities/:state', to: 'application#cities'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

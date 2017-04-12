@@ -6,6 +6,11 @@ class OffersController < ApplicationController
     redirect_to root_path
   end
 
+  def new
+    @offeron = params[:request_id]
+    @request = Request.find(@offeron)
+  end
+
   def create
     @offer = Offer.new(request_id: params[:request_id], member_id: current_member.id)
 
@@ -16,7 +21,7 @@ class OffersController < ApplicationController
       Message.new do |m|
         m.from = @offer.member_id
         m.to = @request.member_id
-        m.content = "An offer from <a href=\"#{Rails.application.routes.url_helpers.member_path @offer.member_id}\">#{Member.find(@offer.member_id).first_name}</a> was made on your <a href=\"#{Rails.application.routes.url_helpers.request_path @request.id}\">Request ##{@request.id.to_s}</a>"
+        m.content = "An offer from <a href=\"#{Rails.application.routes.url_helpers.member_path @offer.member_id}\">#{Member.find(@offer.member_id).first_name}</a> was made on your <a href=\"#{Rails.application.routes.url_helpers.request_path @request.id}\">Request ##{@request.id.to_s}</a>.  They left you the following message - '##{CGI::escapeHTML(params[:message][:content])}'.  You can reply directly to this message to contact them."
         m.save  
       end 
       Message.new do |m|
