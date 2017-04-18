@@ -6,4 +6,27 @@
   font-size: 14px;
   height: 100px;
   width: 100%;
+  max-width: 600px;
+  resize: both;
 };
+
+
+.messageNotice {
+  position:relative;
+  float:right;
+}
+
+.messageNotice a{
+  color: rgb(89,210,255);
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.messageNotice img {
+  height: 14px;
+}
+
+.messagesContainer {
+
+}

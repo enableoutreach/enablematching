@@ -150,9 +150,6 @@ h2 {
 	border: 2px solid #59D2FF;
 }
 
-.messagesContainer {
-
-}
 
 body {
   background-color: #fff;
@@ -238,21 +235,6 @@ div {
   margin-bottom: 20px;
 }
 
-.messageNotice {
-  position:relative;
-  float:right;
-}
-
-.messageNotice a{
-  color: rgb(89,210,255);
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-}
-
-.messageNotice img {
-	height: 14px;
-}
 
 .clicky {
   font-family: 'Montserrat', sans-serif;
@@ -430,6 +412,7 @@ div {
 .cardData {
 	width: 100%;
 	white-space: normal;
+	overflow: auto;
 }
 
 .cardData a {

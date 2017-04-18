@@ -7,7 +7,7 @@ class RequestsController < ApplicationController
   end
   
   def index
-    @requests = Request.where("stage != 'Completed'").order('created_at DESC')
+    @requests = Request.where("stage != 'Completed'").order('created_at ASC')
     @match = true
   end
 

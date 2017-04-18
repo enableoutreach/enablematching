@@ -5,7 +5,6 @@ Rails.application.routes.draw do
     match "*path" => redirect("https://matching.e-nable.me/%{path}"), :constraints => { :subdomain => "" }, :via => [:get, :post]
   end
   
-  resources :notices
   devise_for :members, controllers: {registrations: 'members/registrations', sessions: 'members/sessions'}
 
   devise_scope :member do
@@ -29,8 +28,8 @@ Rails.application.routes.draw do
     get 'chapters/:id/claimsend', to: 'chapters#claimsend'
     get 'chapters/agree', to: 'chapters#agree'
     get 'chapters/:id/review', to: 'chapters#review'
-    get 'chapters/:id/approve', to: 'chapters#approve'
-    get 'chapters/:id/reject', to: 'chapters#reject'
+    post 'chapters/:id/approve', to: 'chapters#approve'
+    post 'chapters/:id/reject', to: 'chapters#reject'
   end
 
 
@@ -40,6 +39,7 @@ Rails.application.routes.draw do
   resources :devices
   resources :messages
   resources :chapters
+  resources :notices
 
   get 'states/:country', to: 'application#states'
   get 'cities/:state', to: 'application#cities'

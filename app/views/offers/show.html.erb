@@ -15,8 +15,16 @@
 			<%= link_to("Revoke Offer", @offer, method: "DELETE", class: "clicky") %>
 		<% end %>
 		<% if @offer.stage == "Offered" && (Request.find(@offer.request_id).member_id == current_member.id || current_member.admin?) %>
-			<%= link_to("Accept Offer", url_for(controller: 'offers', action: 'accept', id: @offer.id), method: "POST", class: "clicky") %>
-			<%= link_to("Decline Offer", url_for(controller: 'offers', action: 'decline', id: @offer.id), method: "POST", class: "clicky") %><br />
+			<%= form_tag(controller: :offers, action: :accept) do %>
+				<%= hidden_field_tag "id", @offer.id %>
+				
+				<div class="card" style="margin-bottom: 10px; margin-top: 20px; cursor: default; display: block;">
+					<div class="cardHead">Please Leave a Message For the Offerer</div><br />
+					<div class="cardData"> <%= text_area_tag("message[content]", "", class: "messageBox") %></div>
+				</div>
+				<div class="loginfield"><%= submit_tag("ACCEPT OFFER", class: "loginaction", onmouseover: "document.forms[0].action = '" << url_for(controller: 'offers', action: 'accept') << "'") %></div>
+				<div class="loginfield"><%= submit_tag("DECLINE OFFER", class: "loginaction", onmouseover: "document.forms[0].action = '" << url_for(controller: 'offers', action: 'decline') << "'") %></div>
+			<% end %>
 		<% end %>
 	</div>
 </div>

@@ -6,6 +6,6 @@ Sponsored by <a href="www.enableoutreach.org" target="_new">Enable Outreach</a>
 </div>
 
 <!-- For debugging -->
-<% if current_member && current_member.admin? %>
+<% if current_member && current_member.admin? && Rails.env.development? %>
 	<% console %>
 <% end %>

@@ -1,4 +1,51 @@
-<%= render "layouts/chapter" %>
+<div>
+	<div class="card" style="margin-bottom: 10px; cursor: default; display: block;">
+		<div class="cardLine"><div class="cardHead">Chapter ID #</div><div class="cardData"><%= @chapter.id %></div></div>
+		<div class="cardLine"><div class="cardHead">Name</div><div class="cardData"><%= @chapter.name %></div></div>
+		<div class="cardLine"><div class="cardHead">Lead</div><div class="cardData"> <%= if @chapter.lead != nil; link_to(Member.find(@chapter.lead).first_name << " " << Member.find(@chapter.lead).last_name, url_for(Member.find(@chapter.lead))); else; 'No Leader'; end; %></div></div>
+		<div class="cardLine"><div class="cardHead">Email</div><div class="cardData"><a href="mailto://<%= @chapter.email %>"><%=@chapter.email%></a></div></div>
+		<div class="cardLine"><div class="cardHead">Status</div><div class="cardData"> <%= @chapter.active ? "Active" : "Inactive" %></div></div>
+		<div class="cardLine"><div class="cardHead">Location</div><div class="cardData"><%= @chapter.location %><br><div id="map" style='min-width: 100px; max-width: 300px;  min-height: 100px; margin-bottom: 10px; margin-right: 20px;'></div></div></div>
+		<div class="cardLine"><div class="cardHead">Home Page</div><div class="cardData"><%= if @chapter.home != 'None'; link_to(@chapter.home.html_safe, @chapter.home, target: "_new"); else; 'None'; end; %></div></div>
+		<div class="cardLine"><div class="cardHead">Intake Form</div><div class="cardData"><%= if @chapter.intake != 'None'; link_to(@chapter.intake.html_safe, @chapter.intake, target: "_new"); else; 'None'; end; %></div></div>
+		<div class="cardLine"><div class="cardHead">Donation Page</div><div class="cardData"><%= if @chapter.donation != 'None'; link_to(@chapter.donation.html_safe, @chapter.donation, target: "_new"); else; 'None'; end; %></div></div>
+	</div>
+</div>
+
+
+<script>
+  $(function(handler) {
+    handler = Gmaps.build('Google');
+    handler.buildMap({ 
+    	provider: {
+	    	maxZoom: 10, 
+	    	mapTypeControl: false,
+	    	streetViewControl: false,
+	    	zoomControl: false},
+	    internal: { id: 'map' } },
+	  function(){
+      markers = handler.addMarkers([
+        {lat: <%= @chapter.latitude %>,
+         lng: <%= @chapter.longitude %>}
+      ]);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+      handler.getMap().setZoom(3);
+    });
+  });
+</script>
 <BR>
-<%= link_to('Approve', url_for(controller: 'chapters', action: 'approve', id: @chapter.id)) %>
-<%= link_to('Reject', url_for(controller: 'chapters', action: 'reject', id: @chapter.id)) %>
+<div>
+<%= form_tag(controller: :chapters, action: :approve) do %>
+	<%= hidden_field_tag "message[to]", @chapter.lead %>
+	<%= hidden_field_tag "message[from]", Member.find_by(first_name: "System").id %>
+	<%= hidden_field_tag "id", @chapter.id %>
+	
+	<div class="card" style="margin-bottom: 10px; cursor: default; display: block;">
+		<div class="cardHead">Please Provide Feedback to the Applicant</div><br />
+		<div class="cardData"> <%= text_area_tag("message[content]", "<li>Consider using the thermoformed gauntlet - <a href='http://www.teamunlimbited.org/thermo-form-gauntlet/'>http://www.teamunlimbited.org/thermo-form-gauntlet/</a>.  It has many advantages. </li><li>Consider getting a generic email address so your chapter is not tied to a personal address.</li><li>You are invited to beta test our <a target='_blank' href='http://matching.e-nable.me/'>new matching system</a>.  It will allow you to find recipients, chapters and other volunteers easily.  You will also be able to post requests for help if you have a waitlist or need help with any challenging cases.</li>", class: "messageBox") %></div>
+	</div>
+	<div class="loginfield"><%= submit_tag("Approve", class: "loginaction", onmouseover: "document.forms[0].action = '" << url_for(controller: 'chapters', action: 'approve') << "'") %></div>
+	<div class="loginfield"><%= submit_tag("Reject", class: "loginaction", onmouseover: "document.forms[0].action = '" << url_for(controller: 'chapters', action: 'reject') << "'") %></div>
+<% end %>
+</div>
