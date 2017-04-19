@@ -18,6 +18,13 @@ class Members::RegistrationsController < Devise::RegistrationsController
         m.save  
       end
       
+      Message.new do |m|
+        m.from = Member.find_by(first_name: "System").id
+        m.to = resource.id
+        m.content = "*e-NABLE Code of Conduct*\nThe e-NABLE community is fueled by mutual respect, support, and goodwill. For that reason, community culture is critical. So please keep the following guidelines in mind.\n* Demonstrate respect for others at all times\n* Embrace a spirit of sharing\n* Question arguments, not motives\n* Offer solutions as well as diagnoses\nIf you feel that some pattern of activity endangers community effectiveness or morale, feel free to communicate privately with the moderators. If necessary, the moderators will remove offending members or posts from the community."
+        m.save  
+      end
+      
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_navigational_format?
         sign_up(resource_name, resource)

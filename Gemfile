@@ -12,6 +12,7 @@ gem 'mail'
 gem 'httparty'
 gem 'lightbox2-rails'
 gem 'sweetalert-rails'
+gem 'therubyracer',  platforms: :ruby
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
