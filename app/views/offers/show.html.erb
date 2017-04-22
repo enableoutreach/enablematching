@@ -3,16 +3,31 @@
 		<div class="cardLine"><div class="cardHead">Offer ID #</div><div class="cardData"><%= @offer.id %></div></div>
 		<div class="cardLine"><div class="cardHead">Offer Date</div> <div class="cardData"><%= @offer.created_at.strftime('%x') %></div></div>
 		<div class="cardLine"><div class="cardHead">Stage</div> <div class="cardData"><%= @offer.stage %></div></div>
+		
+		<!-- Requester info -->
 		<div class="cardLine"><div class="cardHead">Offered By</div><div class="cardData"> <%= link_to(Member.find(@offer.member_id).first_name << " " << Member.find(@offer.member_id).last_name, url_for(Member.find(@offer.member_id))) %></div></div>
-		<div class="cardLine">
-			<% @member=Member.find(@offer.member_id) %>
-			<%= render "layouts/profile"%>
+		<div class="card" style="background-color: #f3f3f3; margin-bottom: 10px; cursor: default; display: block;">
+			<div class="tooltip"><span class="tooltiptext">This information is provided to help you decide if you want to Accept or Decline this offer.</span>
+				<div class="cardLine"> <!-- Profile info -->
+					<% @member=Member.find(@offer.member_id) %>
+					<%= render "layouts/profile"%>
+				</div>
+	<hr />
+				<!-- List completed requests, reviews and ratings -->
+				<div class="cardLine" style="font-weight: bold">Coming Soon - ratings and reviews!!</div>
+	<hr />
+				<div class="sectionHeader" style="margin-bottom: 0px; padding-bottom: 0px; font-size: 14pt;">Requests Completed by <%= Member.find(@offer.member_id).first_name %></div>
+				<% off = @offer %>
+				<% @requests = Request.where(id: @offer.member_id, stage: "Completed") %>
+				<%= render "layouts/requests"%>
+				<% @offer = off %>
+			</div>
 		</div>
 	</div>
 
 	<div style="margin-top: 10px;  margin-bottom: 35px;">
 		<% if @offer.member_id == current_member.id || current_member.admin? %>
-			<%= link_to("Revoke Offer", @offer, method: "DELETE", class: "clicky") %>
+			<div class="loginfield"><%= link_to("REVOKE OFFER", @offer, method: "DELETE", class: "loginaction") %></div>
 		<% end %>
 		<% if @offer.stage == "Offered" && (Request.find(@offer.request_id).member_id == current_member.id || current_member.admin?) %>
 			<%= form_tag(controller: :offers, action: :accept) do %>

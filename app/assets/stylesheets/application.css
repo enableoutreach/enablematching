@@ -35,7 +35,7 @@
 
 .loginfield, .zero {
 	font-family: 'Montserrat', sans-serif;
-	color: rgb(175,177,178);
+	color: #7f8182;
 	font-size: 10pt;
 	margin-bottom: 15px;
 	font-weight: bold;
@@ -43,8 +43,8 @@
 }
 
 .loginfield textarea {
-	width: 80%;
-    max-width: 200em;
+	width: 100%;
+    max-width: 450px;
     height: 8em;	
 }
 
@@ -55,10 +55,17 @@
 	border-style: solid;
 	border-width: 1px;
 	padding: 15px;
-	color: rgb(55,61,63);
+	color: #373d3f;
 	width: 100%; 
-	max-width: 350px;
+	max-width: 450px;
 	cursor: auto;
+}
+
+.loginfield select {
+	font-weight: bold; 
+	font-family: 'Montserrat', sans-serif;
+	font-size: 10pt;
+	color: #373d3f;	
 }
 
 .loginfield label {
@@ -82,7 +89,7 @@
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a8e8ff', endColorstr='#30c8ff', GradientType=1 );
 }
 
-.loginaction, .submitButton, .submitButton a {
+.loginaction, a.loginaction, .submitButton, .submitButton a {
 	width: 375px;
 	height: 55px;
 	font-family: 'Montserrat', sans-serif;
@@ -96,6 +103,15 @@
 	max-width: 375px;
 	text-align: center;
 	text-decoration: none;
+}
+
+a.loginaction {
+	display: inline-grid;
+	align-items: center;
+}
+
+#side label {
+	color: #373d3f;
 }
 
 .submitButton {
@@ -118,14 +134,10 @@
 }
 
 #shipping_address {
-	width: 40em;
-    max-width: 40em;
-    height: 8em;
+    height: 90px;
 }
 
 #colors {
-	width: 40em;
-    max-width: 40em;
     height: 4em;
 }
 
@@ -430,6 +442,7 @@ div {
 	width: 100%;
 	max-width: 800px;
 	top: 0;
+	z-index: -1;
 }
 
 .tooltip {
@@ -441,19 +454,21 @@ div {
 /* Tooltip text */
 .tooltip .tooltiptext {
     visibility: hidden;
-    width: 120px;
+    width: 200px;
     background-color: #555;
     color: #fff;
     text-align: center;
-    padding: 5px 0;
+    padding: 5px;
     border-radius: 6px;
+    overflow: visible;
+    white-space: normal;
 
     /* Position the tooltip text */
     position: absolute;
     z-index: 1;
-    bottom: 125%;
+    bottom: 105%;
     left: 50%;
-    margin-left: -60px;
+    margin-left: -100px;
 
     /* Fade in tooltip */
     opacity: 0;

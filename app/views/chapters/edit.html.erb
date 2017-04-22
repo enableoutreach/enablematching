@@ -25,16 +25,21 @@
 	
 	<%= label_tag("Status") %>
 	<% if current_member.admin? then %>
-		<%= label_tag(:active, "Active") %>
-		<div class="loginfield"><%= radio_button_tag(:active, true, @chapter.active) %></div>
-		<%= label_tag(:active, "Inactive") %>
-		<div class="loginfield"><%= radio_button_tag(:active, false, !@chapter.active) %></div>
+		<div id="stat" style="margin-left:15px; margin-bottom: 10px; margin-top: 5px; display: flex;">
+		<style>
+			#stat label {color: #373d3f;}
+		</style>
+			<%= label_tag(:active, "Active") %>
+			<%= radio_button_tag(:active, true, @chapter.active) %>
+			<%= label_tag(:active, "Inactive") %>
+			<%= radio_button_tag(:active, false, !@chapter.active) %>
+		</div>
 	<% else %>
-		<div class="loginfield"><%= if @chapter.active; "Active"; else; "Inactive"; end %></div>
+		<%= if @chapter.active; "Active"; else; "Inactive"; end %>
 	<% end %>
 	
-	<div class="actions">
-		<%= submit_tag "Update Chapter", class: 'clicky'%>
+	<div class="loginfield">
+		<%= submit_tag "UPDATE CHAPTER", class: 'loginaction'%>
 	</div>
 <% end %>
 </div>

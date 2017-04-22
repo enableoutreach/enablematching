@@ -1,10 +1,14 @@
 <script> sweetAlert({title: "We Need Your Help!", text: "Before you mark this request as complete, please take a few minutes to tell us about your experience.  Your feedback helps us improve.  We would especially like to know if there were any problems.", type: 'warning', confirmButtonColor: '#59d2ff'}); </script>
 
+<%= form_error_messages(@request) %>
+
 <div class="noteblock" style="margin-bottom: 35px; padding: 15px;">
 Please take the survey <a href='https://www.surveymonkey.com/r/XVFT8CY' target="_new">here</a> and enter Request #<%=@request.id.to_s %>.
 </div>
 
-<%= form_tag(url_for(controller: 'requests', action: 'destroy'), method: "DELETE") do %>
+<%= form_tag(url_for(controller: 'requests', action: 'destroy'), method: "DELETE", class: "loginfield") do %>
+	<%= label_tag('Evidence of Completion') %>
+	<div class="tooltip"><span class="tooltiptext">We require evidence that the device has been successfuly delivered to the recipient.  Please provide links to photos or other evidence of completion.</span><%= text_area_tag(:evidence, @request.evidence) %></div>
 	<% msg = "Thank you for providing us your valuable feedback.  If you did not have time today, you can always provide feedback <a href='https://www.surveymonkey.com/r/XVFT8CY' target='_new'>here</a>" %>
-	<%= submit_tag "Mark request #" << @request.id.to_s << " complete", class: 'clicky', onclick: 'sweetAlert({title: "Thank You!!", text: "'<<msg<<'", type: "success", html: true, confirmButtonColor: "#59d2ff"});' %>
+	<%= submit_tag "Mark request #" << @request.id.to_s << " complete", class: 'loginaction', onclick: "if (document.getElementById('evidence').value != '') {sweetAlert({title: 'Thank You!!', text: \""<<msg<<"\", type: 'success', html: true, confirmButtonColor: '#59d2ff'});}" %>
 <% end %>

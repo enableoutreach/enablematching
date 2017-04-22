@@ -6,29 +6,30 @@
 		<div class="loginaction" style="display: flex; align-items: center;" onclick="document.getElementById('req').style.visibility='visible';var e = document.getElementById('note'); e.parentNode.removeChild(e);"><div style="margin: auto;">I Understand</div></div>
 	</div>
 	
-	<style>.cardData {width: 50%;}</style>
-	<%= form_tag("/requests", method: "POST") do %>	
+	<style>.cardData {width: 50%;} label {display: inline-block;}</style>
+	<%= form_tag(requests_path, method: "POST", class: "loginfield") do %>	
 	
 	<div class="card" id="req" style="visibility: hidden; margin-bottom: 10px; cursor: default; display: block;">
 		<div class="cardLine"><div class="cardHead">*Device</div><div class="cardData"><%= collection_select(:device, :id, Device.all, :id, :title) %></div></div>
 		<div class="cardLine"><div class="cardHead">*Side</div>
-			<div class="cardData">
+			<div class="cardData" id="side">
 				<%= label_tag(:side, "Left") %>
 				<input type="radio" name="side" id="side_Left" value="Left" onclick="document.getElementById('meas').src='/intakeLeft.png';document.getElementById('big').href='/intakeLeft.png';">
 				<%= label_tag(:side, "Right") %>
 				<input type="radio" name="side" id="side_Right" value="Right" onclick="document.getElementById('meas').src='/intakeRight.png';document.getElementById('big').href='/intakeRight.png';">
 			</div>
 		</div>
-		<div class="cardLine" style="font-style: italic; display: block;"> Use <a href="https://docs.google.com/document/d/1vWDoGMzwca5G__8-2kdTte2w3qs8-h_Nv7PmFLszn4w" target="_new" style="display: inline;">this Guide</a> to learn about taking measurements and photos</div>
+		<div class="cardLine"><div class="cardHead">Colors</div><div class="cardData"><%= text_area_tag(:colors, 'Describe what style and colors you would like.  Do you want any special designs, team logos or themes?', class: 'messageBox', style: 'height: 40px;') %></div></div>
+		<div class="cardLine"><div class="cardHead">*Shipping Address</div><div class="tooltip" style="width: 50%;"><div class="cardData" style="width: 100%;"><span class="tooltiptext" style="width: 300px;">This is the address to ship the device to.  Nobody can see this address except the person you choose to build the device. If you do not want to use your personal address, you can send it to a nearby <a href='<%= chapters_path %>' target='_blank' style='color: white;'>e-NABLE chapter</a> or a FedEx/DHL office.  Your post office may also accept 'General Delivery' or 'Poste Restante' deliveries on your behalf.</span> <%= text_area_tag(:shipping_address, '', class: 'messageBox')%></div></div></div>
+
+		<div class="cardLine" style="font-style: italic; display: block; margin-top: 40px;"> Use <a href="https://docs.google.com/document/d/1vWDoGMzwca5G__8-2kdTte2w3qs8-h_Nv7PmFLszn4w" target="_new" style="display: inline;">this Guide</a> to learn about taking measurements and photos</div>
 		<div class="cardLine"><div class="cardHead">Measurements</div>
-			<div class="cardData"><%= text_area_tag(:measurements, 'A= B= C= ... G= or provide a link to a photo or document with the measurements', class: 'messageBox', style: 'height: 2em;') %></div>
-			<div class="cardData" style="position: relative; left: 100px; top: -100px;">
+			<div class="cardData"><%= text_area_tag(:measurements, 'A= B= C= ... G= or provide a link to a photo or document with the measurements.  A volunteer can help you take required measurements once you have accepted their offer.', class: 'messageBox', style: 'height: 55px;') %></div>
+			<div class="" style="position: relative; left: 100px; top: -100px;">
 					<a href="" id="big" target="_new"><img src="" id="meas" style="width: 400px; position: absolute;"/></a>
 			</div>			
-</div>
-		<div class="cardLine"><div class="cardHead">Photos/Video</div><div class="cardData"><%= text_area_tag(:photos, 'Provide a link to a page, forum post or online file with photos', class: 'messageBox', style: 'height: 2em;') %></div></div>
-		<div class="cardLine"><div class="cardHead">Colors</div><div class="cardData"><%= text_area_tag(:colors, 'Describe what style and colors you would like.  Do you want any special designs, team logos or themese?', class: 'messageBox', style: 'height: 2em;') %></div></div>
-		<div class="cardLine"><div class="cardHead">*Shipping Address</div><div class="cardData"> <%= text_area_tag(:shipping_address, current_member.city+", "+current_member.country, class: 'messageBox')%></div></div>
+		</div>
+		<div class="cardLine"><div class="cardHead">Photos/Video</div><div class="cardData"><%= text_area_tag(:photos, 'Provide a link to a page, forum post or online location with photos and video of the recipients affected limb.  A volunteer can help you take required photos once you have accepted their offer.', class: 'messageBox', style: 'height: 80px;') %></div></div>
 		<div class="actions"><%= submit_tag "SUBMIT REQUEST", class: 'loginaction' %></div>
 	</div>
 	

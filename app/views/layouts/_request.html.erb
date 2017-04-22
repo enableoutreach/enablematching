@@ -1,6 +1,10 @@
 <div class="card" style="font-weight: <%= if @request.stage == 'Open'; 'bold'; else; 'normal'; end; %> ">
 	<a href="<%= url_for(@request) %>">
-		<div class="cardCol"><%= (Time.now.to_i - @request.created_at.to_i) /(60*60*24) %> days old</div>
+		<div class="cardCol">
+			<% if @request.stage != 'Completed' %>
+				<%= (Time.now.to_i - @request.created_at.to_i) /(60*60*24) %> days old
+			<% end %>
+		</div>
 		<div class="cardCol" style="min-width: 150px; max-width: 150px;"><%= Member.find(@request.member_id).first_name << " " << Member.find(@request.member_id).last_name %></div>
 		<div class="cardCol" style="min-width: 150px; max-width: 150px;"><%= Device.find(@request.device_id).title %></div>
 		<div class="cardCol"><%= @request.stage %></div>

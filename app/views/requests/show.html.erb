@@ -10,19 +10,21 @@
 		<div class="cardLine"><div class="cardHead">Photos</div><div class="cardData"> <%= @request.photos %></div></div>
 		<div class="cardLine"><div class="cardHead">Colors</div><div class="cardData"> <%= @request.colors %></div></div>
 		<% if (current_member.id == @request.member_id) || @request.accepted_offer(current_member) || current_member.admin? %>
-			<div class="cardLine"><div class="cardHead">Shipping Address</div><div class="cardData"> <%= @request.shipping_address %></div>
-			<div id="map" style='min-width: 100px; min-height: 100px; margin-bottom: 10px; margin-right: 20px;'></div></div>
-			<div class="cardLine"><div class="cardHead">Evidence of Completion</div><div class="cardData"> <%= @request.evidence %></div></div>
+			<div class="cardLine"><div class="cardHead">Shipping Address</div><div class="cardData"> <%= @request.shipping_address %>
+			<div id="map" style='min-width: 100px; min-height: 100px; max-height: 100px; max-width: 200px; margin-bottom: 10px; margin-right: 20px;'></div></div></div>
+			<div class="cardLine"><div class="cardHead">Evidence of Completion</div><div class="cardData"> <%= if @request.evidence; @request.evidence; else; 'None'; end; %></div></div>
 		<% end %>
 	</div>
 
 	<div style="margin-top: 10px; margin-bottom: 35px;">
 		<% if (@request.member_id == current_member.id || current_member.admin?) && @request.stage != "Completed" %>
-			<%= link_to("Edit Request", edit_request_path(@request), method: "GET", class: "clicky") %>
-			<%= link_to("Complete Request", url_for(controller: 'requests', action: "complete", id: @request.id), class: "clicky") %>
+			<div>
+			<%= link_to("EDIT REQUEST", edit_request_path(@request), method: "GET", class: "loginaction") %>
+			<%= link_to("COMPLETE REQUEST", url_for(controller: 'requests', action: "complete", id: @request.id), class: "loginaction") %>
+			</div>
 		<% end %>
 		<% if @match && @request.member_id != current_member.id && !@request.open_offer(current_member) && @request.stage == "Open" %>
-			<%= link_to("Offer to Help", new_offer_path<<"?request_id="<<@request.id.to_s, class: "clicky") %>
+			<%= link_to("OFFER TO HELP", new_offer_path<<"?request_id="<<@request.id.to_s, class: "loginaction") %>
 		<% end %>
 	</div>
 </div>

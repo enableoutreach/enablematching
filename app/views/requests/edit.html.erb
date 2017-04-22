@@ -4,10 +4,11 @@
 	<div class="sectionHeader" style="margin-bottom: 20px;">Edit Request</div>
 
 <%= form_tag(url_for(@request), method: "PUT", class: 'loginfield') do %>	
-	<%= label_tag(:title) %>
-	<div class="loginfield"><%= collection_select(:device, :id, Device.all, :id, :title, selected: @request.device_id) %></div>
+	<%= label_tag("Device") %>
+	<div class="loginfield" style="margin-left: 15px;"><%= collection_select(:device, :id, Device.all, :id, :title, selected: @request.device_id) %></div>
 	
-	<div style="display: flex; margin: 20px 0 10px 0px;">
+	<%= label_tag("Side") %>
+	<div id="side" style="margin-left:15px; margin-bottom: 10px; margin-top: 5px; display: flex;">
 		<div class="loginfield">
 			<%= label_tag(:side, "Left") %>
 			<%= radio_button_tag(:side, "Left", (@request.side == "Left")) %>
@@ -30,11 +31,11 @@
 	<%= label_tag('Photos/Video') %>
 	<div class="loginfield"><%= text_area_tag(:photos, @request.photos) %></div>
 	<%= label_tag('Evidence of Completion') %>
-	<div class="loginfield"><%= text_area_tag(:evidence, @request.evidence) %></div>
+	<div class="loginfield"><div class="tooltip"><span class="tooltiptext">Once the device has been successfuly delivered to the recipient, please provide links to photos or other evidence of completion.</span><%= text_area_tag(:evidence, @request.evidence) %></div></div>
 	</div>	
 	
-	<div class="actions">
-		<%= submit_tag "Update Request", class: 'clicky' %>
+	<div class="loginfield">
+		<%= submit_tag "UPDATE REQUEST", class: 'loginaction' %>
 	</div>
 <% end %>
 

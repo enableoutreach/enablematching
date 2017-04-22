@@ -72,44 +72,52 @@ class RequestsController < ApplicationController
   end
   
   def complete
-    if @request.member_id == current_member.id || current_member.admin?
+    if (@request.member_id == current_member.id || current_member.admin?) && @request.stage!="Completed"
     else
       flash[:notice] = "You are not permitted to mark this request as complete."
       redirect_to @request
     end 
   end
   
-  def destroy #Ruby auto-routes to this from the complete.html.erb form ; could change in routes.rb later
-    @offers = Offer.where(request_id: @request.id)
-    @request.update stage: "Completed"
-    @offers.each do |off|
-        if off.stage == 'Offered'
-          off.update stage: "Abandoned"
-        end 
-        if off.stage == 'Accepted'
-            off.update stage: "Completed"
+def destroy #Ruby auto-routes to this from the complete.html.erb form ; could change in routes.rb later
+    if params[:evidence].blank?
+      @request.errors.add(:evidence, "Please provide evidence before marking this request complete.")
+      render :complete
+    else
+      if @request.update(stage: "Completed", evidence: params[:evidence])
+        @offers = Offer.where(request_id: @request.id)
+        @offers.each do |off|
+            if off.stage == 'Offered'
+              off.update stage: "Abandoned"
+            end 
+            if off.stage == 'Accepted'
+                off.update stage: "Completed"
+            end
+            Message.new do |m|
+              m.from = Member.find_by(first_name: "System").id
+              m.to = off.member_id
+              m.content = "<a href=\"#{Rails.application.routes.url_helpers.member_path @request.member_id}\">#{Member.find(@request.member_id).first_name}</a> closed <a href=\"#{Rails.application.routes.url_helpers.request_path @request.id}\">Request ##{@request.id.to_s}</a>, so your offer was abandoned."
+              m.save  
+            end
         end
+        
+        flash[:notice] = "Request and associated offers closed"
+    
         Message.new do |m|
           m.from = Member.find_by(first_name: "System").id
-          m.to = off.member_id
-          m.content = "<a href=\"#{Rails.application.routes.url_helpers.member_path @request.member_id}\">#{Member.find(@request.member_id).first_name}</a> closed <a href=\"#{Rails.application.routes.url_helpers.request_path @request.id}\">Request ##{@request.id.to_s}</a>, so your offer was abandoned."
+          m.to = @request.member_id
+          m.content = "You closed <a href=\"#{Rails.application.routes.url_helpers.request_path @request.id}\">Request ##{@request.id.to_s}</a>"
           m.save  
         end
+        
+        redirect_to requests_path
+        else
+          render :complete
+      end
     end
-    
-    flash[:notice] = "Request and associated offers closed"
-
-    Message.new do |m|
-      m.from = Member.find_by(first_name: "System").id
-      m.to = @request.member_id
-      m.content = "You closed <a href=\"#{Rails.application.routes.url_helpers.request_path @request.id}\">Request ##{@request.id.to_s}</a>"
-      m.save  
-    end
-    
-    redirect_to :controller => 'requests', :action => 'index'
-  end
+end
   
-  private
+private
     def is_unique_request(new_request)
       # Thought of ways to define uniqueness, but decided to leave it up to community.  There are many valid reasons for requesting the same device, for the same person (e.g. grew out of it).  But putting time constraints could impact replacement of legitimately broken devices.
       return true
