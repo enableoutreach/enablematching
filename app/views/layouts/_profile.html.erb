@@ -1,6 +1,6 @@
 <div style="display: flex; position: relative; padding-left: 10px;">
   <div style="vertical-align: top; margin-right: 20px;">
-	Name: <%=@member.first_name+" "+@member.last_name%><br />
+	Name: <%=@member.full_name%><br />
 	<% if @member==current_member %>
 		Email: <%=@member.email%><br />
 	<% end %>

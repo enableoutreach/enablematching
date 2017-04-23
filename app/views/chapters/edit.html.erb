@@ -8,7 +8,7 @@
 	<%= label_tag(:name) %>
 	<div class="loginfield"><%= text_area_tag(:name, @chapter.name, size: "50x1")%></div>
 	<%= label_tag(:lead) %>
-	<div class="loginfield" style="font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; color: black; font-size: 13px;"><%= if @chapter.lead; Member.find(@chapter.lead).first_name << " " << Member.find(@chapter.lead).last_name; else; 'No Leader'; end; %></div>
+	<div class="loginfield" style="font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; color: black; font-size: 13px;"><%= if @chapter.lead; Member.find(@chapter.lead).full_name; else; 'No Leader'; end; %></div>
 	
 	<%= label_tag(:email) %>
 	<div class="loginfield"><%= text_field_tag(:email, @chapter.email)%></div>

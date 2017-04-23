@@ -48,7 +48,7 @@ LatLngList.forEach(function(latLng){
 			    	lng: <%= chapter.longitude%>,
 		    		infowindow: '<div class="infowin"> \
 		    			<b>Name:</b> <%= chapter.name %> <br> \
-		    			<b>Lead:</b> <%= if chapter.lead; Member.find(chapter.lead).first_name << " " << Member.find(chapter.lead).last_name; "None"; end; %> <br> \
+		    			<b>Lead:</b> <%= if chapter.lead; Member.find(chapter.lead).full_name; "None"; end; %> <br> \
 		    			<b>Location:</b> <%= chapter.location %> <br> \
 		    			<b>Email:</b> <%= chapter.email %> <br> \
 		    			<b>Homepage:</b> <%= if chapter.home; link_to(chapter.home, chapter.home, target: "_new"); end; %> <br> \

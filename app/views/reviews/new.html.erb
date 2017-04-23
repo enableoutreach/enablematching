@@ -1,0 +1,38 @@
+<%= form_error_messages(@review) %>
+<div class="sectionHeader" style="margin-bottom: 0;">New Review</div>
+<div>
+	<style>.cardData {width: 50%;} label {display: inline-block;}</style>
+	<%= form_tag(reviews_path, method: "POST", class: "loginfield") do %>
+		<%= hidden_field_tag :by, current_member.id %>
+		<%= hidden_field_tag :for, @review.for %>
+		<%= hidden_field_tag :rating %>
+		<%= hidden_field_tag :target_type, "Member" %>
+		<div class="card" style="margin-bottom: 10px; cursor: default; display: block;">
+			<div class="cardLine"><div class="cardHead">*By</div><div class="cardData"><%= current_member.full_name %></div></div>
+			<div class="cardLine"><div class="cardHead">*For</div><div class="cardData"><%= Member.find(@review.for).full_name %></div></div>
+			<div class="cardLine"><div class="cardHead">Rating</div><div class="cardData"><ul id="el" class="c-rating"></ul></div></div>
+			<div class="cardLine"><div class="cardHead" style="margin-top: 12px;">*Title</div><div class="cardData"><%= text_field_tag(:title, '') %></div></div>
+			<div class="cardLine"><div class="cardHead" style="margin-top: 12px;">*Content</div><div class="tooltip" style="width: 50%;"><div class="cardData" style="width: 100%;"><span class="tooltiptext" style="width: 300px;">Please provide feedback on your experience with this member.  This review will be visible to other members.</span> <%= text_area_tag(:content, '', class: 'messageBox')%></div></div></div>
+	
+			<div class="actions"><%= submit_tag "SUBMIT REVIEW", class: 'loginaction' %></div>
+		</div>
+	<% end %>
+</div>
+
+<script>
+	// target element
+	var el = document.querySelector('#el');
+	
+	// current rating, or initial rating
+	var currentRating = 0;
+	
+	// max rating, i.e. number of stars you want
+	var maxRating= 5;
+	
+	// callback to run after setting the rating
+	var callback = function(rating) { document.querySelector('#rating').value = rating; };
+	
+	// rating instance
+	var myRating = rating(el, currentRating, maxRating, callback);
+</script>
+

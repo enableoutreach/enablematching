@@ -14,7 +14,12 @@
  *= require_self
  *= require lightbox
  *= require sweetalert
+ *= require rating
  */
+
+html * {
+	font-family: 'Montserrat', sans-serif !important;	
+}
 
 .zero {
 	margin-bottom: 20px;
@@ -34,7 +39,6 @@
 }
 
 .loginfield, .zero {
-	font-family: 'Montserrat', sans-serif;
 	color: #7f8182;
 	font-size: 10pt;
 	margin-bottom: 15px;
@@ -63,7 +67,6 @@
 
 .loginfield select {
 	font-weight: bold; 
-	font-family: 'Montserrat', sans-serif;
 	font-size: 10pt;
 	color: #373d3f;	
 }
@@ -92,7 +95,6 @@
 .loginaction, a.loginaction, .submitButton, .submitButton a {
 	width: 375px;
 	height: 55px;
-	font-family: 'Montserrat', sans-serif;
 	color: white;
 	background-color: rgb(89,210,255);
 	border-style: none;
@@ -141,18 +143,15 @@ a.loginaction {
     height: 4em;
 }
 
-
 h2 {
-	font-family: 'Montserrat', sans-serif;
 	font-size: 36pt;
 }
 
 .sectionHeader {
-  font-family: 'Montserrat', sans-serif;
   font-size: 18pt;
   color: white;
   background: rgb(89,210,255); 
-  padding-left: 10px;
+  padding-lefyt: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
   margin-bottom: 5px;
@@ -249,7 +248,6 @@ div {
 
 
 .clicky {
-  font-family: 'Montserrat', sans-serif;
 	font-size: 12pt;
 	-moz-box-shadow:inset 0px 1px 0px 0px #bbdaf7;
   -webkit-box-shadow:inset 0px 1px 0px 0px #bbdaf7;
@@ -305,7 +303,7 @@ div {
 }
 
 .menu{
-	font-size: 12pt; 
+	font-size: 14pt; 
 	margin:0 auto; 
 	padding:0; 
 	width:100%; 
@@ -332,8 +330,7 @@ div {
 	padding:5px; 
 	display:block; 
 	color:rgb(255,255,255); 
-	text-decoration:none; 
-	font-family: 'Montserrat', sans-serif;  
+	text-decoration:none;  
 }
 
 .cardContainer {
@@ -344,7 +341,6 @@ div {
 }
 
 .card {
-  font-family: 'Montserrat', sans-serif;
   background-color: white;
   cursor: pointer;  
   bottom: 0;
@@ -401,7 +397,6 @@ div {
 }
 
 .noteblock li {
-	font-family: 'Montserrat', sans-serif;
 	font-size: 16px;
 	color: #6f6f6f;
 	padding-bottom: 2em;
@@ -410,7 +405,6 @@ div {
 }
 
 .noteblock ul {
-	font-family: 'Montserrat', sans-serif;
 	font-size: 18px;
 	color: #6f6f6f;
 	margin: 10px;

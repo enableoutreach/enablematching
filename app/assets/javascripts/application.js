@@ -19,3 +19,4 @@
 //= require gmaps/google
 //= require lightbox
 //= require sweetalert
+//= require rating

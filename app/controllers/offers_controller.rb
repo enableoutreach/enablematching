@@ -7,8 +7,11 @@ class OffersController < ApplicationController
   end
 
   def new
-    @offeron = params[:request_id]
-    @request = Request.find(@offeron)
+    @request = Request.find(params[:request_id])
+    if (Offer.where(member_id: current_member.id, stage: "Offered").length >= 5)
+      flash[:notice] = "Please don't make more than 5 offers to ensure that there are cases available for other volunteers."
+      redirect_to @request
+    end
   end
 
   def create
@@ -89,7 +92,7 @@ class OffersController < ApplicationController
         m.save  
     end
     
-    redirect_to :controller => 'requests', :action => 'index'
+    redirect_to @request
   end
   
   def decline

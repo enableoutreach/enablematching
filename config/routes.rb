@@ -32,7 +32,6 @@ Rails.application.routes.draw do
     post 'chapters/:id/reject', to: 'chapters#reject'
   end
 
-
   resources :members
   resources :requests
   resources :offers
@@ -40,6 +39,7 @@ Rails.application.routes.draw do
   resources :messages
   resources :chapters
   resources :notices
+  resources :reviews
 
   get 'states/:country', to: 'application#states'
   get 'cities/:state', to: 'application#cities'

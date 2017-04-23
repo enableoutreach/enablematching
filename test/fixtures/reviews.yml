@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  by: 1
+  for: 1
+  type: 
+  rating: 1
+  title: MyText
+  content: MyText
+
+two:
+  by: 1
+  for: 1
+  type: 
+  rating: 1
+  title: MyText
+  content: MyText

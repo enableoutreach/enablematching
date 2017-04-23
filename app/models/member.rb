@@ -27,4 +27,8 @@ class Member < ApplicationRecord
     end
   end
   
+  def full_name
+    return Member.find(id).first_name + " " + Member.find(id).last_name 
+  end
+  
 end

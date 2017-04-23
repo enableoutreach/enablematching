@@ -205,8 +205,8 @@ class ChaptersController < ApplicationController
       mail = Mail.new
       mail.to = @chapter.email
       mail.from = 'eNABLE Chapters Team <enablechapters@gmail.com>'
-      mail.subject = current_member.first_name << ' ' << current_member.last_name << ' requested to lead the ' << @chapter.name << ' chapter'
-      mail.body = current_member.first_name << ' ' << current_member.last_name << ' requested to be asssigned as the leader of the ' << @chapter.name << ' chapter in the e-NABLE Matching System (http://matching.e-nable.me).  If you agree, click this link.' << url_for(controller: 'chapters', action: 'agree', token: @tok, mem: current_member.id) << 'If you do not agree, you can ignore this email.'
+      mail.subject = current_member.full_name << ' requested to lead the ' << @chapter.name << ' chapter'
+      mail.body = current_member.full_name << ' requested to be asssigned as the leader of the ' << @chapter.name << ' chapter in the e-NABLE Matching System (http://matching.e-nable.me).  If you agree, click this link.' << url_for(controller: 'chapters', action: 'agree', token: @tok, mem: current_member.id) << 'If you do not agree, you can ignore this email.'
         
       mail.deliver do
       end
@@ -223,7 +223,7 @@ class ChaptersController < ApplicationController
         Message.new do |m|
           m.from = params[:mem]
           m.to = @chapter.lead
-          m.content = "You were replaced by " << Member.find(params[:mem]).first_name << " " << Member.find(params[:mem]).last_name << " as leader of " << @chapter.name
+          m.content = "You were replaced by " << Member.find(params[:mem]).full_name << " as leader of " << @chapter.name
           m.save  
         end
         

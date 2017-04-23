@@ -1,0 +1,32 @@
+<div style="margin-bottom: 25px;">
+	<div class="sectionHeader" style="margin-bottom: 0px;">Review</div>
+	<div class="card" style="margin-bottom: 10px; cursor: default; display: block;">
+		<div class="cardLine"><div class="cardHead">Date</div><div class="cardData"><%= @review.created_at.strftime("%b %d, %Y - %I:%M %Z") %></div></div>
+		<div class="cardLine"><div class="cardHead">By</div><div class="cardData"><%= link_to(Member.find(@review.by).full_name, url_for(Member.find(@review.by))) %></div></div>
+		<div class="cardLine"><div class="cardHead">For</div><div class="cardData"> <%= link_to(Member.find(@review.for).full_name, url_for(Member.find(@review.for))) %></div></div>
+		<div class="cardLine"><div class="cardHead">Rating</div><div class="cardData"><ul class="c-rating" id="el"></ul></div></div>
+		<div class="cardLine"><div class="cardHead">Title</div><div class="cardData"> <%= @review.title %></div></div>
+		<div class="cardLine"><div class="cardHead">Content</div><div class="cardData"><%= @review.content.html_safe %></div></div>
+	</div>
+</div>
+
+<script>
+	// target element
+	var el = document.querySelector('#el');
+	
+	// current rating, or initial rating
+	var currentRating = <%= @review.rating %>;
+	
+	// max rating, i.e. number of stars you want
+	var maxRating= 5;
+	
+	// callback to run after setting the rating
+	var callback = function(rating) { document.querySelector('#rating').value = rating; };
+	
+	// rating instance
+	var myRating = rating(el, currentRating, maxRating, callback, false);
+</script>
+
+<style>
+	#el > li {cursor: auto;}
+</style>

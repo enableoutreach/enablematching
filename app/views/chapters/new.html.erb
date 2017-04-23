@@ -9,7 +9,7 @@
 			<%= label_tag(:name, "CHAPTER NAME*") %>
 			<div class="loginfield"><%= text_field_tag(:name)%></div>
 			<%= label_tag(:lead, "CHAPTER LEAD") %>
-			<div class="loginfield"><%= current_member.first_name << " " << current_member.last_name %></div>
+			<div class="loginfield"><%= current_member.full_name %></div>
 			<%= hidden_field_tag(:lead, current_member.id) %>
 			<%= label_tag(:email, "CHAPTER EMAIL*") %>
 			<div class="loginfield"><%= text_field_tag(:email)%></div>
@@ -61,7 +61,7 @@ $('#states').change(function () {
 			<div class="loginfield"><%= url_field_tag(:intake)%></div>
 			<%= label_tag(:donation, "DONATION PAGE") %>
 			<div class="loginfield"><%= url_field_tag(:donation)%></div>
-			<%= label_tag(:evidence, "EVIDENCE*") %><br />
+			<%= label_tag(:evidence, "TEST HAND EVIDENCE*") %><br />
 			Please provide links to photos and video of your test hand.  A link to a Credly badge also works.
 			<div class="loginfield"><%= text_area_tag(:evidence)%></div>
 		

@@ -4,8 +4,8 @@
 	<div class="card" style="margin-bottom: 10px; cursor: default; display: block;">
 		<div class="cardLine"><div class="cardHead">Date</div><div class="cardData"><%= @message.created_at.strftime("%b %d, %Y - %I:%M %Z") %></div></div>
 		<div class="cardLine"><div class="cardHead">Status</div><div class="cardData"><%= @message.status %></div></div>
-		<div class="cardLine"><div class="cardHead">From</div><div class="cardData"> <%= link_to(Member.find(@message.from).first_name << " " << Member.find(@message.from).last_name, url_for(Member.find(@message.from))) %></div></div>
-		<div class="cardLine"><div class="cardHead">To</div><div class="cardData"> <%= link_to(Member.find(@message.to).first_name << " " << Member.find(@message.to).last_name, url_for(Member.find(@message.to))) %></div></div>
+		<div class="cardLine"><div class="cardHead">From</div><div class="cardData"> <%= link_to(Member.find(@message.from).full_name, url_for(Member.find(@message.from))) %></div></div>
+		<div class="cardLine"><div class="cardHead">To</div><div class="cardData"> <%= link_to(Member.find(@message.to).full_name, url_for(Member.find(@message.to))) %></div></div>
 		<div class="cardLine"><div class="cardHead">Content</div><div class="cardData"><%= @message.content.html_safe %></div></div>
 	</div>
 </div>

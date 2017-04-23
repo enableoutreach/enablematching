@@ -2,13 +2,14 @@
 	<div class="card" style="margin-bottom: 10px; cursor: default; display: block;">
 		<div class="cardLine"><div class="cardHead">Chapter ID #</div><div class="cardData"><%= @chapter.id %></div></div>
 		<div class="cardLine"><div class="cardHead">Name</div><div class="cardData"><%= @chapter.name %></div></div>
-		<div class="cardLine"><div class="cardHead">Lead</div><div class="cardData"> <%= if @chapter.lead != nil; link_to(Member.find(@chapter.lead).first_name << " " << Member.find(@chapter.lead).last_name, url_for(Member.find(@chapter.lead))); else; 'No Leader'; end; %></div></div>
+		<div class="cardLine"><div class="cardHead">Lead</div><div class="cardData"> <%= if @chapter.lead != nil; link_to(Member.find(@chapter.lead).full_name, url_for(Member.find(@chapter.lead))); else; 'No Leader'; end; %></div></div>
 		<div class="cardLine"><div class="cardHead">Email</div><div class="cardData"><a href="mailto://<%= @chapter.email %>"><%=@chapter.email%></a></div></div>
 		<div class="cardLine"><div class="cardHead">Status</div><div class="cardData"> <%= @chapter.active ? "Active" : "Inactive" %></div></div>
 		<div class="cardLine"><div class="cardHead">Location</div><div class="cardData"><%= @chapter.location %><br><div id="map" style='min-width: 100px; max-width: 300px;  min-height: 100px; margin-bottom: 10px; margin-right: 20px;'></div></div></div>
 		<div class="cardLine"><div class="cardHead">Home Page</div><div class="cardData"><%= if @chapter.home != 'None'; link_to(@chapter.home.html_safe, @chapter.home, target: "_new"); else; 'None'; end; %></div></div>
 		<div class="cardLine"><div class="cardHead">Intake Form</div><div class="cardData"><%= if @chapter.intake != 'None'; link_to(@chapter.intake.html_safe, @chapter.intake, target: "_new"); else; 'None'; end; %></div></div>
 		<div class="cardLine"><div class="cardHead">Donation Page</div><div class="cardData"><%= if @chapter.donation != 'None'; link_to(@chapter.donation.html_safe, @chapter.donation, target: "_new"); else; 'None'; end; %></div></div>
+		<div class="cardLine"><div class="cardHead">Test Hand Evidence</div><div class="cardData"><%= if !@chapter.evidence.blank?; @chapter.evidence.html_safe; else; 'None'; end; %></div></div>
 	</div>
 </div>
 
